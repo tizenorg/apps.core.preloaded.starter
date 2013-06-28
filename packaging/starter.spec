@@ -7,6 +7,7 @@ License:    TO_BE/FILLED_IN
 Source0:    starter-%{version}.tar.gz
 Source1:    starter.service
 Source2:    starter.path
+Source1001: 	starter.manifest
 Requires(post): /usr/bin/vconftool
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(ail)
@@ -47,6 +48,7 @@ Description: Starter
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %cmake .
 
@@ -95,7 +97,7 @@ ln -sf /etc/init.d/rd3starter /etc/rc.d/rc3.d/S43starter
 
 
 %files
-%manifest starter.manifest
+%manifest %{name}.manifest
 %defattr(-,root,root,-)
 %{_sysconfdir}/init.d/rd4starter
 %{_sysconfdir}/init.d/rd3starter
