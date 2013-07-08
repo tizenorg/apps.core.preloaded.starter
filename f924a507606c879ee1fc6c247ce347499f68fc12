@@ -1,0 +1,8 @@
+Change-Id: If924a507606c879ee1fc6c247ce347499f68fc12
+Code-Review+2: Ryan Ware <ware@linux.intel.com>
+Verified+1: Ryan Ware <ware@linux.intel.com>
+Submitted-by: Ryan Ware <ware@linux.intel.com>
+Submitted-at: Mon, 08 Jul 2013 10:08:07 -0700
+Reviewed-on: https://review.tizen.org/gerrit/4433
+Project: apps/core/preloaded/starter
+Branch: refs/heads/tizen
