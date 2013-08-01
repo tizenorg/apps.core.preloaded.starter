@@ -2,7 +2,7 @@ Name:       starter
 Summary:    starter
 Version: 0.4.62
 Release:    3
-Group:      TO_BE/FILLED_IN
+Group:      Base/Startup
 License:    TO_BE/FILLED_IN
 Source0:    starter-%{version}.tar.gz
 Source1:    starter.service
@@ -38,13 +38,13 @@ BuildRequires:  pkgconfig(capi-system-info)
 BuildRequires:	pkgconfig(pkgmgr-info)
 BuildRequires:  cmake
 BuildRequires:  edje-bin
+BuildRequires: gettext
 BuildRequires: gettext-tools
 
 Requires(post): /usr/bin/vconftool
 
 %description
 Description: Starter
-
 
 %prep
 %setup -q
@@ -66,6 +66,8 @@ ln -s ../starter.path %{buildroot}%{_libdir}/systemd/user/core-efl.target.wants/
 mkdir -p %{buildroot}/usr/share/license
 cp -f LICENSE.Flora %{buildroot}/usr/share/license/%{name}
 mkdir -p %{buildroot}/opt/data/home-daemon
+
+%find_lang ug-lockscreen-options
 
 %post
 change_file_executable()
@@ -95,8 +97,9 @@ vconftool set -t int memory/idle-screen/safemode "0" -i -f
 ln -sf /etc/init.d/rd4starter /etc/rc.d/rc4.d/S81starter
 ln -sf /etc/init.d/rd3starter /etc/rc.d/rc3.d/S43starter
 
+%postun -p /sbin/ldconfig
 
-%files
+%files -f ug-lockscreen-options.lang
 %manifest %{name}.manifest
 %defattr(-,root,root,-)
 %{_sysconfdir}/init.d/rd4starter
@@ -104,7 +107,6 @@ ln -sf /etc/init.d/rd3starter /etc/rc.d/rc3.d/S43starter
 %{_bindir}/starter
 /usr/ug/lib/libug-lockscreen-options.so
 /usr/ug/lib/libug-lockscreen-options.so.0.1.0
-/usr/ug/res/locale/*/LC_MESSAGES/*
 %{_libdir}/systemd/user/starter.path
 %{_libdir}/systemd/user/starter.service
 %{_libdir}/systemd/user/core-efl.target.wants/starter.path

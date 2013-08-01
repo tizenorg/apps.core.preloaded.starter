@@ -1,0 +1,3 @@
+* Thu Aug  1 21:47:53 UTC 2013 - tracy.graydon@intel.com
+- Fix lang rpmlint errors and invalid group
+
