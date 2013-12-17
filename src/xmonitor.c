@@ -20,7 +20,11 @@
 #include <aul.h>
 #include <dlog.h>
 #include <Ecore.h>
+
+#ifndef WAYLAND
 #include <Ecore_X.h>
+#endif
+
 #include <Evas.h>
 #include <errno.h>
 #include <stdbool.h>
@@ -54,7 +58,7 @@ static struct info {
 int errno;
 
 
-
+#ifndef WAYLAND
 static inline int _get_pid(Ecore_X_Window win)
 {
 	int pid;
@@ -80,11 +84,12 @@ static inline int _get_pid(Ecore_X_Window win)
 
 	return pid;
 }
-
+#endif
 
 
 bool _set_idlescreen_top(void)
 {
+#ifndef WAYLAND
 	Ecore_X_Window win;
 
 	int is_top;
@@ -104,6 +109,7 @@ bool _set_idlescreen_top(void)
 		xmonitor_info.is_top = is_top;
 		_D("set the key of idlescreen_is_top as %d", is_top);
 	}
+#endif
 
 	return true;
 }
@@ -112,11 +118,13 @@ bool _set_idlescreen_top(void)
 
 static Eina_Bool _create_cb(void *data, int type, void *event)
 {
+#ifndef WAYLAND
 	Ecore_X_Event_Window_Create *info = event;
 
 	_D("Create a window[%x]", info->win);
 
 	ecore_x_window_client_sniff(info->win);
+#endif
 
 	return ECORE_CALLBACK_PASS_ON;
 }
@@ -132,11 +140,13 @@ static Eina_Bool _destroy_cb(void *data, int type, void *event)
 
 static Eina_Bool _focus_in_cb(void *data, int type, void *event)
 {
+#ifndef WAYLAND
 	Ecore_X_Event_Window_Focus_In *info = event;
 
 	_D("Focus in a window[%x]", info->win);
 
 	retv_if(false == _set_idlescreen_top(), ECORE_CALLBACK_PASS_ON);
+#endif
 
 	return ECORE_CALLBACK_PASS_ON;
 }
@@ -145,9 +155,11 @@ static Eina_Bool _focus_in_cb(void *data, int type, void *event)
 
 static Eina_Bool _focus_out_cb(void *data, int type, void *event)
 {
+#ifndef WAYLAND
 	Ecore_X_Event_Window_Focus_Out *info = event;
 
 	_D("Focus out a window[%x]", info->win);
+#endif
 
 	return ECORE_CALLBACK_PASS_ON;
 }
@@ -156,6 +168,7 @@ static Eina_Bool _focus_out_cb(void *data, int type, void *event)
 
 static inline void _sniff_all_windows(void)
 {
+#ifndef WAYLAND
 	Ecore_X_Window root;
 	Ecore_X_Window ret;
 	struct stack_item *new_item;
@@ -224,6 +237,7 @@ static inline void _sniff_all_windows(void)
 		free(item->wins);
 		free(item);
 	}
+#endif
 
 	return;
 }
@@ -232,6 +246,7 @@ static inline void _sniff_all_windows(void)
 
 int xmonitor_init(void)
 {
+#ifndef WAYLAND
 	if (ecore_x_composite_query() == EINA_FALSE)
 		_D("====> COMPOSITOR IS NOT ENABLED");
 
@@ -276,12 +291,14 @@ Error:
 		ecore_event_handler_del(xmonitor_info.focus_out_handler);
 		xmonitor_info.focus_out_handler = NULL;
 	} else return -EFAULT;
+#endif
 
 	return -EFAULT;
 }
 
 void xmonitor_fini(void)
 {
+#ifndef WAYLAND
 	ecore_event_handler_del(xmonitor_info.create_handler);
 	xmonitor_info.create_handler = NULL;
 
@@ -293,4 +310,5 @@ void xmonitor_fini(void)
 
 	ecore_event_handler_del(xmonitor_info.focus_out_handler);
 	xmonitor_info.focus_out_handler = NULL;
+#endif
 }

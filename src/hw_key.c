@@ -19,11 +19,15 @@
 #include <ail.h>
 #include <bundle.h>
 #include <Elementary.h>
+
+#ifndef WAYLAND
 #include <Ecore_X.h>
+#include <utilX.h>
+#endif
+
 #include <Ecore_Input.h>
 #include <sysman.h>
 #include <syspopup_caller.h>
-#include <utilX.h>
 #include <vconf.h>
 #include <system/media_key.h>
 
@@ -156,6 +160,7 @@ static Eina_Bool _key_release_cb(void *data, int type, void *event)
 		return ECORE_CALLBACK_RENEW;
 	}
 
+#ifndef WAYLAND
 	if (!strcmp(ev->keyname, KEY_END)) {
 	} else if (!strcmp(ev->keyname, KEY_CONFIG)) {
 	} else if (!strcmp(ev->keyname, KEY_SEND)) {
@@ -192,6 +197,7 @@ static Eina_Bool _key_release_cb(void *data, int type, void *event)
 	} else if (!strcmp(ev->keyname, KEY_MEDIA)) {
 		_release_multimedia_key("KEY_PLAYCD");
 	}
+#endif
 
 	return ECORE_CALLBACK_RENEW;
 }
@@ -210,6 +216,7 @@ static Eina_Bool _key_press_cb(void *data, int type, void *event)
 		return ECORE_CALLBACK_RENEW;
 	}
 
+#ifndef WAYLAND
 	if (!strcmp(ev->keyname, KEY_SEND)) {
 		_D("Launch calllog");
 		if (menu_daemon_open_app(CALLLOG_PKG_NAME) < 0)
@@ -240,6 +247,7 @@ static Eina_Bool _key_press_cb(void *data, int type, void *event)
 	} else if (!strcmp(ev->keyname, KEY_MEDIA)) {
 		_D("Media key is pressed");
 	}
+#endif
 
 	return ECORE_CALLBACK_RENEW;
 }
@@ -262,6 +270,7 @@ void _media_key_event_cb(media_key_e key, media_key_event_e status, void *user_d
 
 void create_key_window(void)
 {
+#ifndef WAYLAND
 	key_info.win = ecore_x_window_input_new(0, 0, 0, 1, 1);
 	if (!key_info.win) {
 		_D("Failed to create hidden window");
@@ -287,12 +296,14 @@ void create_key_window(void)
 		_D("Failed to register a key down event handler");
 
 	media_key_reserve(_media_key_event_cb, NULL);
+#endif
 }
 
 
 
 void destroy_key_window(void)
 {
+#ifndef WAYLAND
 	utilx_ungrab_key(ecore_x_display_get(), key_info.win, KEY_HOME);
 	utilx_ungrab_key(ecore_x_display_get(), key_info.win, KEY_VOLUMEDOWN);
 	utilx_ungrab_key(ecore_x_display_get(), key_info.win, KEY_VOLUMEUP);
@@ -313,6 +324,7 @@ void destroy_key_window(void)
 	key_info.win = 0x0;
 
 	media_key_release();
+#endif
 }
 
 
