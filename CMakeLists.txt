@@ -12,36 +12,39 @@ SET(LOCALEDIR "${DATADIR}/locale")
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include)
 
 INCLUDE(FindPkgConfig)
-pkg_check_modules(pkgs REQUIRED
-	ail
-	aul
-	capi-system-media-key
-	db-util
-	dlog
-	ecore
-	ecore-evas
-	ecore-input
-	ecore-x
-	eet
-	eina
-	elementary
-	evas
-	heynoti
-	sysman
-	syspopup-caller
-	utilX
-	vconf
-	x11
-	xcomposite
-	xext
-	appcore-efl
-	glib-2.0
-	ui-gadget-1
-	bundle
-	capi-appfw-application
-	capi-system-info
-	pkgmgr-info
-)
+SET(PKGS_CHECK_MODULES
+        ail
+        aul
+        capi-system-media-key
+        db-util
+        dlog
+        ecore
+        ecore-evas
+        ecore-input
+        eet
+        eina
+        elementary
+        evas
+        heynoti
+        sysman
+        syspopup-caller
+        vconf
+        appcore-efl
+        glib-2.0
+        ui-gadget-1
+        bundle
+        capi-appfw-application
+        capi-system-info
+        pkgmgr-info)
+
+IF (with_x)
+        pkg_check_modules(pkgs REQUIRED ${PKGS_CHECK_MODULES} ecore-x utilX x11 xcomposite xext)
+ENDIF(with_x)
+
+IF (with_wayland)
+        ADD_DEFINITIONS("-DWAYLAND")
+        pkg_check_modules(pkgs REQUIRED ${PKGS_CHECK_MODULES})
+ENDIF(with_wayland)
 
 FOREACH(flag ${pkgs_CFLAGS})
 	SET(EXTRA_CFLAGS "${EXTRA_CFLAGS} ${flag}")
