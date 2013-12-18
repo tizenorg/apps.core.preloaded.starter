@@ -17,8 +17,12 @@
 
 
 #include <Elementary.h>
+
+#ifndef WAYLAND
 #include <Ecore_X.h>
 #include <utilX.h>
+#endif
+
 #include <ui-gadget.h>
 #include <vconf.h>
 #include <bundle.h>
@@ -58,6 +62,7 @@ static Eina_Bool _lockd_window_key_down_cb(void *data, int type, void *event)
 	return ECORE_CALLBACK_PASS_ON;
 }
 
+#ifndef WAYLAND
 static int
 _lockd_window_check_validate_rect(Ecore_X_Display * dpy, Ecore_X_Window window)
 {
@@ -94,7 +99,9 @@ _lockd_window_check_validate_rect(Ecore_X_Display * dpy, Ecore_X_Window window)
 
 	return ret;
 }
+#endif
 
+#ifndef WAYLAND
 static Window get_user_created_window(Window win)
 {
 	Atom type_ret = 0;
@@ -127,11 +134,13 @@ static Window get_user_created_window(Window win)
 	return xid;
 
 }
+#endif
 
 Eina_Bool
 lockd_window_set_window_property(lockw_data * data, int lock_app_pid,
 				 void *event)
 {
+#ifndef WAYLAND
 	Ecore_X_Event_Window_Create *e = event;
 	Ecore_X_Window user_window = 0;
 	lockw_data *lockw = (lockw_data *) data;
@@ -173,12 +182,15 @@ lockd_window_set_window_property(lockw_data * data, int lock_app_pid,
 			return EINA_TRUE;
 		}
 	}
+#endif
+
 	return EINA_FALSE;
 }
 
 Eina_Bool
 lockd_window_set_window_effect(lockw_data * data, int lock_app_pid, void *event)
 {
+#ifndef WAYLAND
 	Ecore_X_Event_Window_Create *e = event;
 	Ecore_X_Window user_window = 0;
 	int pid = 0;
@@ -206,6 +218,8 @@ lockd_window_set_window_effect(lockw_data * data, int lock_app_pid, void *event)
 			return EINA_TRUE;
 		}
 	}
+#endif
+
 	return EINA_FALSE;
 }
 
@@ -231,6 +245,7 @@ lockd_window_mgr_ready_lock(void *data, lockw_data * lockw,
 		LOCKD_ERR("lockw is NULL.");
 		return;
 	}
+#ifndef WAYLAND
 	lockw->h_wincreate =
 	    ecore_event_handler_add(ECORE_X_EVENT_WINDOW_CREATE, create_cb,
 				    data);
@@ -242,10 +257,12 @@ lockd_window_mgr_ready_lock(void *data, lockw_data * lockw,
 	lockw->h_keydown =
 	    ecore_event_handler_add(ECORE_EVENT_KEY_DOWN,
 				    _lockd_window_key_down_cb, lockw);
+#endif
 }
 
 void lockd_window_mgr_finish_lock(lockw_data * lockw)
 {
+#ifndef WAYLAND
 	Ecore_X_Window xwin;
 
 	if (lockw == NULL) {
@@ -267,6 +284,7 @@ void lockd_window_mgr_finish_lock(lockw_data * lockw)
 		ecore_event_handler_del(lockw->h_keydown);
 		lockw->h_keydown = NULL;
 	}
+#endif
 }
 
 lockw_data *lockd_window_init(void)

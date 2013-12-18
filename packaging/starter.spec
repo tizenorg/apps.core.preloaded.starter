@@ -1,3 +1,6 @@
+%bcond_with x
+%bcond_with wayland
+
 Name:       starter
 Summary:    starter
 Version: 0.4.62
@@ -29,11 +32,13 @@ BuildRequires:  pkgconfig(sysman)
 BuildRequires:  pkgconfig(syspopup-caller)
 BuildRequires:  pkgconfig(tapi)
 BuildRequires:  pkgconfig(ui-gadget-1)
+%if %{with x}
 BuildRequires:  pkgconfig(utilX)
-BuildRequires:  pkgconfig(vconf)
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xcomposite)
 BuildRequires:  pkgconfig(xext)
+%endif
+BuildRequires:  pkgconfig(vconf)
 BuildRequires:  pkgconfig(capi-system-info)
 BuildRequires:	pkgconfig(pkgmgr-info)
 BuildRequires:  cmake
@@ -50,9 +55,12 @@ Description: Starter
 %setup -q
 cp %{SOURCE1001} .
 
-%cmake .
-
 %build
+%if %{with wayland} && !%{with x}
+%cmake . -Dwith_wayland=TRUE
+%else
+%cmake . -Dwith_x=TRUE
+%endif
 
 make -j1
 %install
