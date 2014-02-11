@@ -35,7 +35,8 @@ SET(PKGS_CHECK_MODULES
         bundle
         capi-appfw-application
         capi-system-info
-        pkgmgr-info)
+        pkgmgr-info
+        libtzplatform-config)
 
 IF (with_x)
         pkg_check_modules(pkgs REQUIRED ${PKGS_CHECK_MODULES} ecore-x utilX x11 xcomposite xext)

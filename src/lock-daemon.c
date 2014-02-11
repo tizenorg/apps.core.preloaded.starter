@@ -35,6 +35,9 @@
 #include <sys/param.h>
 #include <errno.h>
 
+/* For multi-user support */
+#include <tzplatform_config.h>
+
 #include "lockd-debug.h"
 #include "lock-daemon.h"
 #include "lockd-process-mgr.h"
@@ -55,7 +58,7 @@ struct lockd_data {
 
 #define PHLOCK_SOCK_PREFIX "/tmp/phlock"
 #define PHLOCK_SOCK_MAXBUFF 65535
-#define PHLOCK_APP_CMDLINE "/usr/apps/org.tizen.lockscreen/bin/lockscreen"
+#define PHLOCK_APP_CMDLINE tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.lockscreen/bin/lockscreen")
 #define PHLOCK_UNLOCK_CMD "unlock"
 #define PHLOCK_LAUNCH_CMD "launch_phone_lock"
 #define LAUNCH_INTERVAL 100*1000
