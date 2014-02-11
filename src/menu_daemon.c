@@ -31,6 +31,9 @@
 #include <unistd.h>
 #include <vconf.h>
 
+/* For multi-user support */
+#include <tzplatform_config.h>
+
 #include "hw_key.h"
 #include "pkg_event.h"
 #include "util.h"
@@ -41,7 +44,7 @@ int errno;
 
 
 #define QUERY_UPDATE_NAME "UPDATE app_info SET name='%s' where package='%s';"
-#define SAT_DESKTOP_FILE "/opt/share/applications/org.tizen.sat-ui.desktop"
+#define SAT_DESKTOP_FILE tzplatform_mkpath(TZ_SYS_RW_DESKTOP_APP, "org.tizen.sat-ui.desktop")
 #define RELAUNCH_INTERVAL 100*1000
 #define RETRY_MAXCOUNT 30
 

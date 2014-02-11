@@ -29,11 +29,14 @@
 #include <unistd.h>
 #include <vconf.h>
 
+/* For multi-user support */
+#include <tzplatform_config.h>
+
 #include "pkg_event.h"
 #include "util.h"
 
 
-#define CONF_FILE "/usr/share/install-info/desktop.conf"
+#define CONF_FILE tzplatform_mkpath3(TZ_SYS_SHARE, "install-info", "desktop.conf")
 #define BUFSZE 1024
 
 
@@ -192,7 +195,7 @@ static int _retrieve_conf_path(struct inotify_path* paths)
 
 	fp = fopen(CONF_FILE, "r");
 	if (NULL == fp) {
-		_E(CONF_FILE);
+		_E("%s", CONF_FILE);
 		return -1;
 	}
 
