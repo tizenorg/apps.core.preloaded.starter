@@ -4,7 +4,7 @@ Before=core-efl.target
 After=boot-animation.service
 
 [Service]
-ExecStart=/usr/bin/starter
+ExecStart=eval $(tzplatform-get TZ_SYS_BIN); $TZ_SYS_BIN/starter
 Restart=always
 RestartSec=3
 

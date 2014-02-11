@@ -32,6 +32,9 @@
 #include <signal.h>
 #include <system_info.h>
 
+/* For multi-user support */
+#include <tzplatform_config.h>
+
 #include "starter.h"
 #include "starter-util.h"
 #include "x11.h"
@@ -44,9 +47,9 @@
 #endif
 
 #define DEFAULT_THEME "tizen"
-#define PWLOCK_PATH "/usr/apps/org.tizen.pwlock/bin/pwlock"
+#define PWLOCK_PATH tzplatform_mkpath(TZ_SYS_RO_APP, "org.tizen.pwlock/bin/pwlock")
 #define PWLOCK_PKG_NAME "org.tizen.pwlock"
-#define QP_EMUL_STR      "Emulator"
+#define QP_EMUL_STR "Emulator"
 
 static void lock_menu_screen(void)
 {

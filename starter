@@ -1,5 +1,7 @@
 #!/bin/sh
 
+source /etc/tizen-platform.conf
+
 CURRENT_RUNLEVEL=`basename $PWD`
 # CURRENT_RUNLEVEL could be "rc3.d" or "rc4.d"
 
@@ -10,5 +12,5 @@ if [ x"$CURRENT_RUNLEVEL" == x"rc3.d" ]; then
 	done
 fi
 
-/usr/bin/starter &
+$TZ_SYS_BIN/starter &
 

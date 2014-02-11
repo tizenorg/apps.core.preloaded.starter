@@ -6,6 +6,8 @@
 #	sleep 0.1
 #done
 
+source /etc/tizen-platform.conf
+
 while [ ! -f /tmp/amd_ready ];
 do
         sleep 0.1
@@ -13,7 +15,7 @@ done
 
 vconf_set_safemode()
 {
-	if [ -f /opt/etc/.safemode ]
+	if [ -f $TZ_SYS_ETC/.safemode ]
 	then
 		vconftool set -t int memory/idle-screen/safemode "1" -i -f
 	else
@@ -23,4 +25,4 @@ vconf_set_safemode()
 vconf_set_safemode
 
 echo -e "<2>[${_G}menu-daemon start${C_}]" > /dev/kmsg
-/usr/bin/starter &
+$TZ_SYS_BIN/starter &
