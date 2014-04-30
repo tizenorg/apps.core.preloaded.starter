@@ -2,4 +2,4 @@
 Description=Path activation for the "starter" programme
 
 [Path]
-PathExists=/tmp/amd_ready
+PathExists=/run/amd_ready
