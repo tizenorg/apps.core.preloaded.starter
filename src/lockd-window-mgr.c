@@ -213,8 +213,10 @@ lockd_window_set_window_effect(lockw_data * data, int lock_app_pid, void *event)
 			    ("This is lock application. Disable window effect. win id : %x\n",
 			     user_window);
 
+#if 0	//window effect is not available now
 			utilx_set_window_effect_state(ecore_x_display_get(),
 						      user_window, 0);
+#endif
 			return EINA_TRUE;
 		}
 	}
