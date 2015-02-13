@@ -84,12 +84,13 @@ static void _set_elm_theme(void)
 		free(vstr);
 }
 
+#define SYSTEM_INFO_KEY_MODEL "http://tizen.org/system/model_name"
 static int _check_emul()
 {
 	int is_emul = 0;
 	char *info = NULL;
 
-	if (system_info_get_value_string(SYSTEM_INFO_KEY_MODEL, &info) == 0) {
+	if (system_info_get_platform_string(SYSTEM_INFO_KEY_MODEL, &info) == 0) {
 		if (info == NULL) return 0;
 		if (!strncmp(QP_EMUL_STR, info, strlen(info))) {
 			is_emul = 1;
