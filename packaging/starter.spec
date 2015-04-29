@@ -57,6 +57,7 @@ Description: Starter
 cp %{SOURCE1001} .
 
 %build
+CFLAGS+=" -fgnu89-inline "
 %cmake . \
 %if %{with wayland} && !%{with x}
 -Dwith_wayland=TRUE
