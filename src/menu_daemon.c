@@ -45,14 +45,24 @@ int errno;
 #define RELAUNCH_INTERVAL 100*1000
 #define RETRY_MAXCOUNT 30
 
+#define DEAD_TIMER_SEC 2.0
+#define DEAD_TIMER_COUNT_MAX 2
+#define MENU_SCREEN_PKG_NAME "org.tizen.menu-screen"
+
 static struct info {
 	pid_t home_pid;
 	pid_t volume_pid;
 	int power_off;
+
+	int dead_count;
+	Ecore_Timer *dead_timer;
 } s_info = {
 	.home_pid = -1,
 	.volume_pid = -1,
 	.power_off = 0,
+
+	.dead_count = 0,
+	.dead_timer = NULL,
 };
 
 
@@ -262,6 +272,12 @@ static void _pkg_changed(keynode_t* node, void *data)
 
 		if (AUL_R_OK != aul_terminate_pid(s_info.home_pid))
 			_D("Failed to terminate pid %d", s_info.home_pid);
+
+		s_info.dead_count = 0;
+		if (s_info.dead_timer) {
+			ecore_timer_del(s_info.dead_timer);
+			s_info.dead_timer = NULL;
+		}
 	} else {
 		/* If there is no running home */
 		menu_daemon_open_homescreen(pkgname);
@@ -295,6 +311,27 @@ static void _launch_volume(void)
 	}
 }
 
+static Eina_Bool _dead_timer_cb(void *data)
+{
+	char *appid = (char *)data;
+	retv_if(!appid, ECORE_CALLBACK_CANCEL);
+
+	_D("dead count : %s(%d)", appid, s_info.dead_count);
+
+	if (s_info.dead_count >= DEAD_TIMER_COUNT_MAX) {
+		_D("Change homescreen package to default");
+		if (vconf_set_str(VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME, MENU_SCREEN_PKG_NAME) != 0) {
+			_D("cannot set the vconfkey as : %s", MENU_SCREEN_PKG_NAME);
+			return ECORE_CALLBACK_CANCEL;
+		}
+	}
+
+	s_info.dead_timer = NULL;
+	s_info.dead_count = 0;
+
+	return ECORE_CALLBACK_CANCEL;
+}
+
 int menu_daemon_check_dead_signal(int pid)
 {
 	if (s_info.power_off) {
@@ -308,9 +345,17 @@ int menu_daemon_check_dead_signal(int pid)
 		return 0;
 
 	if (pid == s_info.home_pid) {
+		s_info.dead_count++;
+		_D("home dead count : %d", s_info.dead_count);
+
 		char *pkgname = NULL;
 		pkgname = menu_daemon_get_selected_pkgname();
 		retv_if(NULL == pkgname, 0);
+
+		if (!s_info.dead_timer) {
+			_D("Add dead timer");
+			s_info.dead_timer = ecore_timer_add(DEAD_TIMER_SEC, _dead_timer_cb, (void *)pkgname);
+		}
 
 		_D("pkg_name : %s", pkgname);
 		menu_daemon_open_homescreen(pkgname);
