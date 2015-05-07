@@ -1,0 +1,57 @@
+msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
+msgstr "Не може да се стартира %s."
+
+msgid "IDS_COM_POP_WARNING"
+msgstr "Предупреждение"
+
+msgid "IDS_COM_BODY_ENTER_PIN"
+msgstr "Въведете PIN."
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
+msgstr "Въведете PIN за преглед на съобщението"
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
+msgstr "Въведете PIN за преглед на дневника на повикванията"
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "Опитайте пак след %d сек."
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "Неправилен PIN."
+
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "1 оставащ опит."
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "Остават %d опита."
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "Опитахте да отключите устройството неуспешно %1$d пъти. Остават ви още %2$d опита, преди устройството да се рестартира до фабричните настройки по подразбиране и всички данни да бъдат изтрити."
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
+msgstr "Направили сте %1$d неуспешни опита да отключите устройството си. Опитайте отново след %2$d секунди."
+
+msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
+msgstr "Екранът не може да се отключи"
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "Въвеждане на парола"
+
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "Задължителни са %1$d до %2$d цифри или букви."
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "Грешна парола."
+
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "Опитахте да отключите устройството неуспешно %d пъти. Сега то ще се рестартира до фабричните настройки по подразбиране и всички данни ще бъдат изтрити."
+
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "OK"
+
+msgid "IDS_ST_BUTTON_CANCEL"
+msgstr "Отказ"
+
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "Спешно повикване"
+

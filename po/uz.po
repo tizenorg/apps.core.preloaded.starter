@@ -1,0 +1,6 @@
+msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
+msgstr "Unable to launch %s."
+
+msgid "IDS_COM_POP_WARNING"
+msgstr "Warning"
+

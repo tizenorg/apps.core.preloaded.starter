@@ -1,11 +1,11 @@
 #!/bin/sh
 vconf_set_safemode()
 {
-	if [ -f /opt/etc/.safemode ]
+	if [ -f /opt/etc/.safeboot ]
 	then
-		vconftool set -t int memory/idle-screen/safemode "1" -i -f
+		/usr/bin/vconftool set -t int memory/idle-screen/safemode "1" -i -f
 	else
-		vconftool set -t int memory/idle-screen/safemode "0" -i -f
+		/usr/bin/vconftool set -t int memory/idle-screen/safemode "0" -i -f
 	fi
 }
 vconf_set_safemode

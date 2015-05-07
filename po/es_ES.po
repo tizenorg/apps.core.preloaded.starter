@@ -1,0 +1,57 @@
+msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
+msgstr "No se puede iniciar %s"
+
+msgid "IDS_COM_POP_WARNING"
+msgstr "Aviso"
+
+msgid "IDS_COM_BODY_ENTER_PIN"
+msgstr "Introducir PIN"
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
+msgstr "Introduzca el PIN para ver el mensaje"
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
+msgstr "Introduzca el PIN para ver el registro de llamadas"
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "Int. de nuevo en %d seg"
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "PIN incorrecto"
+
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "Último intento"
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "Quedan %d intentos."
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "Ha intentado desbloquear el dispositivo de forma incorrecta %1$d veces. Le quedan %2$d intentos antes de que el dispositivo se restablezca a los valores predeterminados de fábrica y se eliminen todos los datos."
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
+msgstr "Ha intentado desbloquear su dispositivo %1$d veces sin éxito. Vuelva a intentarlo dentro de %2$d segundos."
+
+msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
+msgstr "No se puede desbloq pantalla"
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "Introducir contraseña"
+
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "Se requieren de %1$d a %2$d dígitos o letras"
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "Contraseña incorrecta"
+
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "Ha intentado desbloquear el dispositivo de forma incorrecta %d veces. Ahora se restablecerá a los valores predeterminados de fábrica y se eliminarán todos los datos."
+
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "OK"
+
+msgid "IDS_ST_BUTTON_CANCEL"
+msgstr "Cancelar"
+
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "Llamada de emergencia"
+

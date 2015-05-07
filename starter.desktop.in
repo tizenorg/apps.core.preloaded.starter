@@ -1,9 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Name=@PROJECT_NAME@
-Exec=@BINDIR@/@PROJECT_NAME@
-Icon=elementary
-Terminal=false
-Type=Application
-Categories=Application;Utility;
-

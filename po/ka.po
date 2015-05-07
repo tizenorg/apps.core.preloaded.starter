@@ -1,0 +1,57 @@
+msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
+msgstr "ვერ გაიხსნება %s."
+
+msgid "IDS_COM_POP_WARNING"
+msgstr "გაფრთხილება"
+
+msgid "IDS_COM_BODY_ENTER_PIN"
+msgstr "შეიყვანეთ PIN."
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
+msgstr "შეიყვანეთ PIN, რომ ნახოთ შეტყობინება"
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
+msgstr "შეიყვანეთ PIN, რომ ნახოთ ზარების ჟურნალი"
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "კიდევ ცადეთ %d წამში."
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "არასწორი PIN."
+
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "დარჩა 1 ცდა."
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "%d ცდა დარჩა."
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "თქვენ აპარატის განბლოკვის %1$d არასწორი მცდელობა გქონდათ. თქვენ დაგრჩათ %2$d მცდელობა, სანამ დაბრუნდება აპარატის საწყისი ქარხნული პარამეტრები და წაიშლება ყველა მონაცემი."
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
+msgstr "თქვენ გქონდათ აპარატის განბლოკვის %1$d წარუმატებელი მცდელობა. ისევ სცადეთ %2$d წამში."
+
+msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
+msgstr "ეკრანის განბლოკვა შეუძლებელია"
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "პაროლის შეყვანა."
+
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "უნდა იყოს %1$d-%2$d ციფრი ან ასო."
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "პაროლი არასწორია."
+
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "თქვენ აპარატის განბლოკვის %d არასწორი მცდელობა გქონდათ. ახლა დაბრუნდება საწყისი ქარხნული პარამეტრები და წაიშლება ყველა მონაცემი"
+
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "OK"
+
+msgid "IDS_ST_BUTTON_CANCEL"
+msgstr "გაუქმება"
+
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "საგანგებო ზარი"
+

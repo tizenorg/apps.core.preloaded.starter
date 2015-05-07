@@ -1,4 +1,0 @@
-@PREFIX@/bin/*
-@PREFIX@/lib/*
-/etc/init.d/*
-/opt/ug/*

@@ -1,0 +1,35 @@
+<manifest>
+	<define>
+		<domain name="starter"/>
+	<request>
+		<smack request="sys-assert::core" type="rwxat"/>
+		<smack request="system::homedir" type="rwxat"/>
+		<smack request="system::vconf" type="rwxat"/>
+		<smack request="org.tizen.setting::private" type="rw"/>
+		<smack request="system::media" type="rwxat"/>
+		<smack request="system::media::root" type="rwxat"/>
+		<smack request="system::share" type="rwxat"/>
+		<smack request="pulseaudio" type="rwxat"/>
+		<smack request="deviced::display" type="rw"/>
+		<smack request="deviced::haptic" type="rw"/>
+		<smack request="alarm-server::alarm" type="w"/>
+		<smack request="aul::launch" type="x"/>
+		<smack request="aul::terminate" type="x"/>
+		<smack request="tts-server" type="rwx"/>
+		<smack request="bt-service::gap" type="rwxt"/>
+		<smack request="e17::notification" type="rw"/>
+	</request>
+	<provide>
+		<label name="starter::vconf"/>
+	</provide>
+	</define>
+	<request>
+		<domain name="starter"/>
+	</request>
+	<assign>
+		<filesystem path="/usr/bin/starter" label="starter" exec_label="starter" />
+		<filesystem path="/etc/init.d/rd3starter" label="_" exec_label="none" />
+		<filesystem path="/etc/init.d/rd4starter" label="_" exec_label="none" />
+		<filesystem path="/usr/share/locale" label="_" exec_label="_" />
+	</assign>
+</manifest>

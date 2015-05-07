@@ -6,9 +6,10 @@ CURRENT_RUNLEVEL=`basename $PWD`
 if [ x"$CURRENT_RUNLEVEL" == x"rc3.d" ]; then
 	while [ ! -f /tmp/.wm_ready ];
 	do
-		sleep 0.1
+		/bin/sleep 0.1
 	done
 fi
 
 /usr/bin/starter &
+
 
