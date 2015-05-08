@@ -49,6 +49,10 @@ BuildRequires: gettext-tools
 
 Requires(post): /usr/bin/vconftool
 
+%define _systemddir /usr/lib/systemd
+%define _userdir %{_systemddir}/user
+%define _wantsdir %{_userdir}/default.target.wants
+
 %description
 Description: Starter
 
@@ -69,10 +73,12 @@ make -j1
 rm -rf %{buildroot}
 %make_install
 
-mkdir -p %{buildroot}%{_libdir}/systemd/user/core-efl.target.wants
-install -m 0644 %SOURCE1 %{buildroot}%{_libdir}/systemd/user/
-install -m 0644 %SOURCE2 %{buildroot}%{_libdir}/systemd/user/
-ln -s ../starter.path %{buildroot}%{_libdir}/systemd/user/core-efl.target.wants/starter.path
+mkdir -p %{buildroot}/usr/share/license
+mkdir -p %{buildroot}%{_userdir}
+install -m 0644 %SOURCE1 %{buildroot}%{_userdir}/
+install -m 0644 %SOURCE2 %{buildroot}%{_userdir}/
+mkdir -p %{buildroot}%{_wantsdir}
+ln -s ../starter.path %{buildroot}%{_wantsdir}/starter.path
 mkdir -p %{buildroot}/usr/share/license
 cp -f LICENSE.Flora %{buildroot}/usr/share/license/%{name}
 mkdir -p %{buildroot}/opt/data/home-daemon
@@ -90,7 +96,7 @@ change_file_executable()
 
 GOPTION="-u 5000 -f"
 
-vconftool set -t int "memory/starter/sequence" 0 -i $GOPTION
+vconftool set -t int "memory/starter/sequence" 1 -i $GOPTION
 vconftool set -t int "memory/starter/use_volume_key" 0 -i $GOPTION
 vconftool set -t string file/private/lockscreen/pkgname "org.tizen.lockscreen" -u 5000 -g 5000 -f
 vconftool set -t int memory/idle_lock/state "0" -i $GOPTION
@@ -117,8 +123,8 @@ ln -sf /etc/init.d/rd3starter /etc/rc.d/rc3.d/S43starter
 %{_bindir}/starter
 /usr/ug/lib/libug-lockscreen-options.so
 /usr/ug/lib/libug-lockscreen-options.so.0.1.0
-%{_libdir}/systemd/user/starter.path
-%{_libdir}/systemd/user/starter.service
-%{_libdir}/systemd/user/core-efl.target.wants/starter.path
+%{_userdir}/starter.service
+%{_userdir}/starter.path
+%{_wantsdir}/starter.path
 /usr/share/license/%{name}
 /opt/data/home-daemon
