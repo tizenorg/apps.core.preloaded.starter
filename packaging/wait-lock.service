@@ -1,0 +1,14 @@
+[Unit]
+Description=wait lockscreen
+After=tizen-boot.target boot-animation.service
+Requires=tizen-boot.target
+Before=tizen-system.target
+ConditionPathExists=|/tmp/.passwordlock
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'while [ -e /tmp/.passwordlock ]; do sleep 0.5 ; done'
+TimeoutSec=7s
+
+[Install]
+WantedBy=tizen-system.target

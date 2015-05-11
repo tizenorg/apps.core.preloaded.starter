@@ -1,0 +1,57 @@
+msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
+msgstr "Imposibil de lansat %s"
+
+msgid "IDS_COM_POP_WARNING"
+msgstr "Avertisment"
+
+msgid "IDS_COM_BODY_ENTER_PIN"
+msgstr "Introduceţi PIN."
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
+msgstr "Introduceţi codul PIN pentru a vizualiza mesajul"
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
+msgstr "Introduceţi codul PIN pentru a vizualiza jurnalul de apeluri"
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "Reîncercaţi peste %d sec."
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "PIN incorect"
+
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "1 încercare rămasă"
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "%d încercări rămase"
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "Aţi încercat să deblocaţi incorect dispozitivul de %1$d ori. Mai aveţi %2$d încercări înainte ca dispozitivul să fie resetat la valorile implicite din fabrică şi înainte ca toate datele să fie şterse."
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
+msgstr "Aţi avut %1$d încercări nereuşite de a debloca dispozitivul. Reîncercaţi peste %2$d secunde."
+
+msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
+msgstr "Ecranul nu se poate debloca"
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "Introduceţi parola."
+
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "Sunt necesare între %1$d şi %2$d cifre sau litere."
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "Parolă incorectă"
+
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "Aţi încercat să deblocaţi incorect dispozitivul de %d ori. Acesta va fi resetat acum la valorile implicite din fabrică şi toate datele vor fi şterse."
+
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "OK"
+
+msgid "IDS_ST_BUTTON_CANCEL"
+msgstr "Anulare"
+
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "Apel de urgenţă"
+

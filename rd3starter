@@ -6,21 +6,19 @@
 #	sleep 0.1
 #done
 
-while [ ! -f /tmp/amd_ready ];
+while [ ! -f /run/.wm_ready];
 do
-        sleep 0.1
+        /bin/sleep 0.1
 done
 
 vconf_set_safemode()
 {
-	if [ -f /opt/etc/.safemode ]
+	if [ -f /opt/etc/.safeboot ]
 	then
-		vconftool set -t int memory/idle-screen/safemode "1" -i -f
+		/usr/bin/vconftool set -t int memory/idle-screen/safemode "1" -f
 	else
-		vconftool set -t int memory/idle-screen/safemode "0" -i -f
+		/usr/bin/vconftool set -t int memory/idle-screen/safemode "0" -f
 	fi
 }
 vconf_set_safemode
-
-echo -e "<2>[${_G}menu-daemon start${C_}]" > /dev/kmsg
-/usr/bin/starter &
+exit 0

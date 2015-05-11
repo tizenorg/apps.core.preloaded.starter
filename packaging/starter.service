@@ -1,12 +1,16 @@
 [Unit]
 Description=Start the "starter" program
-Before=core-efl.target
-After=boot-animation.service
+Requires=starter-pre.service
+After=starter-pre.service wm_ready.service ac.service deviced.service launchpad-preload.service
 
 [Service]
 ExecStart=/usr/bin/starter
 Restart=always
-RestartSec=3
+RestartSec=0
+KillSignal=SIGKILL
+User=system
+Group=system
+SmackProcessLabel=starter
 
 [Install]
-WantedBy=core-efl.target
+WantedBy=tizen-system.target

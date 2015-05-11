@@ -1,0 +1,57 @@
+msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
+msgstr "Impossibile avviare %s."
+
+msgid "IDS_COM_POP_WARNING"
+msgstr "Avviso"
+
+msgid "IDS_COM_BODY_ENTER_PIN"
+msgstr "Inserisci PIN."
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
+msgstr "Inserite il PIN per visualizzare il messaggio"
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
+msgstr "Inserite il PIN per visualizzare il registro chiamate"
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "Riprovate tra %d secondi."
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "PIN errato."
+
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "1 tentativo rimasto."
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "%d tentativi rimasti."
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "Avete tentato per %1$d volte di sbloccare il dispositivo in modo errato. Sono rimasti %2$d tentativi prima che il dispositivo venga ripristinato ai valori predefiniti di fabbrica e che tutti i dati vengano eliminati."
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
+msgstr "Avete effettuato %1$d tentativi errati per sbloccare il dispositivo. Riprovate tra %2$d secondi."
+
+msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
+msgstr "Impossibile sbloccare schermo"
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "Inserisci password."
+
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "Sono necessarie da %1$d a %2$d cifre o lettere."
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "Password errata."
+
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "%d tentativi errati di sblocco del dispositivo. Il dispositivo verrà ripristinato ai valori predefiniti di fabbrica e i dati verranno eliminati."
+
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "OK"
+
+msgid "IDS_ST_BUTTON_CANCEL"
+msgstr "Annulla"
+
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "Chiamata di emergenza"
+
