@@ -200,7 +200,7 @@ static void _init(struct appdata *ad)
 
 	gettimeofday(&ad->tv_start, NULL);
 
-	lock_menu_screen();
+	//lock_menu_screen();
 	_set_elm_theme();
 
 	_DBG("%s %d\n", __func__, __LINE__);
