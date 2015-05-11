@@ -46,7 +46,6 @@ BuildRequires:	pkgconfig(deviced)
 BuildRequires:	pkgconfig(edbus)
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(dbus-glib-1)
-#BuildRequires: model-build-features
 BuildRequires:  cmake
 BuildRequires:  edje-bin
 BuildRequires:  gettext
