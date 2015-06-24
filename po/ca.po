@@ -1,11 +1,32 @@
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "Queda 1 intent"
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "Queden %d intents"
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "Contrasenya incorrecta"
+
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "No es pot iniciar %s"
 
-msgid "IDS_COM_POP_WARNING"
-msgstr "Advertiment"
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "Acceptar"
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "PIN incorrecte"
 
 msgid "IDS_COM_BODY_ENTER_PIN"
 msgstr "Introdueixi PIN"
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "Introduir contrasenya"
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "Ha intentat desbloquejar el dispositiu de forma incorrecta %1$d cops. Li queden %2$d intents abans que el dispositiu es restableixi als valors predeterminats de fàbrica i s'esborrin totes les dades."
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "Torni a intentar en %d s"
 
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
 msgstr "Introdueixi el PIN per veure el missatge"
@@ -13,45 +34,24 @@ msgstr "Introdueixi el PIN per veure el missatge"
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
 msgstr "Introdueixi el PIN per veure el registre de trucades"
 
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "Torni a intentar en %d s"
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "Ha intentat desbloquejar el dispositiu de forma incorrecta %d cops. Ara es restablirà als valors predeterminats de fàbrica i s'esborraran totes les dades."
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "PIN incorrecte"
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "Calen de %1$d a %2$d dígits o lletres"
 
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "Queda 1 intent"
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "Trucada d'emergència"
 
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "Queden %d intents"
+msgid "IDS_COM_POP_WARNING"
+msgstr "Advertiment"
 
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "Ha intentat desbloquejar el dispositiu de forma incorrecta %1$d cops. Li queden %2$d intents abans que el dispositiu es restableixi als valors predeterminats de fàbrica i s'esborrin totes les dades."
+msgid "IDS_COM_BUTTON_CANCEL"
+msgstr "Cancel"
 
 msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
 msgstr "Ha intentat desbloquejar el dispositiu de manera incorrecta %1$d cops. Torni-ho a intentar en %2$d segons."
 
 msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
 msgstr "No es pot desbloq. la pantalla"
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Introduir contrasenya"
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "Calen de %1$d a %2$d dígits o lletres"
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Contrasenya incorrecta"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "Ha intentat desbloquejar el dispositiu de forma incorrecta %d cops. Ara es restablirà als valors predeterminats de fàbrica i s'esborraran totes les dades."
-
-msgid "IDS_COM_BUTTON_OK_ABB"
-msgstr "Acceptar"
-
-msgid "IDS_ST_BUTTON_CANCEL"
-msgstr "Cancel"
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Trucada d'emergència"
 

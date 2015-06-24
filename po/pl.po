@@ -1,11 +1,32 @@
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "Pozostała 1 próba."
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "Pozostało prób: %d."
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "Błędne hasło."
+
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "Nie można uruchomić %s."
 
-msgid "IDS_COM_POP_WARNING"
-msgstr "Ostrzeżenie"
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "OK"
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "Nieprawidłowy PIN."
 
 msgid "IDS_COM_BODY_ENTER_PIN"
 msgstr "Wpisz PIN."
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "Wpisz hasło."
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "Nieprawidłowych prób odblokowania urządzenia: %1$d. Pozostałych prób przed wyzerowaniem urządzenia do domyślnych ustawień fabrycznych i usunięciem wszystkich danych: %2$d."
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "Ponów próbę za %d sek."
 
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
 msgstr "Podaj kod PIN, aby wyświetlić wiadomość"
@@ -13,45 +34,24 @@ msgstr "Podaj kod PIN, aby wyświetlić wiadomość"
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
 msgstr "Podaj kod PIN, aby wyświetlić spis połączeń"
 
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "Ponów próbę za %d sek."
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "Podjęto nieprawidłową próbę odblokowania urządzenia %d razy. W urządzeniu zostaną przywrócone domyślne ustawienia fabryczne oraz zostaną z niego usunięte wszystkie dane."
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "Nieprawidłowy PIN."
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "Wymaganych jest co najmniej cyfr lub liter: %1$d do %2$d."
 
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "Pozostała 1 próba."
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "Połączenie alarmowe"
 
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "Pozostało prób: %d."
+msgid "IDS_COM_POP_WARNING"
+msgstr "Ostrzeżenie"
 
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "Nieprawidłowych prób odblokowania urządzenia: %1$d. Pozostałych prób przed wyzerowaniem urządzenia do domyślnych ustawień fabrycznych i usunięciem wszystkich danych: %2$d."
+msgid "IDS_COM_BUTTON_CANCEL"
+msgstr "Anuluj"
 
 msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
 msgstr "Liczba nieudanych prób odblokowania urządzenia: %1$d. Spróbuj ponownie za %2$d s."
 
 msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
 msgstr "Nie można odblokować ekranu"
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Wpisz hasło."
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "Wymaganych jest co najmniej cyfr lub liter: %1$d do %2$d."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Błędne hasło."
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "Podjęto nieprawidłową próbę odblokowania urządzenia %d razy. W urządzeniu zostaną przywrócone domyślne ustawienia fabryczne oraz zostaną z niego usunięte wszystkie dane."
-
-msgid "IDS_COM_BUTTON_OK_ABB"
-msgstr "OK"
-
-msgid "IDS_ST_BUTTON_CANCEL"
-msgstr "Anuluj"
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Połączenie alarmowe"
 

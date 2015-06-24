@@ -28,12 +28,18 @@
 #include <signal.h>
 
 #include "starter.h"
-//#include "lock_mgr.h"
+#include "lock_mgr.h"
+#include "lock_pwd_util.h"
+#include "lock_pwd_control_panel.h"
 #include "home_mgr.h"
 #include "hw_key.h"
 #include "process_mgr.h"
 #include "util.h"
 #include "status.h"
+
+#ifdef HAVE_X11
+#include "hw_key.h"
+#endif
 
 #define PWLOCK_LITE_PKG_NAME "org.tizen.pwlock-lite"
 
@@ -115,24 +121,22 @@ static int _power_off_cb(status_active_key_e key, void *data)
 
 
 
-#if 0
-static void _data_encryption_cb(keynode_t * node, void *data)
+static void _language_changed_cb(keynode_t *node, void *data)
 {
-	char *file = NULL;
+	char *lang = NULL;
 
-	file = vconf_get_str(VCONFKEY_ODE_CRYPTO_STATE);
-	if (!file) {
-		return;
-	}
+	ret_if(!node);
 
-	_D("get the value : %s",  file);
-	if (!strcmp(file, DATA_MOUNTED)) {
-		lock_mgr_daemon_start();
-		home_mgr_init(NULL);
-	}
-	free(file);
+	lang = vconf_keynode_get_str(node);
+	ret_if(!lang);
+
+	_D("language is changed : %s", lang);
+
+	elm_language_set(lang);
+
+	lock_pwd_util_view_init();
+	lock_pwd_control_panel_emg_btn_text_update();
 }
-#endif
 
 
 
@@ -164,6 +168,45 @@ static int _set_i18n(const char *domain, const char *dir)
 		_E("textdomain() error");
 	}
 
+	if (vconf_notify_key_changed(VCONFKEY_LANGSET, _language_changed_cb, NULL) < 0) {
+		_E("Failed to register changed cb : %s", VCONFKEY_LANGSET);
+	}
+
+	return 0;
+}
+
+
+
+static int _check_dead_signal(int pid, void *data)
+{
+	int home_pid = 0;
+	int volume_pid = 0;
+	int lock_pid = 0;
+
+	_D("Process %d is termianted", pid);
+
+	if (pid < 0) {
+		_E("pid : %d", pid);
+		return 0;
+	}
+
+	home_pid = home_mgr_get_home_pid();
+	volume_pid = home_mgr_get_volume_pid();
+	lock_pid = lock_mgr_get_lock_pid();
+
+	if (pid == home_pid) {
+		_D("Homescreen is dead");
+		home_mgr_relaunch_homescreen();
+	} else if (pid == volume_pid) {
+		_D("volume is dead");
+		home_mgr_relaunch_volume();
+	} else if (pid == lock_pid) {
+		_D("lockscreen is dead");
+		lock_mgr_unlock();
+	} else {
+		_D("Unknown process, ignore it");
+	}
+
 	return 0;
 }
 
@@ -172,7 +215,6 @@ static int _set_i18n(const char *domain, const char *dir)
 static void _init(struct appdata *ad)
 {
 	struct sigaction act;
-	char *file = NULL;
 
 	memset(&act,0x00,sizeof(struct sigaction));
 	act.sa_sigaction = _signal_handler;
@@ -200,27 +242,13 @@ static void _init(struct appdata *ad)
 	_hide_home();
 	process_mgr_must_launch(PWLOCK_LITE_PKG_NAME, NULL, NULL, _fail_to_launch_pwlock, _after_launch_pwlock);
 
-#if 0
-	/* Check data encrption */
-	file = vconf_get_str(VCONFKEY_ODE_CRYPTO_STATE);
-	if (file) {
-		_D("get VCONFKEY : %s\n",  file);
-		if (strncmp(DATA_UNENCRYPTED, file, strlen(file))) {
-			if (vconf_notify_key_changed(VCONFKEY_ODE_CRYPTO_STATE, _data_encryption_cb, NULL) != 0) {
-				_E("[Error] vconf notify changed is failed: %s", VCONFKEY_ODE_CRYPTO_STATE);
-			} else {
-				_D("waiting mount..!!");
-				free(file);
-				return;
-			}
-		}
-		free(file);
-	}
-#endif
-
-	//lock_mgr_daemon_start();
+	lock_mgr_daemon_start();
+#ifdef HAVE_X11
 	hw_key_create_window();
+#endif
 	home_mgr_init(NULL);
+
+	aul_listen_app_dead_signal(_check_dead_signal, NULL);
 }
 
 
@@ -228,11 +256,17 @@ static void _init(struct appdata *ad)
 static void _fini(struct appdata *ad)
 {
 	home_mgr_fini();
+#ifdef HAVE_X11
 	hw_key_destroy_window();
-	//lock_mgr_daemon_end();
+#endif
+	lock_mgr_daemon_end();
 
 	status_active_unregister_cb(STATUS_ACTIVE_KEY_SYSMAN_POWER_OFF_STATUS, _power_off_cb);
 	status_unregister();
+
+	if (vconf_ignore_key_changed(VCONFKEY_LANGSET, _language_changed_cb) < 0) {
+		_E("Failed to unregister changed cb : %s", VCONFKEY_LANGSET);
+	}
 }
 
 

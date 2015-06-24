@@ -1,11 +1,32 @@
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "Atlicis 1 mēģinājums."
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "Atlikuši %d mēģinājumi."
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "Nepareiza parole."
+
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "Nevar palaist %s."
 
-msgid "IDS_COM_POP_WARNING"
-msgstr "Brīdinājums"
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "Labi"
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "Nepareizs PIN."
 
 msgid "IDS_COM_BODY_ENTER_PIN"
 msgstr "Ievadiet PIN kodu."
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "Ievadiet paroli."
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "Jūs %1$d reizes nepareizi mēģinājāt atbloķēt ierīci. Jums ir atlikuši %2$d mēģinājumi, pirms ierīcē tiks atjaunoti rūpnīcas noklusējuma iestatījumi un visi dati tiks izdzēsti."
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "Mēģiniet vēlr.pēc %d sek."
 
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
 msgstr "Ievadiet PIN kodu, lai skatītu ziņu"
@@ -13,45 +34,24 @@ msgstr "Ievadiet PIN kodu, lai skatītu ziņu"
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
 msgstr "Ievadiet PIN kodu, lai skatītu zvanu žurnālu"
 
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "Mēģiniet vēlr.pēc %d sek."
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "Jūs %d reizes neveiksmīgi mēģinājāt atbloķēt ierīci. Tagad tajā tiks atjaunoti rūpnīcas iestatījumi un visi dati tiks izdzēsti."
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "Nepareizs PIN."
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "Nepieciešams ievadīt no %1$d līdz %2$d cipariem vai burtiem."
 
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "Atlicis 1 mēģinājums."
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "Ārkārtas zvans"
 
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "Atlikuši %d mēģinājumi."
+msgid "IDS_COM_POP_WARNING"
+msgstr "Brīdinājums"
 
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "Jūs %1$d reizes nepareizi mēģinājāt atbloķēt ierīci. Jums ir atlikuši %2$d mēģinājumi, pirms ierīcē tiks atjaunoti rūpnīcas noklusējuma iestatījumi un visi dati tiks izdzēsti."
+msgid "IDS_COM_BUTTON_CANCEL"
+msgstr "Atcelt"
 
 msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
 msgstr "Jūs esat veicis %1$d neveiksmīgus ierīces atbloķēšanas mēģinājumus. Mēģiniet vēlreiz pēc %2$d sekundēm."
 
 msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
 msgstr "Nevar atbloķēt ekrānu"
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Ievadiet paroli."
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "Nepieciešams ievadīt no %1$d līdz %2$d cipariem vai burtiem."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Nepareiza parole."
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "Jūs %d reizes neveiksmīgi mēģinājāt atbloķēt ierīci. Tagad tajā tiks atjaunoti rūpnīcas iestatījumi un visi dati tiks izdzēsti."
-
-msgid "IDS_COM_BUTTON_OK_ABB"
-msgstr "Labi"
-
-msgid "IDS_ST_BUTTON_CANCEL"
-msgstr "Atcelt"
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Ārkārtas zvans"
 

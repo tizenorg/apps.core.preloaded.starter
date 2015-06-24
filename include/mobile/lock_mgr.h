@@ -25,8 +25,6 @@
 
 #define _EDJ(x) elm_layout_edje_get(x)
 
-#define LOCK_MGR_DEFAULT_PKG_NAME "org.tizen.lockscreen"
-
 #ifdef TIZEN_BUILD_EMULATOR
 #define LOCK_MGR_DEFAULT_BG_PATH "/opt/share/settings/Wallpapers/Default.jpg"
 #else
@@ -50,11 +48,13 @@ typedef enum {
 } lock_lcd_state_e;
 
 int lock_mgr_lcd_state_get(void);
-int lock_mgr_lock_pid_get(void);
+int lock_mgr_get_lock_pid(void);
 void lock_mgr_sound_play(lock_sound_type_e type);
 
 void lock_mgr_idle_lock_state_set(int lock_state);
 Eina_Bool lock_mgr_lockscreen_launch(void);
+void lock_mgr_unlock(void);
+
 
 int lock_mgr_daemon_start(void);
 void lock_mgr_daemon_end(void);

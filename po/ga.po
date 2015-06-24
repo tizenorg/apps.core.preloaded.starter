@@ -1,0 +1,57 @@
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "1 iarracht fágtha."
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "%d iarracht fágtha."
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "Pasfhocal mícheart."
+
+msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
+msgstr "Ní féidir %s a lainseáil."
+
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "OK"
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "PIN mícheart."
+
+msgid "IDS_COM_BODY_ENTER_PIN"
+msgstr "Iontráil PIN"
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "Iontráil pasfhocal"
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "Rinne tú iarracht mhícheart an gléas a dhíghlasáil %1$d uair. Tá %2$d iarracht fágtha sula bhfillfear an gléas ar réamhshocruithe monarchan agus sula scriosfar gach sonra."
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "Triail arís i gceann %d soicind"
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
+msgstr "Iontráil PIN le hamharc ar an teachtaireacht"
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
+msgstr "Iontráil PIN le hamharc ar an loga glaonna"
+
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "Rinne tú iarracht mhícheart an gléas a dhíghlasáil %d uair. Socrófar anois chuig na réamhshocruithe monarchan é agus scriosfar na sonraí go léir."
+
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "%1$d suas le %2$d digit nó litir de dhíth."
+
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "Glao éigeandála"
+
+msgid "IDS_COM_POP_WARNING"
+msgstr "Rabhadh"
+
+msgid "IDS_COM_BUTTON_CANCEL"
+msgstr "Cealaigh"
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
+msgstr "Rinne tú %1$d iarracht nár éirigh leo le do ghléas a dhíghlasáil. Triail arís i gceann %2$d soicind."
+
+msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
+msgstr "Díghlasáil scáil. dodhéanta."
+

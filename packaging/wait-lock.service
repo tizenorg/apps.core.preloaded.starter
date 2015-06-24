@@ -9,6 +9,7 @@ ConditionPathExists=|/tmp/.passwordlock
 Type=oneshot
 ExecStart=/bin/sh -c 'while [ -e /tmp/.passwordlock ]; do sleep 0.5 ; done'
 TimeoutSec=7s
+SmackProcessLabel=starter
 
 [Install]
 WantedBy=tizen-system.target

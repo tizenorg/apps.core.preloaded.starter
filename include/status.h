@@ -26,11 +26,9 @@
 #define VCONFKEY_STARTER_RESERVED_APPS_STATUS "memory/starter/reserved_apps_status"
 #endif
 
-#ifndef VCONFKEY_SETUP_WIZARD_FIRST_BOOT
-#define VCONFKEY_SETUP_WIZARD_FIRST_BOOT	"db/setup_wizard/first_boot"
-#endif
-
 #define VCONFKEY_SETAPPL_PASSWORD_ATTEMPTS_LEFT_INT      VCONFKEY_SETAPPL_PREFIX"/phone_lock_attempts_left"
+
+#define STATUS_DEFAULT_LOCK_PKG_NAME "org.tizen.lockscreen"
 
 typedef enum {
 	STATUS_ACTIVE_KEY_INVALID = -1,
@@ -54,9 +52,8 @@ struct status_active_s {
 };
 
 struct status_passive_s {
-	int setup_wizard_state;
 	int wms_wakeup_by_gesture_setting;
-	int setup_wizard_first_boot;
+	int setappl_ambient_mode_bool;
 
 	int pm_key_ignore;
 	int pm_state;
@@ -69,10 +66,8 @@ struct status_passive_s {
 	int setappl_sound_lock_bool;
 	int setappl_motion_activation;
 	int setappl_use_pick_up;
-	int setappl_accessibility_lock_time_int;
 	int idle_screen_safemode;
 	int boot_animation_finished;
-	int setappl_ambient_mode_bool;
 
 	char *setappl_3rd_lock_pkg_name_str;
 };

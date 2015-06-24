@@ -15,7 +15,6 @@
  */
 
 #include <Elementary.h>
-#include <Ecore_X.h>
 #include <app_control.h>
 #include <bundle.h>
 #include <aul.h>
@@ -365,7 +364,9 @@ static Eina_Bool _wrong_pwd_wait_timer_cb(void *data)
 
 		int lcd_state = lock_mgr_lcd_state_get();
 		if (lcd_state == LCD_STATE_OFF) {
-			lock_mgr_lockscreen_launch();
+			if (!lock_mgr_lockscreen_launch()) {
+				_E("Failed to launch lockscreen");
+			}
 		}
 	}
 

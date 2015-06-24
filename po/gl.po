@@ -1,11 +1,32 @@
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "Queda 1 intento"
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "Quedan %d intentos"
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "Contrasinal non válido"
+
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "Non se pode iniciar %s"
 
-msgid "IDS_COM_POP_WARNING"
-msgstr "Aviso"
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "Aceptar"
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "PIN incorrecto"
 
 msgid "IDS_COM_BODY_ENTER_PIN"
 msgstr "Introducir PIN"
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "Introduza o contrasinal"
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "Tentaches desbloquear o dispositivo incorrectamente %1$d veces. Quédanche %2$d intentos antes de que se restablezan os axustes predeterminados de fábrica e se eliminen todos os datos do dispositivo."
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "Ténteo de novo en %d seg."
 
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
 msgstr "Introduce o PIN para ver a mensaxe"
@@ -13,45 +34,24 @@ msgstr "Introduce o PIN para ver a mensaxe"
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
 msgstr "Introduce o PIN para ver o rexistro de chamadas"
 
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "Ténteo de novo en %d seg."
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "Tentaches desbloquear o dispositivo incorrectamente %d veces. Agora restableceranse os axustes predeterminados de fábrica e borraranse todos os datos."
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "PIN incorrecto"
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "Precísanse entre %1$d e %2$d díxitos ou letras"
 
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "Queda 1 intento"
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "Chamada de urxencia"
 
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "Quedan %d intentos"
+msgid "IDS_COM_POP_WARNING"
+msgstr "Aviso"
 
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "Tentaches desbloquear o dispositivo incorrectamente %1$d veces. Quédanche %2$d intentos antes de que se restablezan os axustes predeterminados de fábrica e se eliminen todos os datos do dispositivo."
+msgid "IDS_COM_BUTTON_CANCEL"
+msgstr "Cancelar"
 
 msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
 msgstr "Realizaches %1$d intentos sen éxito de desbloquear o dispositivo. Téntao de novo dentro de %2$d segundos."
 
 msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
 msgstr "Imposible desbloquear pantalla"
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Introduza o contrasinal"
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "Precísanse entre %1$d e %2$d díxitos ou letras"
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Contrasinal non válido"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "Tentaches desbloquear o dispositivo incorrectamente %d veces. Agora restableceranse os axustes predeterminados de fábrica e borraranse todos os datos."
-
-msgid "IDS_COM_BUTTON_OK_ABB"
-msgstr "Aceptar"
-
-msgid "IDS_ST_BUTTON_CANCEL"
-msgstr "Cancelar"
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Chamada de urxencia"
 

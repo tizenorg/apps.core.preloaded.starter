@@ -25,15 +25,11 @@ styles {
 #define TEXT_BUTTON_CLASS "ATO007"
 
 
-collections
-{
-	group
-	{
+collections {
+	group {
 		name: "elm/button/base/emg_cal_btn";
-		parts
-		{
-			part
-			{
+		parts {
+			part {
 				name: "elm.swallow.content";
 				type: RECT;
 				mouse_events: 1;
@@ -47,55 +43,47 @@ collections
 					align: 0.0 0.0;
 				}
 			}
-			part
-			{
+			part {
 				name: "elm.text";
 				type: TEXT;
 				effect: "SHADOW";
 				mouse_events: 1;
 				repeat_events: 1;
-				description
-				{
+				description {
 					state: "default" 0.0;
 					fixed: 1 1;
 					color: 255 255 255 255;
 					visible: 1;
 					rel1.relative: 0.0 0.0;
 					rel2.relative: 1.0 1.0;
-					text
-					{
+					text {
 						align: 0.0 0.5;
 						size: 28;
 						text_class: TEXT_BUTTON_CLASS;
 					}
 				}
-				description
-				{
+				description {
 					state: "pressed" 0.0;
 					inherit: "default" 0.0;
 					color: 255 255 255 120;
 				}
 			}
 		}
-		programs
-		{
-			program
-			{
+		programs {
+			program {
 				name: "mouse,clicked";
 				signal: "mouse,clicked,1";
 				source: "elm.swallow.content";
 				action: SIGNAL_EMIT "elm,action,click" "";
 			}
-			program
-			{
+			program {
 				name: "button,pressed";
 				signal: "mouse,down,1";
 				action: STATE_SET "pressed" 0.0;
 				source: "elm.swallow.content";
 				target: "elm.text";
 			}
-			program
-			{
+			program {
 				name: "button,unpressed";
 				signal: "mouse,up,1";
 				action: STATE_SET "default" 0.0;
@@ -105,13 +93,10 @@ collections
 		}
 	}
 
-	group
-	{
+	group {
 		name: "elm/button/base/tizen_account_btn";
-		parts
-		{
-			part
-			{
+		parts {
+			part {
 				name: "elm.swallow.content";
 				type: RECT;
 				mouse_events: 1;
@@ -125,54 +110,45 @@ collections
 					align: 0.0 0.0;
 				}
 			}
-			part
-			{
+			part {
 				name: "elm.text";
 				type: TEXTBLOCK;
 				effect: "SHADOW";
 				mouse_events: 1;
 				repeat_events: 1;
-				description
-				{
+				description {
 					state: "default" 0.0;
 					fixed: 1 1;
 					color: 255 255 255 255;
 					visible: 1;
 					rel1.relative: 0.0 0.0;
 					rel2.relative: 1.0 1.0;
-					text
-					{
+					text {
 						style: "unlock_text";
 					}
 				}
-				description
-				{
+				description {
 					state: "pressed" 0.0;
 					inherit: "default" 0.0;
 					color: 255 255 255 120;
 				}
 			}
 		}
-
-		programs
-		{
-			program
-			{
+		programs {
+			program {
 				name: "mouse,clicked";
 				signal: "mouse,clicked,1";
 				source: "elm.swallow.content";
 				action: SIGNAL_EMIT "elm,action,click" "";
 			}
-			program
-			{
+			program {
 				name: "button,pressed";
 				signal: "mouse,down,1";
 				action: STATE_SET "pressed" 0.0;
 				source: "elm.swallow.content";
 				target: "elm.text";
 			}
-			program
-			{
+			program {
 				name: "button,unpressed";
 				signal: "mouse,up,1";
 				action: STATE_SET "default" 0.0;
@@ -182,13 +158,10 @@ collections
 		}
 	}
 
-	group
-	{
+	group {
 		name: "elm/button/base/right_button";
-		parts
-		{
-			part
-			{
+		parts {
+			part {
 				name: "elm.swallow.content";
 				type: RECT;
 				mouse_events: 1;
@@ -207,13 +180,11 @@ collections
 				type: RECT;
 				mouse_events: 1;
 				repeat_events: 1;
-				description
-				{
+				description {
 					state: "default" 0.0;
 					visible: 0;
 				}
-				description
-				{
+				description {
 					state: "pressed" 0.0;
 					//color_class: AO018;
 					visible: 1;
@@ -223,25 +194,20 @@ collections
 					rel2.offset: 3 0;
 				}
 			}
-			part
-			{
+			part {
 				name: "elm.text";
 				type: TEXT;
 				effect: "SHADOW";
 				mouse_events: 1;
 				repeat_events: 1;
-				description
-				{
+				description {
 					state: "default" 0.0;
-					fixed: 1 1;
 					color: 255 255 255 255;
 					visible: 1;
 					rel1.relative: 1.0 0.0;
 					rel2.relative: 1.0 1.0;
 					align: 1.0 0.5;
-					max: -1 40;
-					text
-					{
+					text {
 						align: 1.0 0.5;
 						size: 28;
 						//text_class: "ATO007";
@@ -251,26 +217,21 @@ collections
 				}
 			}
 		}
-
-		programs
-		{
-			program
-			{
+		programs {
+			program {
 				name: "mouse,clicked";
 				signal: "mouse,clicked,1";
 				source: "elm.swallow.content";
 				action: SIGNAL_EMIT "elm,action,click" "";
 			}
-			program
-			{
+			program {
 				name: "button,pressed";
 				signal: "mouse,down,1";
 				action: STATE_SET "pressed" 0.0;
 				source: "elm.swallow.content";
 				target: "effect";
 			}
-			program
-			{
+			program {
 				name: "button,unpressed";
 				signal: "mouse,up,1";
 				action: STATE_SET "default" 0.0;
@@ -280,13 +241,10 @@ collections
 		}
 	}
 
-	group
-	{
+	group {
 		name: "elm/button/base/left_button";
-		parts
-		{
-			part
-			{
+		parts {
+			part {
 				name: "elm.swallow.content";
 				type: RECT;
 				mouse_events: 1;
@@ -305,13 +263,11 @@ collections
 				type: RECT;
 				mouse_events: 1;
 				repeat_events: 1;
-				description
-				{
+				description {
 					state: "default" 0.0;
 					visible: 0;
 				}
-				description
-				{
+				description {
 					state: "pressed" 0.0;
 					color_class: AO018;
 					visible: 1;
@@ -321,15 +277,13 @@ collections
 					rel2.offset: 3 3;
 				}
 			}
-			part
-			{
+			part {
 				name: "elm.text";
 				type: TEXT;
 				effect: "SHADOW";
 				mouse_events: 1;
 				repeat_events: 1;
-				description
-				{
+				description {
 					state: "default" 0.0;
 					fixed: 1 1;
 					color: 255 255 255 255;
@@ -337,8 +291,7 @@ collections
 					rel1.relative: 0.0 0.0;
 					rel2.relative: 0.0 1.0;
 					align: 0.0 0.5;
-					text
-					{
+					text {
 						align: 0.0 0.5;
 						size: 28;
 						//text_class: "ATO007";
@@ -348,26 +301,21 @@ collections
 				}
 			}
 		}
-
-		programs
-		{
-			program
-			{
+		programs {
+			program {
 				name: "mouse,clicked";
 				signal: "mouse,clicked,1";
 				source: "elm.text";
 				action: SIGNAL_EMIT "elm,action,click" "";
 			}
-			program
-			{
+			program {
 				name: "button,pressed";
 				signal: "mouse,down,1";
 				action: STATE_SET "pressed" 0.0;
 				source: "elm.text";
 				target: "effect";
 			}
-			program
-			{
+			program {
 				name: "button,unpressed";
 				signal: "mouse,up,1";
 				action: STATE_SET "default" 0.0;
@@ -377,13 +325,10 @@ collections
 		}
 	}
 
-	group
-	{
+	group {
 		name: "elm/button/base/center_button";
-		parts
-		{
-			part
-			{
+		parts {
+			part {
 				name: "elm.swallow.content";
 				type: RECT;
 				mouse_events: 1;
@@ -397,56 +342,47 @@ collections
 					align: 0.0 0.0;
 				}
 			}
-			part
-			{
+			part {
 				name: "elm.text";
 				type: TEXT;
 				effect: "SHADOW";
 				mouse_events: 1;
 				repeat_events: 1;
-				description
-				{
+				description {
 					state: "default" 0.0;
 					fixed: 1 1;
 					color: 255 255 255 255;
 					visible: 1;
 					rel1.relative: 0.0 0.0;
 					rel2.relative: 1.0 1.0;
-					text
-					{
+					text {
 						align: 0.5 0.5;
 						size: 28;
 						//text_class: "ATO007";
 					}
 				}
-				description
-				{
+				description {
 					state: "pressed" 0.0;
 					inherit: "default" 0.0;
 					color: 255 255 255 128;
 				}
 			}
 		}
-
-		programs
-		{
-			program
-			{
+		programs {
+			program {
 				name: "mouse,clicked";
 				signal: "mouse,clicked,1";
 				source: "elm.swallow.content";
 				action: SIGNAL_EMIT "elm,action,click" "";
 			}
-			program
-			{
+			program {
 				name: "button,pressed";
 				signal: "mouse,down,1";
 				action: STATE_SET "pressed" 0.0;
 				source: "elm.swallow.content";
 				target: "elm.text";
 			}
-			program
-			{
+			program {
 				name: "button,unpressed";
 				signal: "mouse,up,1";
 				action: STATE_SET "default" 0.0;

@@ -1,11 +1,32 @@
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "1 оролдлого үлдсэн."
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "%d оролдлого үлдсэн."
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "Буруу нууц үг"
+
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "Unable to launch %s."
 
-msgid "IDS_COM_POP_WARNING"
-msgstr "Анхааруулга"
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "OK"
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "Буруу PIN код"
 
 msgid "IDS_COM_BODY_ENTER_PIN"
 msgstr "PIN код оруулах"
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "Нууц үг оруулах"
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "Та төхөөрөмжийг нээх гэж %1$d удаа буруу оролдсон. Төхөөрөмж үйлдвэрийн өгөгдмөл тохиргоо руугаа буцан орж, бүх өгөгдөл арилах хүртэл %2$d удаа оролдох боломж үлдсэн."
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "%d сек дараа дахин оролд"
 
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
 msgstr "PIN оруулж зурвас үз"
@@ -13,45 +34,24 @@ msgstr "PIN оруулж зурвас үз"
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
 msgstr "PIN оруулж дуудлагын бүртгэл үз"
 
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "%d сек дараа дахин оролд"
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "Та төхөөрөмжийг нээх гэж %d удаа буруу оролдсон. Энэ одоо үйлдвэрийн өгөгдмөл тохиргоо руугаа буцаж орох бөгөөд бүх өгөгдөл арилна"
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "Буруу PIN код"
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "%1$d to %2$d digits or letters required."
 
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "1 оролдлого үлдсэн."
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "Яаралтай тусламжийн дуудлага"
 
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "%d оролдлого үлдсэн."
+msgid "IDS_COM_POP_WARNING"
+msgstr "Анхааруулга"
 
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "Та төхөөрөмжийг нээх гэж %1$d удаа буруу оролдсон. Төхөөрөмж үйлдвэрийн өгөгдмөл тохиргоо руугаа буцан орж, бүх өгөгдөл арилах хүртэл %2$d удаа оролдох боломж үлдсэн."
+msgid "IDS_COM_BUTTON_CANCEL"
+msgstr "Цуцлах"
 
 msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
 msgstr "Та төхөөрөмжөө нээх гэж %1$d удаа амжилтгүй оролдсон. %2$d секундын дараа дахин оролд."
 
 msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
 msgstr "Дэлгэц нээх боломжгүй"
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Нууц үг оруулах"
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "%1$d to %2$d digits or letters required."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Буруу нууц үг"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "Та төхөөрөмжийг нээх гэж %d удаа буруу оролдсон. Энэ одоо үйлдвэрийн өгөгдмөл тохиргоо руугаа буцаж орох бөгөөд бүх өгөгдөл арилна"
-
-msgid "IDS_COM_BUTTON_OK_ABB"
-msgstr "OK"
-
-msgid "IDS_ST_BUTTON_CANCEL"
-msgstr "Цуцлах"
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Яаралтай тусламжийн дуудлага"
 

@@ -6,7 +6,7 @@
 #	sleep 0.1
 #done
 
-while [ ! -f /run/.wm_ready];
+while [ ! -f /tmp/amd_ready ];
 do
         /bin/sleep 0.1
 done

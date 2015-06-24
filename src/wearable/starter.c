@@ -147,16 +147,8 @@ static void _init(void)
 	status_active_register_cb(STATUS_ACTIVE_KEY_SYSMAN_POWER_OFF_STATUS, _power_off_cb, NULL);
 	status_active_register_cb(STATUS_ACTIVE_KEY_LANGSET, _change_language_cb, NULL);
 
-	if (0 < status_passive_get()->setup_wizard_first_boot) {
-		/* First boot : pwlock > set sequence > home */
-		process_mgr_must_launch(PWLOCK_PKGNAME, NULL, NULL, NULL, NULL);
-		vconf_set_int(VCONFKEY_STARTER_SEQUENCE, 0);
-		status_active_register_cb(STATUS_ACTIVE_KEY_STARTER_SEQUENCE, _change_sequence_cb, NULL);
-	} else {
-		/* Other : Home > pwlock */
-		home_mgr_launch_home();
-		process_mgr_must_launch(PWLOCK_PKGNAME, NULL, NULL, NULL, NULL);
-	}
+	home_mgr_launch_home();
+	process_mgr_must_launch(PWLOCK_PKGNAME, NULL, NULL, NULL, NULL);
 
 	dbus_util_receive_lcd_status(_on_lcd_changed_receive, NULL);
 

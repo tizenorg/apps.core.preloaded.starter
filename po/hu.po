@@ -1,11 +1,32 @@
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "Még 1 próbálkozásra van."
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "%d kísérlet maradt."
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "Téves jelszó"
+
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "A(z) %s nem indítható el."
 
-msgid "IDS_COM_POP_WARNING"
-msgstr "Figyelmeztetés"
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "OK"
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "Hibás PIN-kód"
 
 msgid "IDS_COM_BODY_ENTER_PIN"
 msgstr "Írja be a PIN-kódot!"
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "Írja be a jelszót."
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "%1$d alkalommal helytelenül kísérelte meg az eszköz feloldását. További %2$d sikertelen kísérlet esetén visszaállnak az eszköz gyári alapértelmezései, és minden adat törlődik róla."
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "Prób. újra %d mp múlva."
 
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
 msgstr "Adja meg a PIN-t az üzenet megjelenítéséhez"
@@ -13,45 +34,24 @@ msgstr "Adja meg a PIN-t az üzenet megjelenítéséhez"
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
 msgstr "Adja meg a PIN-t a hívásnapló megjelenítéséhez"
 
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "Prób. újra %d mp múlva."
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "%d alkalommal helytelenül kísérelte meg az eszköz feloldását. Most visszaállnak az eszköz gyári alapértelmezései, és minden adat törlődik róla."
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "Hibás PIN-kód"
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "%1$d–%2$d számjegy vagy betű szükséges."
 
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "Még 1 próbálkozásra van."
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "Segélyhívás"
 
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "%d kísérlet maradt."
+msgid "IDS_COM_POP_WARNING"
+msgstr "Figyelmeztetés"
 
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "%1$d alkalommal helytelenül kísérelte meg az eszköz feloldását. További %2$d sikertelen kísérlet esetén visszaállnak az eszköz gyári alapértelmezései, és minden adat törlődik róla."
+msgid "IDS_COM_BUTTON_CANCEL"
+msgstr "Mégse"
 
 msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
 msgstr "%1$d alkalommal sikertelenül próbálta feloldani az eszközt. Próbálja újra %2$d másodperc múlva."
 
 msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
 msgstr "Nem oldható fel a képernyő"
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Írja be a jelszót."
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "%1$d–%2$d számjegy vagy betű szükséges."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Téves jelszó"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "%d alkalommal helytelenül kísérelte meg az eszköz feloldását. Most visszaállnak az eszköz gyári alapértelmezései, és minden adat törlődik róla."
-
-msgid "IDS_COM_BUTTON_OK_ABB"
-msgstr "OK"
-
-msgid "IDS_ST_BUTTON_CANCEL"
-msgstr "Mégse"
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Segélyhívás"
 

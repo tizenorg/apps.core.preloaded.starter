@@ -1,0 +1,57 @@
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "1 کوشش باقی رہگئی۔"
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "%d کوششیں باقی۔"
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "غلط پاسورڈ۔"
+
+msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
+msgstr "%s چلانے سے قاصر۔"
+
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "ٹھیک ہے"
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "غلط پن کوڈ۔"
+
+msgid "IDS_COM_BODY_ENTER_PIN"
+msgstr "پن نمبر درج کریں"
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "پاس ورڈ درج کریں"
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "آپ نے آلے کو %1$d بار غلط طریقے سے کھولنےکی کوشش کی۔ آلے کے فیکٹری ڈیفالٹ پر دوبارہ ترتیب دینے اور سبھی ڈیٹا کو مٹادیے جانے سے قبل آپ کے پاس صرف %2$dکوششیں بچی ہیں۔"
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "%d سیکنڈ میں دوبارہ کوشش کریں"
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
+msgstr "پیغام دیکھنے کے لیے پن داخل کریں"
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
+msgstr "کال لاگ دیکھنے کے لیے پن داخل کریں"
+
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "آپ نے اس آلہ کو %d مرتبہ غلط طریقے سے ان لاک کرنے کی کوشش کی ہے۔ آلہ کو اب فیکٹری طے شدہ پر پھر سیٹ کردیا جائے گا اور تمام ڈیٹا مٹا دیا جائے گا۔"
+
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "%1$d سے %2$d ہندسے یا حروف درکار۔"
+
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "ایمرجنسی کال"
+
+msgid "IDS_COM_POP_WARNING"
+msgstr "خطرہ"
+
+msgid "IDS_COM_BUTTON_CANCEL"
+msgstr "منسوخ"
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
+msgstr "اپنا آلہ غیر مقفل کرنے کی آپ نے %1$d ناکام کوششیں کی ہیں۔ %2$d سیکنڈز میں دوبارہ کوشش کریں۔"
+
+msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
+msgstr "اسکرین کو غیر مقفل کرنے سے قاصر"
+

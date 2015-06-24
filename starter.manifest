@@ -4,8 +4,6 @@
 	<request>
 		<smack request="sys-assert::core" type="rwxat"/>
 		<smack request="system::homedir" type="rwxat"/>
-		<smack request="system::vconf" type="rwxat"/>
-		<smack request="org.tizen.setting::private" type="rw"/>
 		<smack request="system::media" type="rwxat"/>
 		<smack request="system::media::root" type="rwxat"/>
 		<smack request="system::share" type="rwxat"/>
@@ -19,9 +17,6 @@
 		<smack request="bt-service::gap" type="rwxt"/>
 		<smack request="e17::notification" type="rw"/>
 	</request>
-	<provide>
-		<label name="starter::vconf"/>
-	</provide>
 	</define>
 	<request>
 		<domain name="starter"/>

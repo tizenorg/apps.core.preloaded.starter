@@ -1,0 +1,57 @@
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "1 උත්සාහයක් ඉතිරිව ඇත."
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "උත්සාහයන් %d ක් ඉතිරිවී ඇත."
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "වැරදි මුරපදය."
+
+msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
+msgstr "%s ආරම්භ කළ නොහැක."
+
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "හරි"
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "වැරදි PIN."
+
+msgid "IDS_COM_BODY_ENTER_PIN"
+msgstr "PIN අංකය ඇතුල් කරන්න."
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "මුරපදය ඇතුල් කරන්න."
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "ඔබ %1$d වතාවක් වැරදි ලෙස උපාංගය අගුලු හැරීමට උත්සාහ දරා ඇත. උපාංගය කම්හල් පෙරනිමිය වෙත යළි සැකසී සියලු දත්ත මැකීමට පෙර ඔබට උත්සාහයන් %2$dක් ඉතිරිව පවතී."
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "නැවත තත්පර %d කින් උත්සාහ කරන්න."
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
+msgstr "පණිවිඩය බැලීමට PIN ඇතුළත් කරන්න"
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
+msgstr "ඇමතුම් ලොගය බැලීමට PIN ඇතුළත් කරන්න"
+
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "ඔබ %d වතාවක් වැරදි ලෙස උපාංගය අගුළු හැරීමට යත්න දරා තිබේ. එය දැන් නිපැයුම් අදියරේ තිබූ පෙරනිමි තත්ත්වයට යළි සැකසෙනු ඇති අතර සියලු දත්ත මැකෙනු ඇත"
+
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "%1$d සිට %2$d දක්වා අංක හෝ අක්ෂර ගණනක් අවශ්‍ය වේ."
+
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "හදිසි ඇමතුම්"
+
+msgid "IDS_COM_POP_WARNING"
+msgstr "අනතුරු ඇඟවීම"
+
+msgid "IDS_COM_BUTTON_CANCEL"
+msgstr "අවල. කර."
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
+msgstr "ඔබ ඔබේ උපාංග අගුලු හැරීමට අසාර්ථක උත්සාහයන් %1$dක් ගෙන තිබේ. තත්පර %2$dකින් නැවත උත්සාහ කරන්න."
+
+msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
+msgstr "තිරය අගුලු හැරිය නොහැක"
+
