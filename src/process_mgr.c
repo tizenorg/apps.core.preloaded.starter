@@ -20,12 +20,13 @@
 #include <syspopup_caller.h>
 #include <sys/time.h>
 #include <sys/resource.h>
+#include <bundle_internal.h>
 
 #include "process_mgr.h"
 #include "util.h"
 #include "dbus_util.h"
 
-#define LOCKD_VOICE_CALL_PKG_NAME "org.tizen.call"
+#define LOCKD_VOICE_CALL_PKG_NAME "org.tizen.call-ui"
 #define LOCKD_VIDEO_CALL_PKG_NAME "org.tizen.vtmain"
 
 #define NICE_VALUE_PWLOCK -5
@@ -324,7 +325,7 @@ static Eina_Bool _set_lock_priority_cb(void *data)
 	}
 
 	if (setpriority(PRIO_PROCESS, (pid_t)data, NICE_VALUE_LOCKSCREEN) < 0 ) {
-		_D("%s\n", strerror(errno));
+		_D("error : %d", errno);
 		return ECORE_CALLBACK_CANCEL;
 	}
 
@@ -344,7 +345,7 @@ static Eina_Bool _set_pwlock_priority_cb(void *data)
 	}
 
 	if (setpriority(PRIO_PROCESS, (pid_t)data, NICE_VALUE_PWLOCK) < 0 ) {
-		_D("%s\n", strerror(errno));
+		_D("error : %d", errno);
 		return ECORE_CALLBACK_CANCEL;
 	}
 

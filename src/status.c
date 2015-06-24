@@ -17,9 +17,12 @@
 #include <vconf.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 
 #include "status.h"
 #include "util.h"
+
+int errno;
 
 #define VCONFKEY_REMOTE_LOCK_ISLOCKED "db/private/org.tizen.wfmw/is_locked"
 #define VCONFKEY_IDLE_SCREEN_SAFEMODE "memory/idle-screen/safemode"
@@ -46,9 +49,8 @@ static struct status_active_s s_status_active = {
 
 
 static struct status_passive_s s_status_passive = {
-	.setup_wizard_state = -1,
 	.wms_wakeup_by_gesture_setting = -1,
-	.setup_wizard_first_boot = -1,
+	.setappl_ambient_mode_bool = -1,
 
 	.pm_key_ignore = -1,
 	.call_state = -1,
@@ -60,10 +62,8 @@ static struct status_passive_s s_status_passive = {
 	.setappl_sound_lock_bool = -1,
 	.setappl_motion_activation = -1,
 	.setappl_use_pick_up = -1,
-	.setappl_accessibility_lock_time_int = -1,
 	.idle_screen_safemode = -1,
 	.boot_animation_finished = -1,
-	.setappl_ambient_mode_bool = -1,
 
 	.setappl_3rd_lock_pkg_name_str = NULL,
 };
@@ -149,9 +149,25 @@ static void _status_active_change_cb(keynode_t* node, void *data)
 		}
 	} else if (!strcmp(key_name, VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME)) {
 		char *tmp = vconf_keynode_get_str(node);
-		free(s_status_active.setappl_selected_package_name);
-		if (tmp) s_status_active.setappl_selected_package_name = strdup(tmp);
-		else s_status_active.setappl_selected_package_name = NULL;
+		char *a_tmp;
+
+		if (tmp) {
+			a_tmp = strdup(tmp);
+		} else {
+			a_tmp = strdup(HOMESCREEN_PKG_NAME);
+		}
+
+		if (a_tmp) {
+			free(s_status_active.setappl_selected_package_name);
+			s_status_active.setappl_selected_package_name = a_tmp;
+		} else {
+			if (!s_status_active.setappl_selected_package_name) {
+				_E("Package name is NULL, strdup failed");
+			} else {
+				_E("Keep old package. because of strdup\n");
+			}
+		}
+
 		EINA_LIST_FOREACH(s_status_active.list[STATUS_ACTIVE_KEY_SETAPPL_SELECTED_PACKAGE_NAME], l, info) {
 			continue_if(!info->func);
 			if (0 == info->func(STATUS_ACTIVE_KEY_SETAPPL_SELECTED_PACKAGE_NAME, info->data)) break;
@@ -206,12 +222,10 @@ static void _status_passive_change_cb(keynode_t* node, void *data)
 	ret_if(!key_name);
 
 #ifdef TIZEN_PROFILE_WEARABLE
-	if (!strcmp(key_name, VCONFKEY_SETUP_WIZARD_STATE)) {
-		s_status_passive.setup_wizard_state = vconf_keynode_get_int(node);
-	} else if (!strcmp(key_name, VCONFKEY_WMS_WAKEUP_BY_GESTURE_SETTING)) {
+	if (!strcmp(key_name, VCONFKEY_WMS_WAKEUP_BY_GESTURE_SETTING)) {
 		s_status_passive.wms_wakeup_by_gesture_setting = vconf_keynode_get_int(node);
-	} else if (!strcmp(key_name, VCONFKEY_SETUP_WIZARD_FIRST_BOOT)) {
-		s_status_passive.setup_wizard_first_boot = vconf_keynode_get_int(node);
+	} else if (!strcmp(key_name, VCONFKEY_SETAPPL_AMBIENT_MODE_BOOL)) {
+		s_status_passive.setappl_ambient_mode_bool = vconf_keynode_get_int(node);
 	} else
 #endif
 	if (!strcmp(key_name, VCONFKEY_PM_KEY_IGNORE)) {
@@ -232,15 +246,27 @@ static void _status_passive_change_cb(keynode_t* node, void *data)
 		s_status_passive.idle_screen_safemode = vconf_keynode_get_int(node);
 	} else if (!strcmp(key_name, VCONFKEY_BOOT_ANIMATION_FINISHED)) {
 		s_status_passive.boot_animation_finished = vconf_keynode_get_int(node);
-#if 0 //build error
-	} else if (!strcmp(key_name, VCONFKEY_SETAPPL_AMBIENT_MODE_BOOL)) {
-		s_status_passive.setappl_ambient_mode_bool = vconf_keynode_get_int(node);
-#endif
 	} else if (!strcmp(key_name, VCONFKEY_SETAPPL_3RD_LOCK_PKG_NAME_STR)) {
 		char *tmp = vconf_keynode_get_str(node);
-		free(s_status_passive.setappl_3rd_lock_pkg_name_str);
-		if (tmp) s_status_passive.setappl_3rd_lock_pkg_name_str = strdup(tmp);
-		else s_status_passive.setappl_3rd_lock_pkg_name_str = NULL;
+		char *a_tmp;
+
+		if (tmp) {
+			a_tmp = strdup(tmp);
+		} else {
+			a_tmp = strdup(STATUS_DEFAULT_LOCK_PKG_NAME);
+		}
+
+		if (a_tmp) {
+			free(s_status_passive.setappl_3rd_lock_pkg_name_str);
+			s_status_passive.setappl_3rd_lock_pkg_name_str = a_tmp;
+		} else {
+			if (!s_status_passive.setappl_3rd_lock_pkg_name_str) {
+				_E("Package name is NULL, strdup failed");
+			} else {
+				_E("Keep old package. because of strdup\n");
+			}
+		}
+
 #if 0
 	} else if (!strcmp(key_name, )) {
 		s_status_passive. = vconf_keynode_get_int(node);
@@ -264,8 +290,13 @@ int status_register(void)
 
 	if (vconf_notify_key_changed(VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME, _status_active_change_cb, NULL) < 0) {
 		_E("Failed to register add the callback for %s", VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME);
-	} else if (!(s_status_active.setappl_selected_package_name = vconf_get_str(VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME))) {
+	}
+	if (!(s_status_active.setappl_selected_package_name = vconf_get_str(VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME))) {
 		_E("Failed to get vconfkey[%s]", VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME);
+		s_status_active.setappl_selected_package_name = strdup(HOMESCREEN_PKG_NAME);
+		if (!s_status_active.setappl_selected_package_name) {
+			_E("Failed to duplicate string");
+		}
 	}
 
 	if (vconf_notify_key_changed(VCONFKEY_SETAPPL_SCREEN_LOCK_TYPE_INT, _status_active_change_cb, NULL) < 0) {
@@ -306,13 +337,6 @@ int status_register(void)
 
 	/* Passive events */
 #ifdef TIZEN_PROFILE_WEARABLE
-	if (vconf_notify_key_changed(VCONFKEY_SETUP_WIZARD_STATE, _status_passive_change_cb, NULL) < 0) {
-		_E("Failed to register add the callback for %s", VCONFKEY_SETUP_WIZARD_STATE);
-	} else if (vconf_get_int(VCONFKEY_SETUP_WIZARD_STATE, &s_status_passive.setup_wizard_state) < 0) {
-		_E("Failed to get vconfkey[%s]", VCONFKEY_SETUP_WIZARD_STATE);
-		s_status_passive.setup_wizard_state = -1;
-	}
-
 	if (vconf_notify_key_changed(VCONFKEY_WMS_WAKEUP_BY_GESTURE_SETTING, _status_passive_change_cb, NULL) < 0) {
 		_E("Failed to register add the callback for %s", VCONFKEY_WMS_WAKEUP_BY_GESTURE_SETTING);
 	} else if (vconf_get_int(VCONFKEY_WMS_WAKEUP_BY_GESTURE_SETTING, &s_status_passive.wms_wakeup_by_gesture_setting) < 0) {
@@ -320,12 +344,13 @@ int status_register(void)
 		s_status_passive.wms_wakeup_by_gesture_setting = -1;
 	}
 
-	if (vconf_notify_key_changed(VCONFKEY_SETUP_WIZARD_FIRST_BOOT, _status_passive_change_cb, NULL) < 0) {
-		_E("Failed to register add the callback for %s", VCONFKEY_SETUP_WIZARD_FIRST_BOOT);
-	} else if (vconf_get_int(VCONFKEY_SETUP_WIZARD_FIRST_BOOT, &s_status_passive.setup_wizard_first_boot) < 0) {
-		_E("Failed to get vconfkey[%s]", VCONFKEY_SETUP_WIZARD_FIRST_BOOT);
-		s_status_passive.setup_wizard_first_boot = -1;
+	if (vconf_notify_key_changed(VCONFKEY_SETAPPL_AMBIENT_MODE_BOOL, _status_passive_change_cb, NULL) < 0) {
+		_E("Failed to register add the callback for %s", VCONFKEY_SETAPPL_AMBIENT_MODE_BOOL);
+	} else if (vconf_get_int(VCONFKEY_SETAPPL_AMBIENT_MODE_BOOL, &s_status_passive.setappl_ambient_mode_bool) < 0) {
+		_E("Failed to get vconfkey[%s]", VCONFKEY_SETAPPL_AMBIENT_MODE_BOOL);
+		s_status_passive.setappl_ambient_mode_bool = -1;
 	}
+
 #endif
 
 	if (vconf_notify_key_changed(VCONFKEY_PM_KEY_IGNORE, _status_passive_change_cb, NULL) < 0) {
@@ -398,15 +423,6 @@ int status_register(void)
 		s_status_passive.setappl_use_pick_up = -1;
 	}
 
-#if 0 //build error
-	if (vconf_notify_key_changed(VCONFKEY_SETAPPL_ACCESSIBILITY_LOCK_TIME_INT, _status_passive_change_cb, NULL) < 0) {
-		_E("Failed to register add the callback for %s", VCONFKEY_SETAPPL_ACCESSIBILITY_LOCK_TIME_INT);
-	} else if (vconf_get_int(VCONFKEY_SETAPPL_ACCESSIBILITY_LOCK_TIME_INT, &s_status_passive.setappl_accessibility_lock_time_int) < 0) {
-		_E("Failed to get vconfkey[%s]", VCONFKEY_SETAPPL_ACCESSIBILITY_LOCK_TIME_INT);
-		s_status_passive.setappl_accessibility_lock_time_int = -1;
-	}
-#endif
-
 	if (vconf_notify_key_changed(VCONFKEY_IDLE_SCREEN_SAFEMODE, _status_passive_change_cb, NULL) < 0) {
 		_E("Failed to register add the callback for %s", VCONFKEY_IDLE_SCREEN_SAFEMODE);
 	} else if (vconf_get_int(VCONFKEY_IDLE_SCREEN_SAFEMODE, &s_status_passive.idle_screen_safemode ) < 0) {
@@ -421,19 +437,16 @@ int status_register(void)
 		s_status_passive.boot_animation_finished = -1;
 	}
 
-#if 0 //build error
-	if (vconf_notify_key_changed(VCONFKEY_SETAPPL_AMBIENT_MODE_BOOL, _status_passive_change_cb, NULL) < 0) {
-		_E("Failed to register add the callback for %s", VCONFKEY_SETAPPL_AMBIENT_MODE_BOOL);
-	} else if (vconf_get_int(VCONFKEY_SETAPPL_AMBIENT_MODE_BOOL, &s_status_passive.setappl_ambient_mode_bool) < 0) {
-		_E("Failed to get vconfkey[%s]", VCONFKEY_SETAPPL_AMBIENT_MODE_BOOL);
-		s_status_passive.boot_animation_finished = -1;
-	}
-#endif
-
 	if (vconf_notify_key_changed(VCONFKEY_SETAPPL_3RD_LOCK_PKG_NAME_STR, _status_passive_change_cb, NULL) < 0) {
 		_E("Failed to register add the callback for %s", VCONFKEY_SETAPPL_3RD_LOCK_PKG_NAME_STR);
-	} else if (!(s_status_passive.setappl_3rd_lock_pkg_name_str = vconf_get_str(VCONFKEY_SETAPPL_3RD_LOCK_PKG_NAME_STR))) {
+	}
+
+	if (!(s_status_passive.setappl_3rd_lock_pkg_name_str = vconf_get_str(VCONFKEY_SETAPPL_3RD_LOCK_PKG_NAME_STR))) {
 		_E("Failed to get vconfkey[%s]", VCONFKEY_SETAPPL_3RD_LOCK_PKG_NAME_STR);
+		s_status_passive.setappl_3rd_lock_pkg_name_str = strdup(STATUS_DEFAULT_LOCK_PKG_NAME);
+		if (!s_status_passive.setappl_3rd_lock_pkg_name_str) {
+			_E("Failed to allocate string for 3rd lock %d\n", errno);
+		}
 	}
 
 #if 0
@@ -487,17 +500,14 @@ void status_unregister(void)
 
 	/* Passive events */
 #ifdef TIZEN_PROFILE_WEARABLE
-	if (vconf_ignore_key_changed(VCONFKEY_SETUP_WIZARD_STATE, _status_passive_change_cb) < 0) {
-		_E("Failed to unregister the callback for %s", VCONFKEY_SETUP_WIZARD_STATE);
-	}
-
 	if (vconf_ignore_key_changed(VCONFKEY_WMS_WAKEUP_BY_GESTURE_SETTING, _status_passive_change_cb) < 0) {
 		_E("Failed to unregister the callback for %s", VCONFKEY_WMS_WAKEUP_BY_GESTURE_SETTING);
 	}
 
-	if (vconf_ignore_key_changed(VCONFKEY_SETUP_WIZARD_FIRST_BOOT, _status_passive_change_cb) < 0) {
-		_E("Failed to unregister the callback for %s", VCONFKEY_SETUP_WIZARD_FIRST_BOOT);
+	if (vconf_ignore_key_changed(VCONFKEY_SETAPPL_AMBIENT_MODE_BOOL, _status_passive_change_cb) < 0) {
+		_E("Failed to unregister the callback for %s", VCONFKEY_SETAPPL_AMBIENT_MODE_BOOL);
 	}
+
 #endif
 
 	if (vconf_ignore_key_changed(VCONFKEY_PM_KEY_IGNORE, _status_passive_change_cb) < 0) {
@@ -540,12 +550,6 @@ void status_unregister(void)
 		_E("Failed to unregister the callback for %s", VCONFKEY_SETAPPL_USE_PICK_UP);
 	}
 
-#if 0 //build error
-	if (vconf_ignore_key_changed(VCONFKEY_SETAPPL_ACCESSIBILITY_LOCK_TIME_INT, _status_passive_change_cb) < 0) {
-		_E("Failed to unregister the callback for %s", VCONFKEY_SETAPPL_ACCESSIBILITY_LOCK_TIME_INT);
-	}
-#endif
-
 	if (vconf_ignore_key_changed(VCONFKEY_IDLE_SCREEN_SAFEMODE, _status_passive_change_cb) < 0) {
 		_E("Failed to unregister the callback for %s", VCONFKEY_IDLE_SCREEN_SAFEMODE);
 	}
@@ -554,15 +558,10 @@ void status_unregister(void)
 		_E("Failed to unregister the callback for %s", VCONFKEY_BOOT_ANIMATION_FINISHED);
 	}
 
-#if 0 //build error
-	if (vconf_ignore_key_changed(VCONFKEY_SETAPPL_AMBIENT_MODE_BOOL, _status_passive_change_cb) < 0) {
-		_E("Failed to unregister the callback for %s", VCONFKEY_SETAPPL_AMBIENT_MODE_BOOL);
-	}
-#endif
-
 	if (vconf_ignore_key_changed(VCONFKEY_SETAPPL_3RD_LOCK_PKG_NAME_STR, _status_passive_change_cb) < 0) {
 		_E("Failed to unregister ther callback for %s", VCONFKEY_SETAPPL_3RD_LOCK_PKG_NAME_STR);
 	}
+	free(s_status_passive.setappl_3rd_lock_pkg_name_str);
 
 #if 0
 	if (vconf_ignore_key_changed(, _status_passive_change_cb) < 0) {

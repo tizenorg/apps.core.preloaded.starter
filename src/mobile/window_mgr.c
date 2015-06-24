@@ -15,13 +15,16 @@
  */
 
 #include <Elementary.h>
-#include <Ecore_X.h>
-#include <utilX.h>
-#include <ui-gadget.h>
 #include <vconf.h>
 #include <bundle.h>
 #include <appcore-efl.h>
 #include <app.h>
+
+#ifdef HAVE_X11
+#include <Ecore_X.h>
+#include <utilX.h>
+#include <ui-gadget.h>
+#endif
 
 #include "window_mgr.h"
 #include "util.h"
@@ -31,6 +34,7 @@
 
 
 
+#ifdef HAVE_X11
 struct _lockw_data {
 	Eina_Bool is_registered;
 	Ecore_X_Window lock_x_window;
@@ -373,6 +377,7 @@ void window_mgr_fini(lockw_data *lockw)
 
 	free(lockw);
 }
+#endif
 
 Evas_Object *window_mgr_pwd_lock_win_create(void)
 {
@@ -384,6 +389,7 @@ Evas_Object *window_mgr_pwd_lock_win_create(void)
 	elm_win_autodel_set(win, EINA_TRUE);
 	elm_win_role_set(win, "no-dim");
 
+#ifdef HAVE_X11
 	Ecore_X_Window xwin = elm_win_xwindow_get(win);
 	if (xwin) {
 		ecore_x_netwm_window_type_set(xwin, ECORE_X_WINDOW_TYPE_NOTIFICATION);
@@ -395,6 +401,8 @@ Evas_Object *window_mgr_pwd_lock_win_create(void)
 
 		ecore_x_window_prop_card32_set(xwin, ATOM_PANEL_SCROLLABLE_STATE, val, 3);
 	}
+#endif
+
 
 	return win;
 }

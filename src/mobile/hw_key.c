@@ -14,18 +14,19 @@
  * limitations under the License.
  */
 
+#ifdef HAVE_X11
 #include <app.h>
 #include <bundle.h>
 #include <Elementary.h>
-//#include <Ecore_X.h>
 #include <Ecore_Input.h>
 #include <dd-deviced.h>
 #include <syspopup_caller.h>
-//#include <utilX.h>
+#include <utilX.h>
 #include <vconf.h>
 #include <system/media_key.h>
 #include <aul.h>
 #include <feedback.h>
+#include <Ecore_X.h>
 
 #include "hw_key.h"
 #include "home_mgr.h"
@@ -52,22 +53,22 @@
 #define CANCEL_KEY_TIMER_SEC 0.3
 
 static struct {
-	//Ecore_X_Window win;
+	Ecore_X_Window win;
 	Ecore_Event_Handler *key_up;
 	Ecore_Event_Handler *key_down;
 	Ecore_Timer *home_long_press_timer;
 	Ecore_Timer *home_multi_press_timer;
 	Eina_Bool cancel;
-	//Ecore_X_Window keyrouter_notiwindow;
+	Ecore_X_Window keyrouter_notiwindow;
 	int homekey_count;
 } key_info = {
-	//.win = 0x0,
+	.win = 0x0,
 	.key_up = NULL,
 	.key_down = NULL,
 	.home_long_press_timer = NULL,
 	.home_multi_press_timer = NULL,
 	.cancel = EINA_FALSE,
-	//.keyrouter_notiwindow = 0x0,
+	.keyrouter_notiwindow = 0x0,
 	.homekey_count = 0,
 };
 
@@ -197,7 +198,6 @@ static void _cancel_key_events(void)
 
 
 
-#if 0
 static Eina_Bool _key_release_cb(void *data, int type, void *event)
 {
 	Evas_Event_Key_Up *ev = event;
@@ -291,11 +291,9 @@ static Eina_Bool _key_release_cb(void *data, int type, void *event)
 
 	return ECORE_CALLBACK_RENEW;
 }
-#endif
 
 
 
-#if 0
 static Eina_Bool _key_press_cb(void *data, int type, void *event)
 {
 	Evas_Event_Key_Down *ev = event;
@@ -375,11 +373,9 @@ static Eina_Bool _key_press_cb(void *data, int type, void *event)
 
 	return ECORE_CALLBACK_RENEW;
 }
-#endif
 
 
 
-#if 0
 void _media_key_event_cb(media_key_e key, media_key_event_e status, void *user_data)
 {
 	_D("MEDIA KEY EVENT : %d", key);
@@ -400,14 +396,12 @@ void _media_key_event_cb(media_key_e key, media_key_event_e status, void *user_d
 		break;
 	}
 }
-#endif
 
 
 
 void hw_key_create_window(void)
 {
 	int ret;
-#if 0 //build error
 	Ecore_X_Atom atomNotiWindow;
 	Ecore_X_Window keyrouter_notiwindow;
 
@@ -457,14 +451,12 @@ void hw_key_create_window(void)
 	}
 
 	media_key_reserve(_media_key_event_cb, NULL);
-#endif
 }
 
 
 
 void hw_key_destroy_window(void)
 {
-#if 0 //build error
 	utilx_ungrab_key(ecore_x_display_get(), key_info.win, KEY_HOME);
 	utilx_ungrab_key(ecore_x_display_get(), key_info.win, KEY_VOLUMEDOWN);
 	utilx_ungrab_key(ecore_x_display_get(), key_info.win, KEY_VOLUMEUP);
@@ -492,9 +484,7 @@ void hw_key_destroy_window(void)
 	key_info.win = 0x0;
 
 	media_key_release();
-#endif
 }
-
-
+#endif //HAVE_X11
 
 // End of a file

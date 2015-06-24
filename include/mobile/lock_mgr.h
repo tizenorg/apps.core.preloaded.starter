@@ -25,8 +25,6 @@
 
 #define _EDJ(x) elm_layout_edje_get(x)
 
-#define LOCK_MGR_DEFAULT_PKG_NAME "org.tizen.lockscreen"
-
 #ifdef TIZEN_BUILD_EMULATOR
 #define LOCK_MGR_DEFAULT_BG_PATH "/opt/share/settings/Wallpapers/Default.jpg"
 #else

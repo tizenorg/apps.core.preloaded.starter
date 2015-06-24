@@ -90,7 +90,6 @@ static Eina_Bool _pm_unlock_timer_cb(void *data){
 static void _on_lcd_changed_receive(void *data, DBusMessage *msg)
 {
 	int lcd_off = -1;
-	int setup_wizard_state = -1;
 	int count = 0;
 	char *info = NULL;
 	char *lcd_off_source = NULL;
@@ -108,15 +107,6 @@ static void _on_lcd_changed_receive(void *data, DBusMessage *msg)
 
 		_D("lcd off source : %s", lcd_off_source);
 		free(lcd_off_source);
-
-		if (vconf_get_int(VCONFKEY_SETUP_WIZARD_STATE, &setup_wizard_state) < 0) {
-			_E("Failed to get [%s]", VCONFKEY_SETUP_WIZARD_STATE);
-		} else {
-			if (setup_wizard_state == VCONFKEY_SETUP_WIZARD_LOCK) {
-				_E("starter doesn't react for this case, setup wizard state is [%d]", setup_wizard_state);
-				return;
-			}
-		}
 
 		if(_check_reserved_popup_status() > 0){
 			_W("reserved popup is on top. do nothing");

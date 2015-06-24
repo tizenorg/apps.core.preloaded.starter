@@ -28,12 +28,15 @@
 #include <signal.h>
 
 #include "starter.h"
-//#include "lock_mgr.h"
+#include "lock_mgr.h"
 #include "home_mgr.h"
-#include "hw_key.h"
 #include "process_mgr.h"
 #include "util.h"
 #include "status.h"
+
+#ifdef HAVE_X11
+#include "hw_key.h"
+#endif
 
 #define PWLOCK_LITE_PKG_NAME "org.tizen.pwlock-lite"
 
@@ -115,24 +118,17 @@ static int _power_off_cb(status_active_key_e key, void *data)
 
 
 
-#if 0
-static void _data_encryption_cb(keynode_t * node, void *data)
+static void _language_changed_cb(keynode_t *node, void *data)
 {
-	char *file = NULL;
+	char *val = NULL;
 
-	file = vconf_get_str(VCONFKEY_ODE_CRYPTO_STATE);
-	if (!file) {
-		return;
-	}
+	ret_if(!node);
 
-	_D("get the value : %s",  file);
-	if (!strcmp(file, DATA_MOUNTED)) {
-		lock_mgr_daemon_start();
-		home_mgr_init(NULL);
-	}
-	free(file);
+	val = vconf_keynode_get_str(node);
+	ret_if(!val);
+
+	_D("language is changed : %s", val);
 }
-#endif
 
 
 
@@ -164,6 +160,10 @@ static int _set_i18n(const char *domain, const char *dir)
 		_E("textdomain() error");
 	}
 
+	if (vconf_notify_key_changed(VCONFKEY_LANGSET, _language_changed_cb, NULL) < 0) {
+		_E("Failed to register vconfkey cb(%s)", VCONFKEY_LANGSET);
+	}
+
 	return 0;
 }
 
@@ -172,7 +172,6 @@ static int _set_i18n(const char *domain, const char *dir)
 static void _init(struct appdata *ad)
 {
 	struct sigaction act;
-	char *file = NULL;
 
 	memset(&act,0x00,sizeof(struct sigaction));
 	act.sa_sigaction = _signal_handler;
@@ -200,26 +199,10 @@ static void _init(struct appdata *ad)
 	_hide_home();
 	process_mgr_must_launch(PWLOCK_LITE_PKG_NAME, NULL, NULL, _fail_to_launch_pwlock, _after_launch_pwlock);
 
-#if 0
-	/* Check data encrption */
-	file = vconf_get_str(VCONFKEY_ODE_CRYPTO_STATE);
-	if (file) {
-		_D("get VCONFKEY : %s\n",  file);
-		if (strncmp(DATA_UNENCRYPTED, file, strlen(file))) {
-			if (vconf_notify_key_changed(VCONFKEY_ODE_CRYPTO_STATE, _data_encryption_cb, NULL) != 0) {
-				_E("[Error] vconf notify changed is failed: %s", VCONFKEY_ODE_CRYPTO_STATE);
-			} else {
-				_D("waiting mount..!!");
-				free(file);
-				return;
-			}
-		}
-		free(file);
-	}
-#endif
-
-	//lock_mgr_daemon_start();
+	lock_mgr_daemon_start();
+#ifdef HAVE_X11
 	hw_key_create_window();
+#endif
 	home_mgr_init(NULL);
 }
 
@@ -228,8 +211,10 @@ static void _init(struct appdata *ad)
 static void _fini(struct appdata *ad)
 {
 	home_mgr_fini();
+#ifdef HAVE_X11
 	hw_key_destroy_window();
-	//lock_mgr_daemon_end();
+#endif
+	lock_mgr_daemon_end();
 
 	status_active_unregister_cb(STATUS_ACTIVE_KEY_SYSMAN_POWER_OFF_STATUS, _power_off_cb);
 	status_unregister();

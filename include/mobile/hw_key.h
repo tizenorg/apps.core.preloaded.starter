@@ -17,6 +17,7 @@
 #ifndef __HW_KEY_H__
 #define __HW_KEY_H__
 
+#ifdef HVAE_X11
 #define	KEY_VOLUMEUP	"XF86AudioRaiseVolume"
 #define	KEY_VOLUMEDOWN	"XF86AudioLowerVolume"
 #define	KEY_HOME	"XF86Home"
@@ -33,6 +34,7 @@
 
 extern void hw_key_destroy_window(void);
 extern void hw_key_create_window(void);
+#endif //HAVE_X11
 
 #endif
 

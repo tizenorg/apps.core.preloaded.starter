@@ -15,7 +15,6 @@
  */
 
 #include <Elementary.h>
-#include <Ecore_X.h>
 #include <app_control.h>
 #include <bundle.h>
 #include <aul.h>

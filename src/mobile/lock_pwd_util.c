@@ -65,10 +65,10 @@ static Evas_Object *_pwd_conformant_add(void *data)
 	Evas_Object *conformant = NULL;
 
 	win = (Evas_Object *)data;
-	goto_if(!win, ERROR);
+	retv_if(!win, NULL);
 
 	conformant = elm_conformant_add(win);
-	goto_if(!conformant, ERROR);
+	retv_if(!conformant, NULL);
 
 	evas_object_size_hint_weight_set(conformant, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
 	elm_win_resize_object_add(win, conformant);
@@ -80,16 +80,6 @@ static Evas_Object *_pwd_conformant_add(void *data)
 	evas_object_show(conformant);
 
 	return conformant;
-
-ERROR:
-	_E("Failed to add password conformant");
-
-	if (conformant) {
-		evas_object_del(conformant);
-		conformant = NULL;
-	}
-
-	return NULL;
 }
 
 
@@ -166,15 +156,12 @@ static Evas_Object *_pwd_bg_add(void *data)
 	retv_if(!parent, NULL);
 
 	bg = elm_bg_add(parent);
-	goto_if(!bg, ERROR);
+	retv_if(!bg, NULL);
 
 	elm_bg_option_set(bg, ELM_BG_OPTION_SCALE);
-
 	elm_win_resize_object_add(parent, bg);
-
-	evas_object_show(bg);
-
 	lock_pwd_util_bg_image_set(bg, NULL);
+	evas_object_show(bg);
 
 	ret = system_settings_set_changed_cb(SYSTEM_SETTINGS_KEY_WALLPAPER_LOCK_SCREEN, _wallpaper_lock_screen_changed_cb, bg);
 	if (SYSTEM_SETTINGS_ERROR_NONE != ret) {
@@ -182,16 +169,6 @@ static Evas_Object *_pwd_bg_add(void *data)
 	}
 
 	return bg;
-
-ERROR:
-	_E("Failed to add password bg");
-
-	if (bg) {
-		evas_object_del(bg);
-		bg = NULL;
-	}
-
-	return NULL;
 }
 
 
@@ -383,7 +360,11 @@ void lock_pwd_util_popup_create(char *title, char *text, Evas_Smart_Cb func, dou
 	}
 
 	btn = elm_button_add(popup);
-	goto_if(!btn, ERROR);
+	if (!btn) {
+		_E("Failed to create lock popup button");
+		evas_object_del(popup);
+		return;
+	}
 
 	elm_object_style_set(btn, "popup");
 	elm_object_text_set(btn, _("IDS_COM_BUTTON_OK_ABB"));
@@ -402,21 +383,6 @@ void lock_pwd_util_popup_create(char *title, char *text, Evas_Smart_Cb func, dou
 	}
 
 	evas_object_show(popup);
-
-	return;
-
-ERROR:
-	_E("Failed to create lock popup");
-
-	if (btn) {
-		evas_object_del(btn);
-		btn = NULL;
-	}
-
-	if (popup) {
-		evas_object_del(popup);
-		popup = NULL;
-	}
 
 	return;
 }

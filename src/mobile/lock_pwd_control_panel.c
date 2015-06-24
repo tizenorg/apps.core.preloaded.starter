@@ -15,8 +15,7 @@
  */
 
 #include <app_control.h>
-//#include <utilX.h>
-#include <ui-gadget.h>
+//#include <ui-gadget.h>
 
 #include "lock_mgr.h"
 #include "util.h"
@@ -52,8 +51,6 @@ static void _emg_call_btn_clicked_cb(void *data, Evas_Object *obj, const char *e
 	ret_if(!service);
 
 	lock_mgr_sound_play(LOCK_SOUND_TAP);
-
-	UG_INIT_EFL(lock_pwd_win, UG_OPT_INDICATOR_ENABLE);
 
 	if (APP_CONTROL_ERROR_NONE != app_control_set_operation(service, APP_CONTROL_OPERATION_DEFAULT)) {
 		_E("Failed to set operation for app control handle");
@@ -195,6 +192,8 @@ static Evas_Object *_cancel_btn_create(Evas_Object *parent)
 	elm_object_text_set(btn, _("IDS_ST_BUTTON_CANCEL"));
 	evas_object_smart_callback_add(btn, "clicked", (Evas_Smart_Cb)_cancel_btn_clicked_cb, NULL);
 
+	evas_object_size_hint_weight_set(btn, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
+
 	evas_object_show(btn);
 
 	s_lock_pwd_control_panel.cancel_btn = btn;
@@ -246,11 +245,6 @@ Evas_Object *lock_pwd_control_panel_create(Evas_Object *parent)
 
 ERROR:
 	_E("Failed to create password control panel");
-
-	if (cancel_btn) {
-		evas_object_del(cancel_btn);
-		cancel_btn = NULL;
-	}
 
 	if (control_panel_layout) {
 		evas_object_del(control_panel_layout);

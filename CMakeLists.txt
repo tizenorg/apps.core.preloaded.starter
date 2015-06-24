@@ -23,13 +23,11 @@ pkg_check_modules(pkgs REQUIRED
 	ecore
 	ecore-evas
 	ecore-input
-#ecore-x
 	edbus
 	eina
 	elementary
 	evas
 	syspopup-caller
-#utilX
 	vconf
 	appcore-efl
 	glib-2.0
@@ -47,10 +45,18 @@ pkg_check_modules(pkgs REQUIRED
 	dbus-1
 	dbus-glib-1
 	tts
-#capi-message-port
+	capi-message-port
 	security-server
 	efl-assist
 )
+
+IF(X11_SUPPORT)
+pkg_check_modules(pkgs REQUIRED
+	ecore-x
+	utilX
+	)
+ENDIF(X11_SUPPORT)
+
 ELSE()
 INCLUDE_DIRECTORIES(
 	${CMAKE_SOURCE_DIR}/include
@@ -65,13 +71,11 @@ pkg_check_modules(pkgs REQUIRED
 	ecore
 	ecore-evas
 	ecore-input
-#ecore-x
 	edbus
 	eina
 	elementary
 	evas
 	syspopup-caller
-#utilX
 	vconf
 	appcore-efl
 	glib-2.0
@@ -88,6 +92,14 @@ pkg_check_modules(pkgs REQUIRED
 	dbus-1
 	dbus-glib-1
 )
+
+IF(X11_SUPPORT)
+pkg_check_modules(pkgs REQUIRED
+	ecore-x
+	utilX
+	)
+ENDIF(X11_SUPPORT)
+
 ENDIF()
 
 
@@ -120,6 +132,14 @@ ADD_DEFINITIONS("-DPREFIX=\"${PREFIX}\"")
 ADD_DEFINITIONS("-DLOCALEDIR=\"${LOCALEDIR}\"")
 ADD_DEFINITIONS("-D_GNU_SOURCE")
 
+IF(X11_SUPPORT)
+	ADD_DEFINITIONS("-DHAVE_X11")
+ENDIF(X11_SUPPORT)
+
+IF(WAYLAND_SUPPORT)
+	ADD_DEFINITIONS("-DHAVE_WAYLAND")
+ENDIF(WAYLAND_SUPPORT)
+
 IF("${TIZEN_PROFILE_NAME}" STREQUAL "MOBILE")
 ADD_EXECUTABLE(${PROJECT_NAME}
 	src/dbus_util.c
@@ -127,18 +147,23 @@ ADD_EXECUTABLE(${PROJECT_NAME}
 	src/process_mgr.c
 	src/status.c
 
-	src/mobile/hw_key.c
 	src/mobile/home_mgr.c
 	src/mobile/starter.c
-#src/mobile/lock_mgr.c
-#src/mobile/lock_pwd_util.c
-#src/mobile/lock_pwd_simple.c
-#src/mobile/lock_pwd_complex.c
-#src/mobile/lock_pwd_control_panel.c
-#src/mobile/lock_pwd_verification.c
-#src/mobile/window_mgr.c
+	src/mobile/lock_mgr.c
+	src/mobile/lock_pwd_util.c
+	src/mobile/lock_pwd_simple.c
+	src/mobile/lock_pwd_complex.c
+	src/mobile/lock_pwd_control_panel.c
+	src/mobile/lock_pwd_verification.c
+	src/mobile/window_mgr.c
 	src/mobile/popup.c
 )
+
+IF(X11_SUPPORT)
+	ADD_EXECUTABLE(${PROJECT_NAME}
+		src/mobile/hw_key.c
+	)
+ENDIF(X11_SUPPORT)
 ELSE()
 ADD_EXECUTABLE(${PROJECT_NAME}
 	src/dbus_util.c
@@ -149,9 +174,13 @@ ADD_EXECUTABLE(${PROJECT_NAME}
 	src/wearable/clock_mgr.c
 	src/wearable/home_mgr.c
 	src/wearable/hourly_alert.c
-	src/wearable/hw_key.c
 	src/wearable/starter.c
 )
+IF(X11_SUPPORT)
+	ADD_EXECUTABLE(${PROJECT_NAME}
+		src/mobile/hw_key.c
+	)
+ENDIF(X11_SUPPORT)
 ENDIF()
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${pkgs_LDFLAGS})
 INSTALL(TARGETS ${PROJECT_NAME} DESTINATION ${BINDIR})

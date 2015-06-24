@@ -41,8 +41,8 @@
 #define DEAD_TIMER_SEC 2.0
 #define DEAD_TIMER_COUNT_MAX 2
 
-#define VCONFKEY_STARTER_IS_FALLBACK "db/starter/is_fallback"
-#define VCONFKEY_STARTER_FALLBACK_PKG "db/starter/fallback_pkg"
+#define VCONFKEY_PRIVATE_STARTER_IS_FALLBACK "db/private/starter/is_fallback"
+#define VCONFKEY_PRIVATE_STARTER_FALLBACK_PKG "db/private/starter/fallback_pkg"
 
 
 
@@ -111,11 +111,7 @@ void home_mgr_open_home(const char *appid)
 	}
 	ret_if(!home_appid);
 
-	if (!strncmp(home_appid, MENU_SCREEN_PKG_NAME, strlen(home_appid))) {
-		process_mgr_must_launch(home_appid, SERVICE_OPERATION_MAIN_KEY, SERVICE_OPERATION_MAIN_VALUE, _change_home_cb, _after_launch_home);
-	} else {
-		process_mgr_must_open(home_appid, _change_home_cb, _after_launch_home);
-	}
+	process_mgr_must_launch(home_appid, SERVICE_OPERATION_MAIN_KEY, SERVICE_OPERATION_MAIN_VALUE, _change_home_cb, _after_launch_home);
 }
 
 
@@ -124,7 +120,6 @@ static int _show_home_cb(status_active_key_e key, void *data)
 {
 	int seq = status_active_get()->starter_sequence;
 	int is_fallback = 0;
-	char *fallback_pkg = NULL;
 
 	_D("[MENU_DAEMON] _show_home_cb is invoked(%d)", seq);
 
@@ -139,34 +134,36 @@ static int _show_home_cb(status_active_key_e key, void *data)
 		}
 		break;
 	case 1:
-		if (vconf_get_int(VCONFKEY_STARTER_IS_FALLBACK, &is_fallback) < 0) {
-			_E("Failed to get vconfkey : %s", VCONFKEY_STARTER_IS_FALLBACK);
+		if (vconf_get_int(VCONFKEY_PRIVATE_STARTER_IS_FALLBACK, &is_fallback) < 0) {
+			_E("Failed to get vconfkey : %s", VCONFKEY_PRIVATE_STARTER_IS_FALLBACK);
 		}
 
 		if (is_fallback) {
-			fallback_pkg = vconf_get_str(VCONFKEY_STARTER_FALLBACK_PKG);
-			if (!fallback_pkg) {
-				_E("Failed to get vconfkey : %s", VCONFKEY_STARTER_FALLBACK_PKG);
-				home_mgr_open_home(NULL);
-				break;
-			}
-			_D("fallback pkg : %s", fallback_pkg);
-
-			if (vconf_set_str(VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME, fallback_pkg) < 0) {
-				_E("Failed to set vconfkey : %s", VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME);
-				home_mgr_open_home(NULL);
-				free(fallback_pkg);
-				break;
+			if (vconf_set_int(VCONFKEY_PRIVATE_STARTER_IS_FALLBACK, 0)) {
+				_E("Failed to set vconfkey : %s", VCONFKEY_PRIVATE_STARTER_IS_FALLBACK);
 			}
 
-			if (vconf_set_int(VCONFKEY_STARTER_IS_FALLBACK, 0)) {
-				_E("Failed to set vconfkey : %s", VCONFKEY_STARTER_IS_FALLBACK);
-			}
+			if (!strcmp(status_active_get()->setappl_selected_package_name, MENU_SCREEN_PKG_NAME)) {
+				char *fallback_pkg;
 
-			free(fallback_pkg);
-		} else {
-			home_mgr_open_home(NULL);
+				fallback_pkg = vconf_get_str(VCONFKEY_PRIVATE_STARTER_FALLBACK_PKG);
+				_D("fallback pkg : %s", fallback_pkg);
+				if (fallback_pkg) {
+					int status;
+
+					status = vconf_set_str(VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME, fallback_pkg);
+					free(fallback_pkg);
+					if (status == 0) {
+						break;
+					}
+					_E("Failed to set vconfkey : %s (%d)", VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME, status);
+				} else {
+					_E("Failed to get vconfkey : %s", VCONFKEY_PRIVATE_STARTER_FALLBACK_PKG);
+				}
+			}
 		}
+
+		home_mgr_open_home(NULL);
 		break;
 	default:
 		_E("False sequence [%d]", seq);
@@ -309,12 +306,12 @@ static Eina_Bool _dead_timer_cb(void *data)
 		}
 
 		/* set fallback status */
-		if (vconf_set_int(VCONFKEY_STARTER_IS_FALLBACK, 1) < 0) {
-			_E("Failed to set vconfkey : %s", VCONFKEY_STARTER_IS_FALLBACK);
+		if (vconf_set_int(VCONFKEY_PRIVATE_STARTER_IS_FALLBACK, 1) < 0) {
+			_E("Failed to set vconfkey : %s", VCONFKEY_PRIVATE_STARTER_IS_FALLBACK);
 		}
 
-		if (vconf_set_str(VCONFKEY_STARTER_FALLBACK_PKG, appid) < 0) {
-			_E("Failed to set vconfkey : %s", VCONFKEY_STARTER_FALLBACK_PKG);
+		if (vconf_set_str(VCONFKEY_PRIVATE_STARTER_FALLBACK_PKG, appid) < 0) {
+			_E("Failed to set vconfkey : %s", VCONFKEY_PRIVATE_STARTER_FALLBACK_PKG);
 		}
 	}
 

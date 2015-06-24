@@ -227,11 +227,19 @@ void lock_pwd_complex_event(lock_pwd_event_e event)
 
 static void _pwd_complex_enter_cb(void *data, Evas_Object *obj, void *event_info)
 {
+	char buf[BUF_SIZE_256] = { 0, };
+	char *markup_txt = NULL;
+
 	ret_if(!obj);
 
 	const char *password = elm_entry_entry_get(obj);
+	ret_if(!password);
 
-	lock_pwd_event_e pwd_event = lock_pwd_verification_verify(password);
+	markup_txt = elm_entry_utf8_to_markup(password);
+	snprintf(buf, sizeof(buf), "%s", markup_txt);
+	free(markup_txt);
+
+	lock_pwd_event_e pwd_event = lock_pwd_verification_verify(buf);
 	lock_pwd_complex_event(pwd_event);
 }
 
@@ -243,10 +251,10 @@ Evas_Object *_pwd_complex_entry_create(void *data)
 	Evas_Object *entry = NULL;
 
 	parent = (Evas_Object *)data;
-	goto_if(!parent, ERROR);
+	retv_if(!parent, NULL);
 
 	entry = elm_entry_add(parent);
-	goto_if(!entry, ERROR);
+	retv_if(!entry, NULL);
 
 	elm_entry_single_line_set(entry, EINA_TRUE);
 	elm_entry_password_set(entry, EINA_TRUE);
@@ -263,15 +271,6 @@ Evas_Object *_pwd_complex_entry_create(void *data)
 	evas_object_show(entry);
 
 	return entry;
-
-ERROR:
-	_E("Failed to create entry");
-	if (entry) {
-		evas_object_del(entry);
-		entry = NULL;
-	}
-
-	return NULL;
 }
 
 
@@ -324,11 +323,6 @@ Evas_Object *lock_pwd_complex_layout_create(void *data)
 
 ERROR:
 	_E("Failed to create complex password layout");
-
-	if (pwd_complex_entry) {
-		evas_object_del(pwd_complex_entry);
-		s_lock_pwd_complex.pwd_complex_entry = NULL;
-	}
 
 	if (pwd_complex_layout) {
 		evas_object_del(pwd_complex_layout);
