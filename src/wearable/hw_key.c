@@ -16,9 +16,9 @@
 
 #include <bundle.h>
 #include <Elementary.h>
-//#include <Ecore_X.h>
+#include <Ecore_X.h>
 #include <Ecore_Input.h>
-//#include <utilX.h>
+#include <utilX.h>
 
 #include <dd-display.h>
 #include <feedback.h>
@@ -45,7 +45,7 @@
 
 
 static struct {
-	//Ecore_X_Window win;
+	Ecore_X_Window win;
 	Ecore_Event_Handler *key_up;
 	Ecore_Event_Handler *key_down;
 	Ecore_Event_Handler *two_fingers_hold_hd;
@@ -56,7 +56,7 @@ static struct {
 	int powerkey_count;
 	Eina_Bool is_cancel;
 } key_info = {
-	//.win = 0x0,
+	.win = 0x0,
 	.key_up = NULL,
 	.key_down = NULL,
 	.two_fingers_hold_hd = NULL,
@@ -75,12 +75,6 @@ static Eina_Bool _powerkey_timer_cb(void *data)
 	_W("%s, powerkey count[%d]", __func__, key_info.powerkey_count);
 
 	key_info.power_release_timer = NULL;
-
-	if (VCONFKEY_SETUP_WIZARD_LOCK == status_passive_get()->setup_wizard_state) {
-		_E("setdup_wizard is running");
-		key_info.powerkey_count = 0;
-		return ECORE_CALLBACK_CANCEL;
-	}
 
 	if (VCONFKEY_PM_KEY_LOCK == status_passive_get()->pm_key_ignore) {
 		_E("Critical Low Batt Clock Mode");
@@ -168,7 +162,6 @@ static Eina_Bool _long_press_timer_cb(void* data)
 }
 
 
-#if 0
 static Eina_Bool _key_release_cb(void *data, int type, void *event)
 {
 	Evas_Event_Key_Up *ev = event;
@@ -225,11 +218,9 @@ static Eina_Bool _key_release_cb(void *data, int type, void *event)
 
 	return ECORE_CALLBACK_RENEW;
 }
-#endif
 
 
 
-#if 0
 static Eina_Bool _key_press_cb(void *data, int type, void *event)
 {
 	Evas_Event_Key_Down *ev = event;
@@ -280,11 +271,9 @@ static Eina_Bool _key_press_cb(void *data, int type, void *event)
 
 	return ECORE_CALLBACK_RENEW;
 }
-#endif
 
 
 
-#if 0
 static Eina_Bool _w_gesture_hold_cb(void *data, int ev_type, void *ev)
 {
 	Ecore_X_Event_Gesture_Notify_Hold *e = ev;
@@ -310,13 +299,11 @@ static Eina_Bool _w_gesture_hold_cb(void *data, int ev_type, void *ev)
 
 	return ECORE_CALLBACK_RENEW;
 }
-#endif
 
 
 
 void hw_key_create_window(void)
 {
-#if 0 //build error
 	int status = -1;
 	int ret = -1;
 
@@ -354,14 +341,12 @@ void hw_key_create_window(void)
 	if (!key_info.two_fingers_hold_hd) {
 		_E("Failed to register handler : ECORE_X_EVENT_GESTURE_NOTIFY_TAPNHOLD\n");
 	}
-#endif
 }
 
 
 
 void hw_key_destroy_window(void)
 {
-#if 0 //build error
 	int status;
 
 	if (key_info.two_fingers_hold_hd) {
@@ -388,7 +373,6 @@ void hw_key_destroy_window(void)
 
 	ecore_x_window_delete_request_send(key_info.win);
 	key_info.win = 0x0;
-#endif
 }
 
 

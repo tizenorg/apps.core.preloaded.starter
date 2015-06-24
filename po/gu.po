@@ -1,0 +1,57 @@
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "1 પ્રયત્ન બાકી."
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "%d પ્રયત્ન બાકી."
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "ખોટો પાસવર્ડ."
+
+msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
+msgstr "%s ને લોંચ કરવામાં અક્ષમ."
+
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "ઓકે"
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "ખોટો PIN."
+
+msgid "IDS_COM_BODY_ENTER_PIN"
+msgstr "PIN દાખલ કરો."
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "પાસવર્ડ દાખલ કરો."
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "%1$d વખત અયોગ્ય રીતે ઉપકરણ અનલોક કરવા માટે તમે પ્રયાસ કરેલ છે. ઉપકરણ ફૅકટરી ડિફોલ્ટ્સમાં રીસૅટ થાય તે પહેલાં તમારો %2$d પ્રયાસ બાકી છે અને તમામ ડેટા ભૂંસાઇ જશે."
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "%d સેકંડ્સ પછી ફરી પ્રયત્ન કરો."
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
+msgstr "સંદેશ જોવા માટે PIN દાખલ કરો"
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
+msgstr "કૉલ લોગ જોવા માટે PIN દાખલ કરો"
+
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "તમે ઉપકરણને %d વાર ખોટી રીતે અનલોક કરવાનો પ્રયાસ કર્યો છે. હવે તેને ફેકટરી મૂળભૂત પર ફરીથી ગોઠવવામાં આવશે અને બધો ડેટા ભૂંસી નાખવામાં આવશે"
+
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "%1$d થી %2$d અંકો અથવા પત્રો આવશ્યક છે."
+
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "તાત્કાલિક કૉલ"
+
+msgid "IDS_COM_POP_WARNING"
+msgstr "ચેતવણી"
+
+msgid "IDS_COM_BUTTON_CANCEL"
+msgstr "રદ કરો"
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
+msgstr "તમારા ઉપકરણને અનલોક કરવા માટે તમે %1$d અસફળ પ્રયાસ કર્યા છે. %2$d સેકંડ્સમાં ફરી પ્રયાસ કરો."
+
+msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
+msgstr "સ્ક્રીનને અનલોક કરવામાં અસમર્થ"
+

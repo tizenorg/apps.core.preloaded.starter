@@ -1,11 +1,32 @@
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "Осталась 1 попытка."
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "Осталось попыток: %d."
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "Неправильный пароль"
+
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "Невозможно запустить %s."
 
-msgid "IDS_COM_POP_WARNING"
-msgstr "Предупреждение"
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "ОК"
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "Неверный PIN"
 
 msgid "IDS_COM_BODY_ENTER_PIN"
 msgstr "Введите PIN."
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "Введите пароль."
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "Число неудачных попыток разблокировки устройства: %1$d. Осталось попыток: %2$d, после чего настройки будут сброшены до заводских значений, а все данные — удалены."
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "Повторите через %d сек."
 
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
 msgstr "Введите PIN-код, чтобы просмотреть сообщение"
@@ -13,45 +34,24 @@ msgstr "Введите PIN-код, чтобы просмотреть сообщ�
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
 msgstr "Введите PIN-код, чтобы просмотреть журнал вызовов"
 
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "Повторите через %d сек."
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "Число неудачных попыток разблокировки устройства: %d. Настройки будут сброшены до заводских значений, а все данные — удалены"
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "Неверный PIN"
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "Требуется от %1$d до %2$d цифр или букв."
 
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "Осталась 1 попытка."
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "Экстренный вызов"
 
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "Осталось попыток: %d."
+msgid "IDS_COM_POP_WARNING"
+msgstr "Предупреждение"
 
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "Число неудачных попыток разблокировки устройства: %1$d. Осталось попыток: %2$d, после чего настройки будут сброшены до заводских значений, а все данные — удалены."
+msgid "IDS_COM_BUTTON_CANCEL"
+msgstr "Отмена"
 
 msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
 msgstr "Число неудачных попыток разблокировки устройства: %1$d. Повторите попытку через %2$d сек."
 
 msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
 msgstr "Невозможно разблокир-ть экран"
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Введите пароль."
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "Требуется от %1$d до %2$d цифр или букв."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Неправильный пароль"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "Число неудачных попыток разблокировки устройства: %d. Настройки будут сброшены до заводских значений, а все данные — удалены"
-
-msgid "IDS_COM_BUTTON_OK_ABB"
-msgstr "ОК"
-
-msgid "IDS_ST_BUTTON_CANCEL"
-msgstr "Отмена"
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Экстренный вызов"
 

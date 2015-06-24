@@ -1,11 +1,32 @@
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "1 poging over."
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "%d pogingen over."
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "Onjuist wachtwoord."
+
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "Kan %s niet starten."
 
-msgid "IDS_COM_POP_WARNING"
-msgstr "Waarschuwing"
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "OK"
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "Onjuiste PIN."
 
 msgid "IDS_COM_BODY_ENTER_PIN"
 msgstr "PIN invoeren"
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "Wachtwoord invoeren"
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "U hebt %1$d keer een onjuiste poging gedaan om het apparaat te ontgrendelen. U hebt nog %2$d pogingen over voordat het apparaat wordt teruggezet op de fabrieksinstellingen en alle gegevens worden gewist."
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "Probeer opn. over %d sec."
 
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
 msgstr "Pincode invoeren voor weergave bericht"
@@ -13,45 +34,24 @@ msgstr "Pincode invoeren voor weergave bericht"
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
 msgstr "Pincode invoeren voor weergave oproepenlijst"
 
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "Probeer opn. over %d sec."
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "U hebt %d keer een onjuiste poging gedaan om het apparaat te ontgrendelen. Het wordt nu teruggezet op de fabrieksinstellingen en alle gegevens worden gewist."
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "Onjuiste PIN."
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "%1$d tot %2$d cijfers of letters vereist."
 
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "1 poging over."
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "Noodoproep"
 
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "%d pogingen over."
+msgid "IDS_COM_POP_WARNING"
+msgstr "Waarschuwing"
 
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "U hebt %1$d keer een onjuiste poging gedaan om het apparaat te ontgrendelen. U hebt nog %2$d pogingen over voordat het apparaat wordt teruggezet op de fabrieksinstellingen en alle gegevens worden gewist."
+msgid "IDS_COM_BUTTON_CANCEL"
+msgstr "Annuleer"
 
 msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
 msgstr "U hebt %1$d mislukte pogingen gedaan om uw apparaat te ontgrendelen. Probeer het opnieuw over %2$d seconden."
 
 msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
 msgstr "Kan scherm niet ontgrendelen"
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Wachtwoord invoeren"
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "%1$d tot %2$d cijfers of letters vereist."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Onjuist wachtwoord."
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "U hebt %d keer een onjuiste poging gedaan om het apparaat te ontgrendelen. Het wordt nu teruggezet op de fabrieksinstellingen en alle gegevens worden gewist."
-
-msgid "IDS_COM_BUTTON_OK_ABB"
-msgstr "OK"
-
-msgid "IDS_ST_BUTTON_CANCEL"
-msgstr "Annuleer"
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Noodoproep"
 

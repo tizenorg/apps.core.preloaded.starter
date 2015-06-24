@@ -17,6 +17,7 @@
 #ifndef __LOCK_PWD_CONTROL_PANEL_H__
 #define __LOCK_PWD_CONTROL_PANEL_H__
 
+void lock_pwd_control_panel_emg_btn_text_update(void);
 void lock_pwd_control_panel_cancel_btn_enable_set(Eina_Bool enable);
 
 Evas_Object *lock_pwd_control_panel_create(Evas_Object *parent);

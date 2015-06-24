@@ -1,11 +1,32 @@
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "1 essai restant."
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "%d essais restants."
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "Mot de passe incorrect."
+
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "Impossible de lancer %s."
 
-msgid "IDS_COM_POP_WARNING"
-msgstr "Avertissement"
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "OK"
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "NIP incorrect"
 
 msgid "IDS_COM_BODY_ENTER_PIN"
 msgstr "Saisir le NIP."
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "Saisir le mot de passe."
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "Vous avez essayé de déverrouiller l'appareil de façon incorrecte à %1$d reprises. Il reste %2$d tentatives avant le rétablissement des paramètres d'origine et la suppression de toutes les données."
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "Réessayez ds %d secondes."
 
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
 msgstr "Saisir le code NIP pour afficher le message"
@@ -13,45 +34,24 @@ msgstr "Saisir le code NIP pour afficher le message"
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
 msgstr "Saisir le code NIP pour afficher le journal d'appels"
 
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "Réessayez ds %d secondes."
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "Vous avez essayé de déverrouiller l'appareil de façon incorrecte à %d reprises. Les paramètres d'origine vont maintenant être rétablis et toutes les données effacées."
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "NIP incorrect"
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "%1$d à %2$d chiffres ou lettres requis."
 
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "1 essai restant."
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "Appel d'urgence"
 
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "%d essais restants."
+msgid "IDS_COM_POP_WARNING"
+msgstr "Avertissement"
 
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "Vous avez essayé de déverrouiller l'appareil de façon incorrecte à %1$d reprises. Il reste %2$d tentatives avant le rétablissement des paramètres d'origine et la suppression de toutes les données."
+msgid "IDS_COM_BUTTON_CANCEL"
+msgstr "Annuler"
 
 msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
 msgstr "Le déverrouillage de votre appareil a échoué à %1$d reprises. Réessayez dans %2$d secondes."
 
 msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
 msgstr "Impossible déverrouiller écran"
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Saisir le mot de passe."
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "%1$d à %2$d chiffres ou lettres requis."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Mot de passe incorrect."
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "Vous avez essayé de déverrouiller l'appareil de façon incorrecte à %d reprises. Les paramètres d'origine vont maintenant être rétablis et toutes les données effacées."
-
-msgid "IDS_COM_BUTTON_OK_ABB"
-msgstr "OK"
-
-msgid "IDS_ST_BUTTON_CANCEL"
-msgstr "Annuler"
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Appel d'urgence"
 

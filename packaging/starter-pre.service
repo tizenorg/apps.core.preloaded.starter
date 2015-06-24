@@ -4,3 +4,4 @@ Description=Pre actions for "starter"
 [Service]
 Type=oneshot
 ExecStart=/etc/init.d/rd3starter
+SmackProcessLabel=starter

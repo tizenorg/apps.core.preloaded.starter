@@ -15,8 +15,6 @@
  */
 
 #include <app_control.h>
-//#include <utilX.h>
-#include <ui-gadget.h>
 
 #include "lock_mgr.h"
 #include "util.h"
@@ -52,8 +50,6 @@ static void _emg_call_btn_clicked_cb(void *data, Evas_Object *obj, const char *e
 	ret_if(!service);
 
 	lock_mgr_sound_play(LOCK_SOUND_TAP);
-
-	UG_INIT_EFL(lock_pwd_win, UG_OPT_INDICATOR_ENABLE);
 
 	if (APP_CONTROL_ERROR_NONE != app_control_set_operation(service, APP_CONTROL_OPERATION_DEFAULT)) {
 		_E("Failed to set operation for app control handle");
@@ -156,6 +152,21 @@ static Evas_Object *_emg_call_btn_create(Evas_Object *parent)
 }
 
 
+void lock_pwd_control_panel_emg_btn_text_update(void)
+{
+	char buf[BUF_SIZE_512] = { 0, };
+	char *markup_txt = NULL;
+
+	ret_if(!s_lock_pwd_control_panel.emg_call_btn);
+
+	markup_txt = elm_entry_utf8_to_markup(_("IDS_LCKSCN_BODY_EMERGENCY_CALL"));
+	snprintf(buf, sizeof(buf), "%s%s%s", EMG_CALL_LABEL_STYLE_START, markup_txt, EMG_CALL_LABEL_STYLE_END);
+	free(markup_txt);
+
+	elm_object_text_set(s_lock_pwd_control_panel.emg_call_btn, buf);
+}
+
+
 
 void lock_pwd_control_panel_cancel_btn_enable_set(Eina_Bool enable)
 {
@@ -175,6 +186,10 @@ static void _cancel_btn_clicked_cb(void *data, Evas_Object *obj, void *event_inf
 	_D("%s", __func__);
 	lock_mgr_sound_play(LOCK_SOUND_TAP);
 
+	if (!lock_mgr_lockscreen_launch()) {
+		_E("Failed to launch lockscreen");
+	}
+
 	lock_pwd_util_view_init();
 }
 
@@ -192,8 +207,10 @@ static Evas_Object *_cancel_btn_create(Evas_Object *parent)
 	elm_theme_extension_add(NULL, LOCK_PWD_BTN_EDJE_FILE);
 
 	elm_object_style_set(btn, "right_button");
-	elm_object_text_set(btn, _("IDS_ST_BUTTON_CANCEL"));
+	elm_object_domain_translatable_text_set(btn, PACKAGE, "IDS_COM_BUTTON_CANCEL");
 	evas_object_smart_callback_add(btn, "clicked", (Evas_Smart_Cb)_cancel_btn_clicked_cb, NULL);
+
+	evas_object_size_hint_weight_set(btn, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
 
 	evas_object_show(btn);
 
@@ -246,11 +263,6 @@ Evas_Object *lock_pwd_control_panel_create(Evas_Object *parent)
 
 ERROR:
 	_E("Failed to create password control panel");
-
-	if (cancel_btn) {
-		evas_object_del(cancel_btn);
-		cancel_btn = NULL;
-	}
 
 	if (control_panel_layout) {
 		evas_object_del(control_panel_layout);

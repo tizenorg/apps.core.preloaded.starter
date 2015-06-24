@@ -18,7 +18,6 @@
 			part { \
 				name: keypad_button; \
 				type: RECT; \
-				scale: 1; \
 				mouse_events: 1; \
 				repeat_events: 1; \
 				description { \
@@ -39,7 +38,6 @@
 			part { \
 				name: keypad_button"_feedback"; \
 				type: IMAGE; \
-				scale: 1; \
 				repeat_events: 1; \
 				description { \
 					state: "default" 0.0; \
@@ -61,7 +59,6 @@
 			part { \
 				name: keypad_button"_number"; \
 				type: TEXT; \
-				scale: 1; \
 				effect: "SHADOW"; \
 				mouse_events: 0; \
 				repeat_events: 1; \
@@ -104,7 +101,6 @@
 			part { \
 				name: keypad_button"_text"; \
 				type: TEXT; \
-				scale: 1; \
 				effect: "SHADOW"; \
 				mouse_events: 0; \
 				repeat_events: 1; \
@@ -198,6 +194,7 @@
 	part { \
 		name: "dot"idx; \
 		type: IMAGE; \
+		scale: 1; \
 		description { \
 			state: "default" 0.0; \
 			min: DOT_WIDTH DOT_HEIGHT; \
@@ -309,7 +306,6 @@ styles {
 			part {
 				name: "bg";
 				type: SPACER;
-				scale: 1;
 				description {
 					state: "default" 0.0;
 				}
@@ -364,7 +360,6 @@ styles {
 			part {
 				name: "Backspace_feedback";
 				type: IMAGE;
-				scale: 1;
 				mouse_events: 1;
 				repeat_events: 1;
 				description {
@@ -419,7 +414,6 @@ styles {
 			part {
 				name: "control_panel";
 				type: SWALLOW;
-				scale: 1;
 				description {
 					state: "default" 0.0;
 					rel1 {

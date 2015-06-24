@@ -39,7 +39,6 @@ styles {
 				name: "title";
 				type: TEXTBLOCK;
 				effect: "SHADOW";
-				scale: 1;
 				description {
 					state: "default" 0.0;
 					rel1 { relative : NUMBER_KEYPAD_REL_W(14) NUMBER_KEYPAD_REL_H(INDICATOR_SIZE+49); to : "bg"; }
@@ -76,6 +75,7 @@ styles {
 			part {
 				name: "underline";
 				type: RECT;
+				scale: 1;
 				description {
 					state: "default" 0.0;
 					color_class: LINE_COLOR;
@@ -89,6 +89,7 @@ styles {
 			part {
 				name: "underline_shadow";
 				type: RECT;
+				scale: 1;
 				description {
 					state: "default" 0.0;
 					color_class: LINE_SHADOW_COLOR;
@@ -103,7 +104,6 @@ styles {
 			part {
 				name: "control_panel";
 				type: SWALLOW;
-				scale: 1;
 				description {
 					state: "default" 0.0;
 					rel1 {

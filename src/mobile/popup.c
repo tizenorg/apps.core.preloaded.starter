@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#include <efl_extension.h>
+
 #include "popup.h"
 #include "util.h"
 
@@ -68,6 +70,15 @@ static void _popup_btn_clicked_cb(void *data, Evas_Object *obj, void *event_info
 
 
 
+static void _popup_del_cb(void *data, Evas_Object *obj, void *event_info)
+{
+	ret_if(!obj);
+
+	_popup_destroy(obj);
+}
+
+
+
 Evas_Object *popup_create(const char *title, const char *text)
 {
 	Evas_Object *win = NULL;
@@ -88,6 +99,8 @@ Evas_Object *popup_create(const char *title, const char *text)
 	elm_object_part_text_set(popup, "title,text", title);
 	elm_object_text_set(popup, text);
 	evas_object_data_set(popup, POPUP_DATA_KEY_WINDOW, win);
+	eext_object_event_callback_add(popup, EEXT_CALLBACK_BACK, _popup_del_cb, NULL);
+	evas_object_smart_callback_add(popup, "block,clicked", _popup_del_cb, NULL);
 
 	/* ok button */
 	btn = elm_button_add(popup);

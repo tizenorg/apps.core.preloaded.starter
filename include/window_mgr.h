@@ -17,6 +17,7 @@
 #ifndef __WINDOW_MGR_H__
 #define __WINDOW_MGR_H__
 
+#ifdef HAVE_X11
 typedef struct _lockw_data lockw_data;
 
 int window_mgr_get_focus_window_pid(void);
@@ -26,12 +27,12 @@ Eina_Bool window_mgr_set_effect(lockw_data * data, int lock_app_pid, void *event
 void window_mgr_set_scroll_prop(lockw_data * data, int lock_type);
 void window_mgr_register_event(void *data, lockw_data * lockw,
 			    Eina_Bool (*create_cb) (void *, int, void *),
-			    Eina_Bool (*show_cb) (void *, int, void *),
-			    Eina_Bool (*hide_cb) (void *, int, void *));
+			    Eina_Bool (*show_cb) (void *, int, void *));
 void window_mgr_unregister_event(lockw_data * lockw);
 
 lockw_data *window_mgr_init(void);
 void window_mgr_fini(lockw_data *lockw);
+#endif //HAVE_X11
 
 Evas_Object *window_mgr_pwd_lock_win_create(void);
 

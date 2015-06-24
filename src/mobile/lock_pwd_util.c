@@ -15,7 +15,7 @@
  */
 
 #include <system_settings.h>
-#include <efl_assist.h>
+#include <efl_extension.h>
 
 #include "lock_mgr.h"
 #include "util.h"
@@ -65,10 +65,10 @@ static Evas_Object *_pwd_conformant_add(void *data)
 	Evas_Object *conformant = NULL;
 
 	win = (Evas_Object *)data;
-	goto_if(!win, ERROR);
+	retv_if(!win, NULL);
 
 	conformant = elm_conformant_add(win);
-	goto_if(!conformant, ERROR);
+	retv_if(!conformant, NULL);
 
 	evas_object_size_hint_weight_set(conformant, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
 	elm_win_resize_object_add(win, conformant);
@@ -80,16 +80,6 @@ static Evas_Object *_pwd_conformant_add(void *data)
 	evas_object_show(conformant);
 
 	return conformant;
-
-ERROR:
-	_E("Failed to add password conformant");
-
-	if (conformant) {
-		evas_object_del(conformant);
-		conformant = NULL;
-	}
-
-	return NULL;
 }
 
 
@@ -166,15 +156,12 @@ static Evas_Object *_pwd_bg_add(void *data)
 	retv_if(!parent, NULL);
 
 	bg = elm_bg_add(parent);
-	goto_if(!bg, ERROR);
+	retv_if(!bg, NULL);
 
 	elm_bg_option_set(bg, ELM_BG_OPTION_SCALE);
-
 	elm_win_resize_object_add(parent, bg);
-
-	evas_object_show(bg);
-
 	lock_pwd_util_bg_image_set(bg, NULL);
+	evas_object_show(bg);
 
 	ret = system_settings_set_changed_cb(SYSTEM_SETTINGS_KEY_WALLPAPER_LOCK_SCREEN, _wallpaper_lock_screen_changed_cb, bg);
 	if (SYSTEM_SETTINGS_ERROR_NONE != ret) {
@@ -182,16 +169,6 @@ static Evas_Object *_pwd_bg_add(void *data)
 	}
 
 	return bg;
-
-ERROR:
-	_E("Failed to add password bg");
-
-	if (bg) {
-		evas_object_del(bg);
-		bg = NULL;
-	}
-
-	return NULL;
 }
 
 
@@ -239,6 +216,10 @@ void lock_pwd_util_back_key_relased(void)
 	ret_if(lock_pwd_simple_is_blocked_get());
 
 	lock_mgr_sound_play(LOCK_SOUND_TAP);
+
+	if (!lock_mgr_lockscreen_launch()) {
+		_E("Failed to launch lockscreen");
+	}
 
 	lock_pwd_util_view_init();
 }
@@ -383,7 +364,11 @@ void lock_pwd_util_popup_create(char *title, char *text, Evas_Smart_Cb func, dou
 	}
 
 	btn = elm_button_add(popup);
-	goto_if(!btn, ERROR);
+	if (!btn) {
+		_E("Failed to create lock popup button");
+		evas_object_del(popup);
+		return;
+	}
 
 	elm_object_style_set(btn, "popup");
 	elm_object_text_set(btn, _("IDS_COM_BUTTON_OK_ABB"));
@@ -395,28 +380,13 @@ void lock_pwd_util_popup_create(char *title, char *text, Evas_Smart_Cb func, dou
 
 	if (func) {
 		evas_object_smart_callback_add(btn, "clicked", func, popup);
-		ea_object_event_callback_add(popup, EA_CALLBACK_BACK, func, popup);
+		eext_object_event_callback_add(popup, EEXT_CALLBACK_BACK, func, popup);
 	} else {
 		evas_object_smart_callback_add(btn, "clicked", _pwd_popup_cb, popup);
-		ea_object_event_callback_add(popup, EA_CALLBACK_BACK, _pwd_popup_cb, popup);
+		eext_object_event_callback_add(popup, EEXT_CALLBACK_BACK, _pwd_popup_cb, popup);
 	}
 
 	evas_object_show(popup);
-
-	return;
-
-ERROR:
-	_E("Failed to create lock popup");
-
-	if (btn) {
-		evas_object_del(btn);
-		btn = NULL;
-	}
-
-	if (popup) {
-		evas_object_del(popup);
-		popup = NULL;
-	}
 
 	return;
 }
@@ -428,15 +398,12 @@ void lock_pwd_util_view_init(void)
 	_D("initialize password lock values");
 	int lock_type = 0;
 
-	if (!lock_mgr_lockscreen_launch()) {
-		_E("Failed to launch lockscreen");
-	}
-
 	/* clear pwd lockscreen */
 	lock_type = status_active_get()->setappl_screen_lock_type_int;
 	if (lock_type == SETTING_SCREEN_LOCK_TYPE_SIMPLE_PASSWORD) {
 		lock_pwd_simple_view_init();
 	} else if (lock_type == SETTING_SCREEN_LOCK_TYPE_PASSWORD) {
+		lock_pwd_complex_view_init();
 	}
 }
 

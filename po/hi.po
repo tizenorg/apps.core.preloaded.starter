@@ -1,0 +1,57 @@
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "1 प्रयास शेष।"
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "%d प्रयास शेष।"
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "गलत पासवर्ड।"
+
+msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
+msgstr "%s प्रारंभ करने में अक्षम।"
+
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "ओके"
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "गलत PIN."
+
+msgid "IDS_COM_BODY_ENTER_PIN"
+msgstr "PIN प्रविष्ट करें।"
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "पासवर्ड प्रविष्ट करें"
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "आपने %1$d बार गलत ढंग से डिवाइस अनलॉक करने का प्रयास किया है। आपके पास डिवाइस फ़ैक्टरी डिफ़ॉल्ट पर रीसेट होने और सभी डाटा मिटने से पहले %2$d प्रयास शेष है।"
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "%d सेकंड में फिर से प्रयास करें।"
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
+msgstr "सन्देश देखने के लिए PIN प्रविष्‍ट करें"
+
+msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
+msgstr "कॉल लॉग देखने के लिए PIN प्रविष्ट करें"
+
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "आपने %d बार ग़लत ढ़ंग से डिवाइस अनलॉक करने का प्रयास किया है। यह अब फ़ैक्टरी डिफ़ॉल्ट में रीसेट किया जाएगा और सभी डाटा मिट जाएगा"
+
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "%1$d से %2$d तक अंक या वर्ण आवश्यक।"
+
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "आपातकालीन कॉल"
+
+msgid "IDS_COM_POP_WARNING"
+msgstr "चेतावनी"
+
+msgid "IDS_COM_BUTTON_CANCEL"
+msgstr "रद्द"
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
+msgstr "आपने अपना डिवाइस अनलॉक करने के लिए %1$d असफल प्रयास किए हैं। %2$d सेकंड्स में फिर से प्रयास करें।"
+
+msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
+msgstr "स्क्रीन अनलॉक करने में अक्षम"
+

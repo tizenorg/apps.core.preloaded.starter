@@ -1,4 +1,5 @@
-#sbs-git:slp/pkgs/s/starter starter 0.3 f75832f2c50c8930cf1a6bfcffbac648bcde87d9
+%bcond_with wayland
+
 Name:       starter
 Summary:    starter
 Version: 0.5.52
@@ -7,8 +8,13 @@ Group:      TO_BE/FILLED_IN
 License:    Apache-2.0
 Source0:    starter-%{version}.tar.gz
 Source1:    starter.service
-Source2:    starter.path
+Source2:    wait-lock.service
 Source3:    starter-pre.service
+
+%if "%{?tizen_profile_name}"=="tv"
+ExcludeArch: %{arm} %ix86 x86_64
+%endif
+
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(appcore-efl)
 BuildRequires:  pkgconfig(aul)
@@ -18,13 +24,13 @@ BuildRequires:  pkgconfig(capi-system-media-key)
 BuildRequires:  pkgconfig(capi-network-bluetooth)
 BuildRequires:  pkgconfig(capi-system-system-settings)
 
-%if "%{?profile}" == "mobile"
+#%if "%{?tizen_profile_name}" == "mobile"
 BuildRequires:  tts
 BuildRequires:  tts-devel
-#BuildRequires:  pkgconfig(capi-message-port)
+BuildRequires:  pkgconfig(capi-message-port)
 BuildRequires:  pkgconfig(security-server)
-BuildRequires:  pkgconfig(efl-assist)
-%endif
+BuildRequires:  pkgconfig(efl-extension)
+#%endif
 
 BuildRequires:  pkgconfig(feedback)
 BuildRequires:  pkgconfig(db-util)
@@ -38,7 +44,6 @@ BuildRequires:  pkgconfig(evas)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(syspopup-caller)
 BuildRequires:  pkgconfig(ui-gadget-1)
-#BuildRequires:  pkgconfig(utilX)
 BuildRequires:  pkgconfig(vconf)
 BuildRequires:	pkgconfig(alarm-service)
 BuildRequires:	pkgconfig(pkgmgr-info)
@@ -53,9 +58,9 @@ BuildRequires:  gettext-tools
 Requires(post): /usr/bin/vconftool
 Requires: sys-assert
 
-%define _systemddir /usr/lib/systemd
-%define _userdir %{_systemddir}/user
-%define _wantsdir %{_userdir}/default.target.wants
+%if !%{with wayland}
+BuildRequires:  pkgconfig(utilX)
+%endif
 
 %description
 Description: Starter
@@ -71,17 +76,10 @@ export CXXFLAGS="$CXXFLAGS -DTIZEN_DEBUG_ENABLE"
 export FFLAGS="$FFLAGS -DTIZEN_DEBUG_ENABLE"
 %endif
 
-%if "%{?profile}" == "mobile"
-echo "profile is 'mobile'"
+
 %define TIZEN_PROFILE_NAME "MOBILE"
 export CFLAGS="$CFLAGS -DTIZEN_PROFILE_MOBILE"
 export CXXFLAGS="$CXXFLAGS -DTIZEN_PROFILE_MOBILE"
-%else if "%{?profile}" == "wearable"
-echo "profile is 'wearable'"
-%define TIZEN_PROFILE_NAME "WEARABLE"
-export CFLAGS="$CFLAGS -DTIZEN_PROFILE_WEARABLE"
-export CXXFLAGS="$CXXFLAGS -DTIZEN_PROFILE_WEARABLE"
-%endif
 
 %ifarch %{arm}
 export CFLAGS="$CFLAGS -DTIZEN_BUILD_TARGET"
@@ -91,19 +89,21 @@ export CFLAGS="$CFLAGS -DTIZEN_BUILD_EMULATOR"
 export CXXFLAGS="$CXXFLAGS -DTIZEN_BUILD_EMULATOR"
 %endif
 
-cmake . -DTIZEN_PROFILE_NAME=%{TIZEN_PROFILE_NAME} -DCMAKE_INSTALL_PREFIX=%{_prefix}
+%if %{with wayland}
+export WAYLAND_SUPPORT=On
+export X11_SUPPORT=Off
+%else
+export WAYLAND_SUPPORT=Off
+export X11_SUPPORT=On
+%endif
+
+cmake . -DTIZEN_PROFILE_NAME=%{TIZEN_PROFILE_NAME} -DCMAKE_INSTALL_PREFIX=%{_prefix} -DWAYLAND_SUPPORT=${WAYLAND_SUPPORT} -DX11_SUPPORT=${X11_SUPPORT}
 
 make
 make -j1
 %install
 rm -rf %{buildroot}
 %make_install
-
-mkdir -p %{buildroot}%{_userdir}
-install -m 0644 %SOURCE1 %{buildroot}%{_userdir}/
-install -m 0644 %SOURCE2 %{buildroot}%{_userdir}/
-mkdir -p %{buildroot}%{_wantsdir}
-ln -s ../starter.path %{buildroot}%{_wantsdir}/starter.path
 
 mkdir -p %{buildroot}%{_libdir}/systemd/system/multi-user.target.wants
 install -m 0644 %SOURCE1 %{buildroot}%{_libdir}/systemd/system/starter.service
@@ -134,24 +134,8 @@ SOPTION="-s system::vconf_inhouse"
 POPTION="-s starter_private::vconf"
 LOPTION="-s starter::vconf"
 
-vconftool set -t string file/private/lockscreen/pkgname "org.tizen.lockscreen" $GOPTION $POPTION
-vconftool set -t string file/private/lockscreen/default_pkgname "org.tizen.lockscreen" $GOPTION $POPTION
-#vconftool set -t string db/setting/menuscreen/package_name "org.tizen.homescreen" -u 200 -g 200 $SOPTION
-
-vconftool set -t int memory/idle_lock/state 0 -i $GOPTION $LOPTION
-vconftool set -t bool memory/lockscreen/phone_lock_verification 0 -i $GOPTION $SOPTION
-
-vconftool set -t int memory/idle-screen/safemode 0 -i $GOPTION $SOPTION
-
-vconftool set -t int memory/starter/sequence 1 -i $GOPTION $SOPTION
-vconftool set -t int memory/starter/use_volume_key 0 -i $GOPTION $SOPTION
-vconftool set -t int db/starter/is_fallback 0 -i $GOPTION $SOPTION
-vconftool set -t string db/starter/fallback_pkg "org.tizen.homescreen" $GOPTION $SOPTION
-
-vconftool set -t int memory/lockscreen/security_auto_lock 1 -i $GOPTION $SOPTION
-
-vconftool set -t int file/private/lockscreen/bt_out -70 $GOPTION $POPTION
-vconftool set -t int file/private/lockscreen/bt_in -60 $GOPTION $POPTION
+vconftool set -t int db/private/starter/is_fallback 0 -i $GOPTION $POPTION
+vconftool set -t string db/private/starter/fallback_pkg "org.tizen.homescreen" $GOPTION $POPTION
 
 
 mkdir -p %{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/
@@ -180,10 +164,6 @@ sync
 /usr/share/locale/*/LC_MESSAGES/*
 /etc/smack/accesses.d/starter.efl
 
-%{_userdir}/starter.service
-%{_userdir}/starter.path
-%{_wantsdir}/starter.path
-
-%if "%{?profile}" == "mobile"
+#%if "%{?tizen_profile_name}" == "mobile"
 /usr/share/starter/res/edje/*
-%endif
+#%endif

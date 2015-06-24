@@ -18,10 +18,14 @@
 #include <sys/types.h>
 #include <stdbool.h>
 
+extern int home_mgr_get_home_pid(void);
+extern int home_mgr_get_volume_pid(void);
+
 extern void home_mgr_init(void *data);
 extern void home_mgr_fini(void);
 
-extern int home_mgr_check_dead_signal(int pid, void *data);
+void home_mgr_relaunch_homescreen(void);
+void home_mgr_relaunch_volume(void);
 extern int home_mgr_open_home(const char *pkgname);
 
 // End of a file

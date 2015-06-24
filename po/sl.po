@@ -1,11 +1,32 @@
+msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
+msgstr "Preostal je še 1 poskus."
+
+msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
+msgstr "%d preostalih poizkusov."
+
+msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
+msgstr "Napačno geslo."
+
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "Ni mogoče zagnati %s."
 
-msgid "IDS_COM_POP_WARNING"
-msgstr "Opozorilo"
+msgid "IDS_COM_BUTTON_OK_ABB"
+msgstr "V redu"
+
+msgid "IDS_COM_BODY_INCORRECT_PIN"
+msgstr "Napačna koda PIN."
 
 msgid "IDS_COM_BODY_ENTER_PIN"
 msgstr "Vnesite PIN."
+
+msgid "IDS_COM_BODY_ENTER_PASSWORD"
+msgstr "Vnesite geslo."
+
+msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
+msgstr "Napravo ste %1$d-krat poskusili odkleniti nepravilno. Imate še %2$d poskusov, preden bo naprava ponastavljena na privzete tovarniške nastavitve in bodo izbrisani vsi podatki."
+
+msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
+msgstr "Poskusite znova čez %d s."
 
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
 msgstr "Za prikaz sporočila vnesite kodo PIN"
@@ -13,45 +34,24 @@ msgstr "Za prikaz sporočila vnesite kodo PIN"
 msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
 msgstr "Za prikaz dnevnika klicev vnesite kodo PIN"
 
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "Poskusite znova čez %d s."
+msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
+msgstr "Napravo ste %d-krat poskusili odkleniti nepravilno. Zdaj bo ponastavljena na privzete tovarniške nastavitve in vsi podatki bodo izbrisani."
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "Napačna koda PIN."
+msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
+msgstr "Zahtevanih je od %1$d do %2$d znakov ali črk."
 
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "Preostal je še 1 poskus."
+msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
+msgstr "Klic v sili"
 
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "%d preostalih poizkusov."
+msgid "IDS_COM_POP_WARNING"
+msgstr "Opozorilo"
 
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "Napravo ste %1$d-krat poskusili odkleniti nepravilno. Imate še %2$d poskusov, preden bo naprava ponastavljena na privzete tovarniške nastavitve in bodo izbrisani vsi podatki."
+msgid "IDS_COM_BUTTON_CANCEL"
+msgstr "Prekliči"
 
 msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
 msgstr "%1$d-krat ste neuspešno poskusili odkleniti napravo. Poskusite znova čez %2$d s."
 
 msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
 msgstr "Zaslona ni mogoče odkleniti"
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Vnesite geslo."
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "Zahtevanih je od %1$d do %2$d znakov ali črk."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Napačno geslo."
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "Napravo ste %d-krat poskusili odkleniti nepravilno. Zdaj bo ponastavljena na privzete tovarniške nastavitve in vsi podatki bodo izbrisani."
-
-msgid "IDS_COM_BUTTON_OK_ABB"
-msgstr "V redu"
-
-msgid "IDS_ST_BUTTON_CANCEL"
-msgstr "Prekliči"
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Klic v sili"
 
