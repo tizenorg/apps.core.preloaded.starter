@@ -8,8 +8,8 @@ Group:      TO_BE/FILLED_IN
 License:    Apache-2.0
 Source0:    starter-%{version}.tar.gz
 Source1:    starter.service
-Source2:    wait-lock.service
-Source3:    starter-pre.service
+Source2:    starter-pre.service
+Source3:    starter.path
 
 %if "%{?tizen_profile_name}"=="tv"
 ExcludeArch: %{arm} %ix86 x86_64
@@ -106,19 +106,22 @@ rm -rf %{buildroot}
 %make_install
 
 mkdir -p %{buildroot}%{_libdir}/systemd/system/multi-user.target.wants
-install -m 0644 %SOURCE1 %{buildroot}%{_libdir}/systemd/system/starter.service
-install -m 0644 %SOURCE3 %{buildroot}%{_libdir}/systemd/system/starter-pre.service
-ln -s ../starter.service %{buildroot}%{_libdir}/systemd/system/multi-user.target.wants/starter.service
 mkdir -p %{buildroot}%{_libdir}/systemd/system/tizen-system.target.wants
-install -m 0644 %SOURCE2 %{buildroot}%{_libdir}/systemd/system/wait-lock.service
-ln -s ../wait-lock.service %{buildroot}%{_libdir}/systemd/system/tizen-system.target.wants/
+mkdir -p %{buildroot}%{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/
+
+install -m 0644 %SOURCE1 %{buildroot}%{_libdir}/systemd/system/starter.service
+ln -s ../starter.service %{buildroot}%{_libdir}/systemd/system/multi-user.target.wants/starter.service
+ln -s %{_libdir}/systemd/system/starter.service %{buildroot}%{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/
+
+install -m 0644 %SOURCE2 %{buildroot}%{_libdir}/systemd/system/starter-pre.service
+ln -s %{_libdir}/systemd/system/starter-pre.service %{buildroot}%{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/
+
+install -m 0644 %SOURCE3 %{buildroot}%{_libdir}/systemd/system/starter.path
+ln -s ../starter.path %{buildroot}%{_libdir}/systemd/system/multi-user.target.wants/starter.path
+
 mkdir -p %{buildroot}/usr/share/license
 cp -f LICENSE %{buildroot}/usr/share/license/%{name}
 mkdir -p %{buildroot}/opt/data/home-daemon
-
-mkdir -p %{buildroot}%{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/
-ln -s %{_libdir}/systemd/system/starter.service %{buildroot}%{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/
-ln -s %{_libdir}/systemd/system/starter-pre.service %{buildroot}%{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/
 
 %post
 change_file_executable()
@@ -139,7 +142,6 @@ vconftool set -t string db/private/starter/fallback_pkg "org.tizen.homescreen" $
 
 
 mkdir -p %{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/
-ln -s %{_libdir}/systemd/system/wait-lock.service %{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/
 
 #ln -sf /etc/init.d/rd4starter /etc/rc.d/rc4.d/S81starter
 #ln -sf /etc/init.d/rd4starter /etc/rc.d/rc3.d/S81starter
@@ -153,12 +155,12 @@ sync
 %{_sysconfdir}/init.d/rd3starter
 %{_bindir}/starter
 %{_libdir}/systemd/system/starter.service
-%{_libdir}/systemd/system/multi-user.target.wants/starter.service
-%{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/starter.service
 %{_libdir}/systemd/system/starter-pre.service
+%{_libdir}/systemd/system/starter.path
+%{_libdir}/systemd/system/multi-user.target.wants/starter.service
+%{_libdir}/systemd/system/multi-user.target.wants/starter.path
+%{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/starter.service
 %{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/starter-pre.service
-%{_libdir}/systemd/system/wait-lock.service
-%{_libdir}/systemd/system/tizen-system.target.wants/wait-lock.service
 /usr/share/license/%{name}
 /opt/data/home-daemon
 /usr/share/locale/*/LC_MESSAGES/*
