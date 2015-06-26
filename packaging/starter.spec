@@ -1,5 +1,5 @@
 %bcond_with wayland
-%define __libdir /usr/lib
+%define __usrdir /usr/lib/systemd/user
 
 Name:       starter
 Summary:    starter
@@ -107,23 +107,20 @@ make -j1
 rm -rf %{buildroot}
 %make_install
 
-mkdir -p %{buildroot}%{__libdir}/systemd/system/multi-user.target.wants
-mkdir -p %{buildroot}%{__libdir}/systemd/system/tizen-system.target.wants
+mkdir -p %{buildroot}%{__usrdir}/default.target.wants
 mkdir -p %{buildroot}%{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/
 
-install -m 0644 %SOURCE1 %{buildroot}%{__libdir}/systemd/system/starter.service
-ln -s ../starter.service %{buildroot}%{__libdir}/systemd/system/multi-user.target.wants/starter.service
-ln -s %{__libdir}/systemd/system/starter.service %{buildroot}%{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/
+install -m 0644 %SOURCE1 %{buildroot}%{__usrdir}/starter.service
+ln -s ../starter.service %{buildroot}%{__usrdir}/default.target.wants/starter.service
 
-install -m 0644 %SOURCE2 %{buildroot}%{__libdir}/systemd/system/starter.path
-ln -s ../starter.path %{buildroot}%{__libdir}/systemd/system/multi-user.target.wants/starter.path
+install -m 0644 %SOURCE2 %{buildroot}%{__usrdir}/starter.path
+ln -s ../starter.path %{buildroot}%{__usrdir}/default.target.wants/starter.path
 
-install -m 0644 %SOURCE3 %{buildroot}%{__libdir}/systemd/system/starter-pre.service
-ln -s ../starter-pre.service %{buildroot}%{__libdir}/systemd/system/multi-user.target.wants/starter-pre.service
-ln -s %{__libdir}/systemd/system/starter-pre.service %{buildroot}%{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/
+install -m 0644 %SOURCE3 %{buildroot}%{__usrdir}/starter-pre.service
+ln -s ../starter-pre.service %{buildroot}%{__usrdir}/default.target.wants/starter-pre.service
 
-install -m 0644 %SOURCE4 %{buildroot}%{__libdir}/systemd/system/starter-pre.path
-ln -s ../starter-pre.path %{buildroot}%{__libdir}/systemd/system/multi-user.target.wants/starter-pre.path
+install -m 0644 %SOURCE4 %{buildroot}%{__usrdir}/starter-pre.path
+ln -s ../starter-pre.path %{buildroot}%{__usrdir}/default.target.wants/starter-pre.path
 
 mkdir -p %{buildroot}/usr/share/license
 cp -f LICENSE %{buildroot}/usr/share/license/%{name}
@@ -160,16 +157,14 @@ sync
 %{_sysconfdir}/init.d/rd4starter
 %{_sysconfdir}/init.d/rd3starter
 %{_bindir}/starter
-%{__libdir}/systemd/system/starter.service
-%{__libdir}/systemd/system/starter.path
-%{__libdir}/systemd/system/starter-pre.service
-%{__libdir}/systemd/system/starter-pre.path
-%{__libdir}/systemd/system/multi-user.target.wants/starter.service
-%{__libdir}/systemd/system/multi-user.target.wants/starter.path
-%{__libdir}/systemd/system/multi-user.target.wants/starter-pre.service
-%{__libdir}/systemd/system/multi-user.target.wants/starter-pre.path
-%{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/starter.service
-%{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/starter-pre.service
+%{__usrdir}/starter.service
+%{__usrdir}/starter.path
+%{__usrdir}/starter-pre.service
+%{__usrdir}/starter-pre.path
+%{__usrdir}/default.target.wants/starter.service
+%{__usrdir}/default.target.wants/starter.path
+%{__usrdir}/default.target.wants/starter-pre.service
+%{__usrdir}/default.target.wants/starter-pre.path
 /usr/share/license/%{name}
 /opt/data/home-daemon
 /usr/share/locale/*/LC_MESSAGES/*

@@ -9,8 +9,6 @@ ExecStart=/usr/bin/starter
 Restart=always
 RestartSec=0
 KillSignal=SIGKILL
-User=system
-Group=system
 SmackProcessLabel=starter
 
 [Install]
