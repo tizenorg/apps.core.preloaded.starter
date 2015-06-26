@@ -559,48 +559,6 @@ ERROR:
 
 
 
-static void _check_ongoing(bool ongoing)
-{
-	if (ongoing) {
-		/* check previous process */
-		if (s_lock_mgr.checkfd) {
-			_E("checkfd fail");
-			return;
-		}
-
-		if (access(PASSWORD_LOCK_PROGRESS, F_OK) == 0) {
-			_E("file(%s) is exist", PASSWORD_LOCK_PROGRESS);
-			return;
-		}
-
-		/* make tmp file */
-		s_lock_mgr.checkfd = creat(PASSWORD_LOCK_PROGRESS, 0640);
-
-		if (s_lock_mgr.checkfd < 0) {
-			_E("Failed to make %s file", PASSWORD_LOCK_PROGRESS);
-			s_lock_mgr.checkfd = 0;
-		}
-
-		_W("make %s file", PASSWORD_LOCK_PROGRESS);
-		s_lock_mgr.checkfd = 1;
-	} else {
-		if (!s_lock_mgr.checkfd) {
-			_E("checkfd is NULL");
-			return;
-		}
-
-		if (unlink(PASSWORD_LOCK_PROGRESS) < 0) {
-			_E("Failed to remove %s file", PASSWORD_LOCK_PROGRESS);
-		}
-
-		close(s_lock_mgr.checkfd);
-		s_lock_mgr.checkfd = 0;
-		_W("delete %s file", PASSWORD_LOCK_PROGRESS);
-	}
-}
-
-
-
 static void _lock_daemon_init(void)
 {
 	_SECURE_D("default lock screen pkg name is %s", status_passive_get()->setappl_3rd_lock_pkg_name_str);
@@ -647,15 +605,6 @@ int lock_mgr_daemon_start(void)
 
 	lock_type = status_active_get()->setappl_screen_lock_type_int;
 	_D("lock type : %d", lock_type);
-
-	if (lock_type == SETTING_SCREEN_LOCK_TYPE_SIMPLE_PASSWORD ||
-			lock_type == SETTING_SCREEN_LOCK_TYPE_PASSWORD) {
-		if (s_lock_mgr.checkfd) {
-			_check_ongoing(EINA_FALSE);
-		} else {
-			_check_ongoing(EINA_TRUE);
-		}
-	}
 
 	ret = lock_mgr_lockscreen_launch();
 	_D("ret : %d", ret);
