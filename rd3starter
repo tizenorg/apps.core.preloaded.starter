@@ -6,10 +6,10 @@
 #	sleep 0.1
 #done
 
-while [ ! -f /tmp/amd_ready ];
-do
-        /bin/sleep 0.1
-done
+#while [ ! -f /tmp/amd_ready ];
+#do
+#        /bin/sleep 0.1
+#done
 
 vconf_set_safemode()
 {

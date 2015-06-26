@@ -4,6 +4,7 @@ Requires=starter-pre.service
 After=starter-pre.service wm_ready.service ac.service deviced.service launchpad-preload.service
 
 [Service]
+EnvironmentFile=/run/tizen-system-env
 ExecStart=/usr/bin/starter
 Restart=always
 RestartSec=0

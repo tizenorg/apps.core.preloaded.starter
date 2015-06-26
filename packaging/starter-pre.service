@@ -2,6 +2,7 @@
 Description=Pre actions for "starter"
 
 [Service]
+EnvironmentFile=/run/tizen-system-env
 Type=oneshot
 ExecStart=/etc/init.d/rd3starter
 SmackProcessLabel=starter
