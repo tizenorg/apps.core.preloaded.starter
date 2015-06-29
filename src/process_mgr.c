@@ -53,6 +53,10 @@ static int _try_to_launch(const char *appid, const char *key, const char *value,
 
 	if (key) {
 		b = bundle_create();
+		if (!b) {
+			_E("Failed to create a bundle");
+			return -1;
+		}
 		bundle_add(b, key, value);
 	}
 
@@ -120,7 +124,6 @@ void process_mgr_must_launch(const char *appid, const char *key, const char *val
 
 	launch_info = calloc(1, sizeof(launch_info_s));
 	ret_if(!launch_info);
-
 
 	if (appid) launch_info->appid = strdup(appid);
 	if (key) launch_info->key = strdup(key);

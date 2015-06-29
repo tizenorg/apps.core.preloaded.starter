@@ -38,7 +38,7 @@
 #define ISTRUE "TRUE"
 #define SYSPOPUPID_VOLUME "volume"
 
-#define DEAD_TIMER_SEC 2.0
+#define DEAD_TIMER_SEC 10.0
 #define DEAD_TIMER_COUNT_MAX 2
 
 #define VCONFKEY_PRIVATE_STARTER_IS_FALLBACK "db/private/starter/is_fallback"
@@ -116,6 +116,7 @@ void home_mgr_open_home(const char *appid)
 	char *home_appid = NULL;
 
 	if (status_passive_get()->idle_screen_safemode) {
+		_D("SAFE MODE is enabled");
 		home_appid = MENU_SCREEN_PKG_NAME;
 	} else if (!appid) {
 		home_appid = status_active_get()->setappl_selected_package_name;
@@ -192,6 +193,12 @@ static int _change_selected_package_name(status_active_key_e key, void *data)
 {
 	char *appid = NULL;
 	int seq = status_active_get()->starter_sequence;
+
+	/**
+	 * @todo
+	 * Sequence is not changed. it should be managed by WHO?
+	 */
+	seq = 1;
 
 	if (seq < 1) {
 		_E("Sequence is not ready yet, do nothing");
@@ -357,6 +364,9 @@ void home_mgr_relaunch_homescreen(void)
 	if (!s_home_mgr.dead_timer) {
 		_D("Add dead timer");
 		s_home_mgr.dead_timer = ecore_timer_add(DEAD_TIMER_SEC, _dead_timer_cb, (void *)appid);
+		if (!s_home_mgr.dead_timer) {
+			_E("Failed to add a dead timer");
+		}
 	}
 
 	_launch_home(appid);
