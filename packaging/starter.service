@@ -9,7 +9,6 @@ ExecStart=/usr/bin/starter
 Restart=always
 RestartSec=0
 KillSignal=SIGKILL
-SmackProcessLabel=starter
 
 [Install]
 WantedBy=tizen-system.target
