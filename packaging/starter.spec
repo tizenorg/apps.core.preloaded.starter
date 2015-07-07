@@ -168,7 +168,6 @@ sync
 /usr/share/license/%{name}
 /opt/data/home-daemon
 /usr/share/locale/*/LC_MESSAGES/*
-/etc/smack/accesses.d/starter.efl
 
 #%if "%{?tizen_profile_name}" == "mobile"
 /usr/share/starter/res/edje/*
