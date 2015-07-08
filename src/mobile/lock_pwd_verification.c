@@ -15,7 +15,7 @@
  */
 
 #include <Elementary.h>
-#include <security-server.h>
+#include <security-manager.h>
 #include <vconf.h>
 #include <vconf-keys.h>
 #include <sys/socket.h>
@@ -67,6 +67,7 @@ int lock_pwd_verification_remain_attempt_get(void)
 
 static Eina_Bool _pwd_verification_check_pwd(const char *str)
 {
+#if 0
 	int ret = SECURITY_SERVER_API_ERROR_PASSWORD_MISMATCH;
 	unsigned int current_attempt = 0;
 	unsigned int max_attempt = 0;
@@ -91,6 +92,7 @@ static Eina_Bool _pwd_verification_check_pwd(const char *str)
 		_E("Incorrect password");
 		break;
 	}
+#endif
 
 	return EINA_FALSE;
 }
@@ -157,6 +159,7 @@ lock_pwd_event_e lock_pwd_verification_verify(const char *password)
 
 void lock_pwd_verification_policy_create(void)
 {
+#if 0
 	int ret = 0;
 	unsigned int current_attempt = 0;
 	unsigned int max_attempt = 0;
@@ -174,6 +177,7 @@ void lock_pwd_verification_policy_create(void)
 
 	s_lock_pwd_verification.remain_attempt = PASSWORD_ATTEMPTS_MAX_NUM;
 	s_lock_pwd_verification.incorrect_count = 0;
+#endif
 
 	return;
 }

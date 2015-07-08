@@ -46,7 +46,7 @@ pkg_check_modules(pkgs REQUIRED
 	dbus-glib-1
 	tts
 	capi-message-port
-	security-server
+	security-manager
 	efl-extension
 )
 

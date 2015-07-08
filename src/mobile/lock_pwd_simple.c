@@ -18,7 +18,7 @@
 #include <app_control.h>
 #include <bundle.h>
 #include <aul.h>
-#include <security-server.h>
+#include <security-manager.h>
 #include <vconf.h>
 
 #include "lock_mgr.h"

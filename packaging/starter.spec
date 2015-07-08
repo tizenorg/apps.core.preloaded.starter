@@ -30,7 +30,7 @@ BuildRequires:  pkgconfig(capi-system-system-settings)
 BuildRequires:  tts
 BuildRequires:  tts-devel
 BuildRequires:  pkgconfig(capi-message-port)
-BuildRequires:  pkgconfig(security-server)
+BuildRequires:  pkgconfig(security-manager)
 BuildRequires:  pkgconfig(efl-extension)
 #%endif
 
