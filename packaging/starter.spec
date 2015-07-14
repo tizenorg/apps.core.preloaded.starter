@@ -135,15 +135,6 @@ change_file_executable()
     fi
 }
 
-GOPTION="-u 200 -g 5000 -f"
-SOPTION="-s system::vconf_inhouse"
-POPTION="-s starter_private::vconf"
-LOPTION="-s starter::vconf"
-
-vconftool set -t int db/private/starter/is_fallback 0 -i $GOPTION $POPTION
-vconftool set -t string db/private/starter/fallback_pkg "org.tizen.homescreen" $GOPTION $POPTION
-
-
 mkdir -p %{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/
 
 #ln -sf /etc/init.d/rd4starter /etc/rc.d/rc4.d/S81starter
