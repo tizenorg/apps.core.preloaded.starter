@@ -41,9 +41,6 @@
 #define DEAD_TIMER_SEC 10.0
 #define DEAD_TIMER_COUNT_MAX 2
 
-#define VCONFKEY_PRIVATE_STARTER_IS_FALLBACK "db/private/starter/is_fallback"
-#define VCONFKEY_PRIVATE_STARTER_FALLBACK_PKG "db/private/starter/fallback_pkg"
-
 
 
 int errno;
@@ -148,19 +145,19 @@ static int _show_home_cb(status_active_key_e key, void *data)
 		}
 		break;
 	case 1:
-		if (vconf_get_int(VCONFKEY_PRIVATE_STARTER_IS_FALLBACK, &is_fallback) < 0) {
-			_E("Failed to get vconfkey : %s", VCONFKEY_PRIVATE_STARTER_IS_FALLBACK);
+		if (vconf_get_int(VCONFKEY_STARTER_IS_FALLBACK, &is_fallback) < 0) {
+			_E("Failed to get vconfkey : %s", VCONFKEY_STARTER_IS_FALLBACK);
 		}
 
 		if (is_fallback) {
-			if (vconf_set_int(VCONFKEY_PRIVATE_STARTER_IS_FALLBACK, 0)) {
-				_E("Failed to set vconfkey : %s", VCONFKEY_PRIVATE_STARTER_IS_FALLBACK);
+			if (vconf_set_int(VCONFKEY_STARTER_IS_FALLBACK, 0)) {
+				_E("Failed to set vconfkey : %s", VCONFKEY_STARTER_IS_FALLBACK);
 			}
 
 			if (!strcmp(status_active_get()->setappl_selected_package_name, MENU_SCREEN_PKG_NAME)) {
 				char *fallback_pkg;
 
-				fallback_pkg = vconf_get_str(VCONFKEY_PRIVATE_STARTER_FALLBACK_PKG);
+				fallback_pkg = vconf_get_str(VCONFKEY_STARTER_FALLBACK_PKG);
 				_D("fallback pkg : %s", fallback_pkg);
 				if (fallback_pkg) {
 					int status;
@@ -172,7 +169,7 @@ static int _show_home_cb(status_active_key_e key, void *data)
 					}
 					_E("Failed to set vconfkey : %s (%d)", VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME, status);
 				} else {
-					_E("Failed to get vconfkey : %s", VCONFKEY_PRIVATE_STARTER_FALLBACK_PKG);
+					_E("Failed to get vconfkey : %s", VCONFKEY_STARTER_FALLBACK_PKG);
 				}
 			}
 		}
@@ -295,9 +292,15 @@ static Eina_Bool _dead_timer_cb(void *data)
 	Evas_Object *popup = NULL;
 	char title[BUF_SIZE_128] = { 0, };
 	char text[BUF_SIZE_1024] = { 0, };
+	char *appid = NULL;
 
-	char *appid = (char *)data;
-	retv_if(!appid, ECORE_CALLBACK_CANCEL);
+	retv_if(!data, ECORE_CALLBACK_CANCEL);
+
+	appid = strdup(data);
+	if (!appid) {
+		_E("Failed to duplicate string");
+		return ECORE_CALLBACK_CANCEL;
+	}
 
 	_D("dead count : %s(%d)", appid, s_home_mgr.dead_count);
 
@@ -306,6 +309,7 @@ static Eina_Bool _dead_timer_cb(void *data)
 
 		if (vconf_set_str(VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME, MENU_SCREEN_PKG_NAME) != 0) {
 			_E("cannot set the vconf key as %s", MENU_SCREEN_PKG_NAME);
+			free(appid);
 			return ECORE_CALLBACK_RENEW;
 		}
 
@@ -326,17 +330,19 @@ static Eina_Bool _dead_timer_cb(void *data)
 		}
 
 		/* set fallback status */
-		if (vconf_set_int(VCONFKEY_PRIVATE_STARTER_IS_FALLBACK, 1) < 0) {
-			_E("Failed to set vconfkey : %s", VCONFKEY_PRIVATE_STARTER_IS_FALLBACK);
+		if (vconf_set_int(VCONFKEY_STARTER_IS_FALLBACK, 1) < 0) {
+			_E("Failed to set vconfkey : %s", VCONFKEY_STARTER_IS_FALLBACK);
 		}
 
-		if (vconf_set_str(VCONFKEY_PRIVATE_STARTER_FALLBACK_PKG, appid) < 0) {
-			_E("Failed to set vconfkey : %s", VCONFKEY_PRIVATE_STARTER_FALLBACK_PKG);
+		if (vconf_set_str(VCONFKEY_STARTER_FALLBACK_PKG, appid) < 0) {
+			_E("Failed to set vconfkey : %s", VCONFKEY_STARTER_FALLBACK_PKG);
 		}
 	}
 
 	s_home_mgr.dead_timer = NULL;
 	s_home_mgr.dead_count = 0;
+
+	free(appid);
 
 	return ECORE_CALLBACK_CANCEL;
 }
