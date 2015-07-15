@@ -191,11 +191,13 @@ static int _change_selected_package_name(status_active_key_e key, void *data)
 	char *appid = NULL;
 	int seq = status_active_get()->starter_sequence;
 
+#if 0
 	/**
 	 * @todo
 	 * Sequence is not changed. it should be managed by WHO?
 	 */
 	seq = 1;
+#endif
 
 	if (seq < 1) {
 		_E("Sequence is not ready yet, do nothing");
@@ -305,9 +307,13 @@ static Eina_Bool _dead_timer_cb(void *data)
 	if (s_home_mgr.dead_count >= DEAD_TIMER_COUNT_MAX) {
 		_D("Change homescreen package to default");
 
-		if (vconf_set_str(VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME, MENU_SCREEN_PKG_NAME) != 0) {
-			_E("cannot set the vconf key as %s", MENU_SCREEN_PKG_NAME);
-			return ECORE_CALLBACK_RENEW;
+		/* set fallback status */
+		if (vconf_set_int(VCONFKEY_STARTER_IS_FALLBACK, 1) < 0) {
+			_E("Failed to set vconfkey : %s", VCONFKEY_STARTER_IS_FALLBACK);
+		}
+
+		if (vconf_set_str(VCONFKEY_STARTER_FALLBACK_PKG, appid) < 0) {
+			_E("Failed to set vconfkey : %s", VCONFKEY_STARTER_FALLBACK_PKG);
 		}
 
 		strncpy(title, _("IDS_COM_POP_WARNING"), sizeof(title));
@@ -326,13 +332,9 @@ static Eina_Bool _dead_timer_cb(void *data)
 			}
 		}
 
-		/* set fallback status */
-		if (vconf_set_int(VCONFKEY_STARTER_IS_FALLBACK, 1) < 0) {
-			_E("Failed to set vconfkey : %s", VCONFKEY_STARTER_IS_FALLBACK);
-		}
-
-		if (vconf_set_str(VCONFKEY_STARTER_FALLBACK_PKG, appid) < 0) {
-			_E("Failed to set vconfkey : %s", VCONFKEY_STARTER_FALLBACK_PKG);
+		if (vconf_set_str(VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME, MENU_SCREEN_PKG_NAME) != 0) {
+			_E("cannot set the vconf key as %s", MENU_SCREEN_PKG_NAME);
+			return ECORE_CALLBACK_RENEW;
 		}
 	}
 
