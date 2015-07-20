@@ -1,14 +1,4 @@
 #!/bin/sh
-vconf_set_safemode()
-{
-	if [ -f /opt/etc/.safeboot ]
-	then
-		/usr/bin/vconftool set -t int memory/idle-screen/safemode "1" -i -f
-	else
-		/usr/bin/vconftool set -t int memory/idle-screen/safemode "0" -i -f
-	fi
-}
-vconf_set_safemode
 
 echo -e "<2>[${_G}menu-daemon start${C_}]" > /dev/kmsg
 /usr/bin/starter &

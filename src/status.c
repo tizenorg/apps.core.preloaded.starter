@@ -25,7 +25,6 @@
 int errno;
 
 #define VCONFKEY_REMOTE_LOCK_ISLOCKED "db/private/org.tizen.wfmw/is_locked"
-#define VCONFKEY_IDLE_SCREEN_SAFEMODE "memory/idle-screen/safemode"
 
 
 
@@ -62,7 +61,6 @@ static struct status_passive_s s_status_passive = {
 	.setappl_sound_lock_bool = -1,
 	.setappl_motion_activation = -1,
 	.setappl_use_pick_up = -1,
-	.idle_screen_safemode = -1,
 	.boot_animation_finished = -1,
 
 	.setappl_3rd_lock_pkg_name_str = NULL,
@@ -242,8 +240,6 @@ static void _status_passive_change_cb(keynode_t* node, void *data)
 		s_status_passive.setappl_psmode = vconf_keynode_get_int(node);
 	} else if (!strcmp(key_name, VCONFKEY_STARTER_RESERVED_APPS_STATUS)) {
 		s_status_passive.starter_reserved_apps_status = vconf_keynode_get_int(node);
-	} else if (!strcmp(key_name, VCONFKEY_IDLE_SCREEN_SAFEMODE)) {
-		s_status_passive.idle_screen_safemode = vconf_keynode_get_int(node);
 	} else if (!strcmp(key_name, VCONFKEY_BOOT_ANIMATION_FINISHED)) {
 		s_status_passive.boot_animation_finished = vconf_keynode_get_int(node);
 	} else if (!strcmp(key_name, VCONFKEY_SETAPPL_3RD_LOCK_PKG_NAME_STR)) {
@@ -423,13 +419,6 @@ int status_register(void)
 		s_status_passive.setappl_use_pick_up = -1;
 	}
 
-	if (vconf_notify_key_changed(VCONFKEY_IDLE_SCREEN_SAFEMODE, _status_passive_change_cb, NULL) < 0) {
-		_E("Failed to register add the callback for %s", VCONFKEY_IDLE_SCREEN_SAFEMODE);
-	} else if (vconf_get_int(VCONFKEY_IDLE_SCREEN_SAFEMODE, &s_status_passive.idle_screen_safemode ) < 0) {
-		_E("Failed to get vconfkey[%s]", VCONFKEY_IDLE_SCREEN_SAFEMODE);
-		s_status_passive.idle_screen_safemode  = -1;
-	}
-
 	if (vconf_notify_key_changed(VCONFKEY_BOOT_ANIMATION_FINISHED, _status_passive_change_cb, NULL) < 0) {
 		_E("Failed to register add the callback for %s", VCONFKEY_BOOT_ANIMATION_FINISHED);
 	} else if (vconf_get_int(VCONFKEY_BOOT_ANIMATION_FINISHED, &s_status_passive.boot_animation_finished) < 0) {
@@ -548,10 +537,6 @@ void status_unregister(void)
 
 	if (vconf_ignore_key_changed(VCONFKEY_SETAPPL_USE_PICK_UP, _status_passive_change_cb) < 0) {
 		_E("Failed to unregister the callback for %s", VCONFKEY_SETAPPL_USE_PICK_UP);
-	}
-
-	if (vconf_ignore_key_changed(VCONFKEY_IDLE_SCREEN_SAFEMODE, _status_passive_change_cb) < 0) {
-		_E("Failed to unregister the callback for %s", VCONFKEY_IDLE_SCREEN_SAFEMODE);
 	}
 
 	if (vconf_ignore_key_changed(VCONFKEY_BOOT_ANIMATION_FINISHED, _status_passive_change_cb) < 0) {

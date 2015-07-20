@@ -66,7 +66,6 @@ struct status_passive_s {
 	int setappl_sound_lock_bool;
 	int setappl_motion_activation;
 	int setappl_use_pick_up;
-	int idle_screen_safemode;
 	int boot_animation_finished;
 
 	char *setappl_3rd_lock_pkg_name_str;
