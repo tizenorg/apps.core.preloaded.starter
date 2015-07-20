@@ -112,10 +112,7 @@ void home_mgr_open_home(const char *appid)
 {
 	char *home_appid = NULL;
 
-	if (status_passive_get()->idle_screen_safemode) {
-		_D("SAFE MODE is enabled");
-		home_appid = MENU_SCREEN_PKG_NAME;
-	} else if (!appid) {
+	if (!appid) {
 		home_appid = status_active_get()->setappl_selected_package_name;
 	} else {
 		home_appid = (char *) appid;
@@ -266,9 +263,7 @@ static void _launch_home(const char *appid)
 {
 	const char *home_appid = NULL;
 
-	if (status_passive_get()->idle_screen_safemode) {
-		home_appid = MENU_SCREEN_PKG_NAME;
-	} else if (!appid) {
+	if (!appid) {
 		home_appid = status_active_get()->setappl_selected_package_name;
 	} else {
 		home_appid = (char *) appid;

@@ -11,14 +11,4 @@ do
         /bin/sleep 0.1
 done
 
-vconf_set_safemode()
-{
-	if [ -f /opt/etc/.safeboot ]
-	then
-		/usr/bin/vconftool set -t int memory/idle-screen/safemode "1" -f
-	else
-		/usr/bin/vconftool set -t int memory/idle-screen/safemode "0" -f
-	fi
-}
-vconf_set_safemode
 exit 0
