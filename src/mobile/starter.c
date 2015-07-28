@@ -121,6 +121,21 @@ static int _power_off_cb(status_active_key_e key, void *data)
 
 
 
+static int _boot_animation_finished_cb(status_active_key_e key, void *data)
+{
+	int val = status_active_get()->boot_animation_finished;
+	_D("boot animation finished : %d", val);
+
+	if (val == 1) {
+		lock_mgr_daemon_start();
+		_show_home();
+	}
+
+	return 1;
+}
+
+
+
 static void _language_changed_cb(keynode_t *node, void *data)
 {
 	char *lang = NULL;
@@ -237,12 +252,14 @@ static void _init(struct appdata *ad)
 
 	status_register();
 	status_active_register_cb(STATUS_ACTIVE_KEY_SYSMAN_POWER_OFF_STATUS, _power_off_cb, NULL);
+	status_active_register_cb(STATUS_ACTIVE_KEY_BOOT_ANIMATION_FINISHED, _boot_animation_finished_cb, NULL);
 
 	/* Ordering : _hide_home -> process_mgr_must_launch(pwlock) -> _show_home */
 	_hide_home();
+#if 0
 	process_mgr_must_launch(PWLOCK_LITE_PKG_NAME, NULL, NULL, _fail_to_launch_pwlock, _after_launch_pwlock);
+#endif
 
-	lock_mgr_daemon_start();
 #ifdef HAVE_X11
 	hw_key_create_window();
 #endif
@@ -262,6 +279,7 @@ static void _fini(struct appdata *ad)
 	lock_mgr_daemon_end();
 
 	status_active_unregister_cb(STATUS_ACTIVE_KEY_SYSMAN_POWER_OFF_STATUS, _power_off_cb);
+	status_active_unregister_cb(STATUS_ACTIVE_KEY_BOOT_ANIMATION_FINISHED, _boot_animation_finished_cb);
 	status_unregister();
 
 	if (vconf_ignore_key_changed(VCONFKEY_LANGSET, _language_changed_cb) < 0) {
