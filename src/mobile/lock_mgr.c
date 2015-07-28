@@ -447,6 +447,7 @@ static void _on_lcd_changed_receive(void *data, DBusMessage *msg)
 			}
 		} else {
 			_D("Password lock is OFF");
+#if 0
 			char *lcd_off_source = dbus_util_msg_arg_get_str(msg);
 			ret_if(!lcd_off_source);
 
@@ -472,6 +473,11 @@ static void _on_lcd_changed_receive(void *data, DBusMessage *msg)
 			}
 
 			free(lcd_off_source);
+#else
+			if (!lock_mgr_lockscreen_launch()) {
+				_E("Failed to launch lockscreen");
+			}
+#endif
 		}
 	} else {
 		_E("%s dbus_message_is_signal error", DEVICED_INTERFACE_DISPLAY);
