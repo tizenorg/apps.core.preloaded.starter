@@ -43,6 +43,7 @@ static struct status_active_s s_status_active = {
 	.pm_state = -1,
 	.starter_sequence = -1,
 	.sysman_power_off_status = -1,
+	.boot_animation_finished = -1,
 };
 
 
@@ -61,7 +62,6 @@ static struct status_passive_s s_status_passive = {
 	.setappl_sound_lock_bool = -1,
 	.setappl_motion_activation = -1,
 	.setappl_use_pick_up = -1,
-	.boot_animation_finished = -1,
 
 	.setappl_3rd_lock_pkg_name_str = NULL,
 };
@@ -197,6 +197,12 @@ static void _status_active_change_cb(keynode_t* node, void *data)
 			continue_if(!info->func);
 			if (0 == info->func(STATUS_ACTIVE_KEY_LANGSET, info->data)) break;
 		}
+	} else if (!strcmp(key_name, VCONFKEY_BOOT_ANIMATION_FINISHED)) {
+		s_status_active.boot_animation_finished = vconf_keynode_get_int(node);
+		EINA_LIST_FOREACH(s_status_active.list[STATUS_ACTIVE_KEY_BOOT_ANIMATION_FINISHED], l, info) {
+			continue_if(!info->func);
+			if (0 == info->func(STATUS_ACTIVE_KEY_BOOT_ANIMATION_FINISHED, info->data)) break;
+		}
 #if 0
 	} else if (!strcmp(key_name, )) {
 		s_status_active. = vconf_keynode_get_int(node);
@@ -240,8 +246,6 @@ static void _status_passive_change_cb(keynode_t* node, void *data)
 		s_status_passive.setappl_psmode = vconf_keynode_get_int(node);
 	} else if (!strcmp(key_name, VCONFKEY_STARTER_RESERVED_APPS_STATUS)) {
 		s_status_passive.starter_reserved_apps_status = vconf_keynode_get_int(node);
-	} else if (!strcmp(key_name, VCONFKEY_BOOT_ANIMATION_FINISHED)) {
-		s_status_passive.boot_animation_finished = vconf_keynode_get_int(node);
 	} else if (!strcmp(key_name, VCONFKEY_SETAPPL_3RD_LOCK_PKG_NAME_STR)) {
 		char *tmp = vconf_keynode_get_str(node);
 		char *a_tmp;
@@ -320,6 +324,13 @@ int status_register(void)
 		_E("Failed to register add the callback for %s", VCONFKEY_LANGSET);
 	} else if (!(s_status_active.langset = vconf_get_str(VCONFKEY_LANGSET))) {
 		_E("Failed to get vconfkey[%s]", VCONFKEY_LANGSET);
+	}
+
+	if (vconf_notify_key_changed(VCONFKEY_BOOT_ANIMATION_FINISHED, _status_active_change_cb, NULL) < 0) {
+		_E("Failed to register add the callback for %s", VCONFKEY_BOOT_ANIMATION_FINISHED);
+	} else if (vconf_get_int(VCONFKEY_BOOT_ANIMATION_FINISHED, &s_status_active.boot_animation_finished) < 0) {
+		_E("Failed to get vconfkey[%s]", VCONFKEY_BOOT_ANIMATION_FINISHED);
+		s_status_active.boot_animation_finished = -1;
 	}
 
 #if 0
@@ -419,13 +430,6 @@ int status_register(void)
 		s_status_passive.setappl_use_pick_up = -1;
 	}
 
-	if (vconf_notify_key_changed(VCONFKEY_BOOT_ANIMATION_FINISHED, _status_passive_change_cb, NULL) < 0) {
-		_E("Failed to register add the callback for %s", VCONFKEY_BOOT_ANIMATION_FINISHED);
-	} else if (vconf_get_int(VCONFKEY_BOOT_ANIMATION_FINISHED, &s_status_passive.boot_animation_finished) < 0) {
-		_E("Failed to get vconfkey[%s]", VCONFKEY_BOOT_ANIMATION_FINISHED);
-		s_status_passive.boot_animation_finished = -1;
-	}
-
 	if (vconf_notify_key_changed(VCONFKEY_SETAPPL_3RD_LOCK_PKG_NAME_STR, _status_passive_change_cb, NULL) < 0) {
 		_E("Failed to register add the callback for %s", VCONFKEY_SETAPPL_3RD_LOCK_PKG_NAME_STR);
 	}
@@ -480,6 +484,10 @@ void status_unregister(void)
 		_E("Failed to unregister the callback for %s", VCONFKEY_LANGSET);
 	}
 	free(s_status_active.langset);
+
+	if (vconf_ignore_key_changed(VCONFKEY_BOOT_ANIMATION_FINISHED, _status_active_change_cb) < 0) {
+		_E("Failed to unregister the callback for %s", VCONFKEY_BOOT_ANIMATION_FINISHED);
+	}
 
 #if 0
 	if (vconf_ignore_key_changed(, _status_active_change_cb) < 0) {
@@ -537,10 +545,6 @@ void status_unregister(void)
 
 	if (vconf_ignore_key_changed(VCONFKEY_SETAPPL_USE_PICK_UP, _status_passive_change_cb) < 0) {
 		_E("Failed to unregister the callback for %s", VCONFKEY_SETAPPL_USE_PICK_UP);
-	}
-
-	if (vconf_ignore_key_changed(VCONFKEY_BOOT_ANIMATION_FINISHED, _status_passive_change_cb) < 0) {
-		_E("Failed to unregister the callback for %s", VCONFKEY_BOOT_ANIMATION_FINISHED);
 	}
 
 	if (vconf_ignore_key_changed(VCONFKEY_SETAPPL_3RD_LOCK_PKG_NAME_STR, _status_passive_change_cb) < 0) {
