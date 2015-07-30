@@ -38,6 +38,7 @@ typedef enum {
 	STATUS_ACTIVE_KEY_STARTER_SEQUENCE,
 	STATUS_ACTIVE_KEY_SYSMAN_POWER_OFF_STATUS,
 	STATUS_ACTIVE_KEY_LANGSET,
+	STATUS_ACTIVE_KEY_BOOT_ANIMATION_FINISHED,
 	STATUS_ACTIVE_KEY_MAX,
 } status_active_key_e;
 
@@ -49,6 +50,7 @@ struct status_active_s {
 	int pm_state;
 	int starter_sequence;
 	int sysman_power_off_status;
+	int boot_animation_finished;
 };
 
 struct status_passive_s {
@@ -66,7 +68,6 @@ struct status_passive_s {
 	int setappl_sound_lock_bool;
 	int setappl_motion_activation;
 	int setappl_use_pick_up;
-	int boot_animation_finished;
 
 	char *setappl_3rd_lock_pkg_name_str;
 };
