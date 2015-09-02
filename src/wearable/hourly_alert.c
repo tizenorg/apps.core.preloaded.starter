@@ -139,7 +139,7 @@ static int _alarm_cb(alarm_id_t alarm_id, void *data)
 	_D("hourly_alert alarm callback called");
 
 	feedback_initialize();
-	feedback_play(FEEDBACK_PATTERN_HOURLY_ALERT);
+	feedback_play(FEEDBACK_PATTERN_NONE);
 	feedback_deinitialize();
 
 	return 0;

@@ -243,7 +243,7 @@ void lock_mgr_sound_play(lock_sound_type_e type)
 		feedback_play_type(FEEDBACK_TYPE_SOUND, FEEDBACK_PATTERN_SIP);
 		break;
 	case LOCK_SOUND_TAP:
-		feedback_play_type(FEEDBACK_TYPE_SOUND, FEEDBACK_PATTERN_TOUCH_TAP);
+		feedback_play_type(FEEDBACK_TYPE_SOUND, FEEDBACK_PATTERN_TAP);
 		break;
 	default:
 		break;
