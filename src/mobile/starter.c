@@ -36,10 +36,7 @@
 #include "process_mgr.h"
 #include "util.h"
 #include "status.h"
-
-#ifdef HAVE_X11
 #include "hw_key.h"
-#endif
 
 #define PWLOCK_LITE_PKG_NAME "org.tizen.pwlock-lite"
 
@@ -263,9 +260,7 @@ static void _init(struct appdata *ad)
 	process_mgr_must_launch(PWLOCK_LITE_PKG_NAME, NULL, NULL, _fail_to_launch_pwlock, _after_launch_pwlock);
 #endif
 
-#ifdef HAVE_X11
 	hw_key_create_window();
-#endif
 	home_mgr_init(NULL);
 
 	aul_listen_app_dead_signal(_check_dead_signal, NULL);
@@ -276,9 +271,7 @@ static void _init(struct appdata *ad)
 static void _fini(struct appdata *ad)
 {
 	home_mgr_fini();
-#ifdef HAVE_X11
 	hw_key_destroy_window();
-#endif
 	lock_mgr_daemon_end();
 
 	status_active_unregister_cb(STATUS_ACTIVE_KEY_SYSMAN_POWER_OFF_STATUS, _power_off_cb);
