@@ -53,6 +53,9 @@
 
 static void _hide_home(void)
 {
+	int seq = status_active_get()->starter_sequence;
+	ret_if(seq == 1);
+
 	vconf_set_int(VCONFKEY_STARTER_SEQUENCE, 0);
 }
 
