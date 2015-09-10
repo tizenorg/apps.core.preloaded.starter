@@ -21,6 +21,7 @@ pkg_check_modules(pkgs REQUIRED
 	db-util
 	dlog
 	ecore
+	ecore-wayland
 	ecore-evas
 	ecore-input
 	edbus
@@ -157,14 +158,9 @@ SET(BUILD_SOURCE
 	src/mobile/lock_pwd_verification.c
 	src/mobile/window_mgr.c
 	src/mobile/popup.c
-)
-
-IF(X11_SUPPORT)
-SET(BUILD_SOURCE
-	${BUILD_SOURCE}
 	src/mobile/hw_key.c
 )
-ENDIF(X11_SUPPORT)
+
 ELSE("${TIZEN_PROFILE_NAME}" STREQUAL "MOBILE")
 SET(BUILD_SOURCE
 	src/dbus_util.c
