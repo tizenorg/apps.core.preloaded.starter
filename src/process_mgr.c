@@ -235,7 +235,7 @@ static int _try_to_syspopup_launch(const char *appid, const char *key, const cha
 		bundle_add(b, key, value);
 	}
 
-	pid = syspopup_launch((char *) appid, b);
+	pid = aul_launch_app("org.tizen.volume", b);
 	if (b) bundle_free(b);
 	if (pid > 0) {
 		_D("Succeed to launch %s", appid);
