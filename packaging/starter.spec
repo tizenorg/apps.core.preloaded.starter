@@ -13,7 +13,7 @@ Source2:    starter.path
 Source3:    starter-pre.service
 Source4:    starter-pre.path
 
-%if "%{?tizen_profile_name}"=="tv"
+%if "%{profile}" == "tv"
 ExcludeArch: %{arm} %ix86 x86_64
 %endif
 
