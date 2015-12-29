@@ -59,7 +59,7 @@ BuildRequires:  edje-bin
 BuildRequires:  gettext
 BuildRequires:  gettext-tools
 Requires(post): /usr/bin/vconftool
-Requires: sys-assert
+#Requires: sys-assert
 
 %if !%{with wayland}
 BuildRequires:  pkgconfig(utilX)
