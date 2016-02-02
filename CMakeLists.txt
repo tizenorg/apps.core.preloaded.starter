@@ -72,6 +72,7 @@ pkg_check_modules(pkgs REQUIRED
 	ecore
 	ecore-evas
 	ecore-input
+	ecore-wayland
 	edbus
 	eina
 	elementary
@@ -161,7 +162,7 @@ SET(BUILD_SOURCE
 	src/mobile/hw_key.c
 )
 
-ELSE("${TIZEN_PROFILE_NAME}" STREQUAL "MOBILE")
+ELSE("${TIZEN_PROFILE_NAME}" STREQUAL "WEARABLE")
 SET(BUILD_SOURCE
 	src/dbus_util.c
 	src/package_mgr.c
@@ -171,6 +172,7 @@ SET(BUILD_SOURCE
 	src/wearable/clock_mgr.c
 	src/wearable/home_mgr.c
 	src/wearable/hourly_alert.c
+	src/wearable/hw_key.c
 	src/wearable/starter.c
 )
 IF(X11_SUPPORT)

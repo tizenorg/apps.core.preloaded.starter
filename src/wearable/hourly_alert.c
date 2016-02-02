@@ -208,7 +208,7 @@ static void _hourly_alert_changed_cb(keynode_t* node, void *data)
 		}
 	}
 
-	if (hourly_alert == TRUE) {
+	if (hourly_alert == 1) {
 		_E("hourly_alert is set");
 		_register_hourly_alert_alarm();
 	} else {
@@ -235,8 +235,8 @@ void hourly_alert_init(void)
 	ret = vconf_get_bool(VCONFKEY_SETAPPL_HOURLY_ALERT_BOOL, &hourly_alert);
 	if (ret < 0){
 		_E("can't get vconfkey value of [%s], ret=[%d]", VCONFKEY_SETAPPL_HOURLY_ALERT_BOOL, ret);
-		hourly_alert = FALSE;
-	} else if (hourly_alert == TRUE) {
+		hourly_alert = 0;
+	} else if (hourly_alert == 1) {
 		_D("[%s] value is [%d], hourly_alert is set..!!", VCONFKEY_SETAPPL_HOURLY_ALERT_BOOL, hourly_alert);
 		if (_register_hourly_alert_alarm() == EINA_FALSE) {
 			_E("_register_hourly_alert_alarm is failed..!!");
