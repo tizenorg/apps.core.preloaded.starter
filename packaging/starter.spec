@@ -26,13 +26,13 @@ BuildRequires:  pkgconfig(capi-system-media-key)
 BuildRequires:  pkgconfig(capi-network-bluetooth)
 BuildRequires:  pkgconfig(capi-system-system-settings)
 
-#%if "%{?tizen_profile_name}" == "mobile"
+%if "%{profile}" == "mobile"
 BuildRequires:  tts
 BuildRequires:  tts-devel
 BuildRequires:  pkgconfig(capi-message-port)
 BuildRequires:  pkgconfig(security-manager)
 BuildRequires:  pkgconfig(efl-extension)
-#%endif
+%endif
 
 BuildRequires:  pkgconfig(feedback)
 BuildRequires:  pkgconfig(db-util)
@@ -79,10 +79,15 @@ export CXXFLAGS="$CXXFLAGS -DTIZEN_DEBUG_ENABLE"
 export FFLAGS="$FFLAGS -DTIZEN_DEBUG_ENABLE"
 %endif
 
-
+%if "%{profile}" == "wearable"
+%define TIZEN_PROFILE_NAME "WEARABLE"
+export CFLAGS="$CFLAGS -DTIZEN_PROFILE_WEARABLE"
+export CXXFLAGS="$CXXFLAGS -DTIZEN_PROFILE_WEARABLE"
+%else
 %define TIZEN_PROFILE_NAME "MOBILE"
 export CFLAGS="$CFLAGS -DTIZEN_PROFILE_MOBILE"
 export CXXFLAGS="$CXXFLAGS -DTIZEN_PROFILE_MOBILE"
+%endif
 
 %ifarch %{arm}
 export CFLAGS="$CFLAGS -DTIZEN_BUILD_TARGET"
@@ -161,6 +166,6 @@ sync
 /opt/data/home-daemon
 /usr/share/locale/*/LC_MESSAGES/*
 
-#%if "%{?tizen_profile_name}" == "mobile"
+%if "%{profile}" == "mobile"
 /usr/share/starter/res/edje/*
-#%endif
+%endif

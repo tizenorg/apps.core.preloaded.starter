@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#ifdef HAVE_X11
+
 #include <bundle.h>
 #include <Elementary.h>
 #include <Ecore_X.h>
@@ -374,6 +376,346 @@ void hw_key_destroy_window(void)
 	ecore_x_window_delete_request_send(key_info.win);
 	key_info.win = 0x0;
 }
+
+#elif HAVE_WAYLAND
+
+#include <bundle.h>
+#include <Elementary.h>
+#include <Ecore_Input.h>
+#include <Ecore_Wayland.h>
+
+#include <dd-display.h>
+#include <feedback.h>
+#include <vconf.h>
+
+#include "hw_key.h"
+#include "util.h"
+#include "status.h"
+#include "dbus_util.h"
+#include "home_mgr.h"
+#include "process_mgr.h"
+
+#define LONG_PRESS_TIMER_SEC 0.7
+#define POWERKEY_LCDOFF_TIMER_SEC 0.4
+#define POWERKEY_TIMER_SEC 0.25
+
+#define USE_DBUS_POWEROFF 1
+
+const char *key_name[KEY_NAME_MAX] = {
+	"XF86AudioRaiseVolume",
+	"XF86AudioLowerVolume",
+	"XF86PowerOff",
+	"XF86Menu",
+	"XF86Home",
+	"XF86Back",
+	"XF86Camera",
+	"XF86Camera_Full",
+	"XF86Search",
+	"XF86AudioPlay",
+	"XF86AudioPause",
+	"XF86AudioStop",
+	"XF86AudioNext",
+	"XF86AudioPrev",
+	"XF86AudioRewind",
+	"XF86AudioForward",
+	"XF86AudioMedia",
+	"XF86AudioPlayPause",
+	"XF86AudioMute",
+	"XF86AudioRecord",
+	"Cancel",
+	"XF86SoftKBD",
+	"XF86QuickPanel",
+	"XF86TaskPane",
+	"XF86HomePage",
+	"XF86WWW",
+	"XF86Mail",
+	"XF86ScreenSaver",
+	"XF86MonBrightnessDown",
+	"XF86MonBrightnessUp",
+	"XF86Voice",
+	"Hangul",
+	"XF86Apps",
+	"XF86Call",
+	"XF86Game",
+	"XF86VoiceWakeUp_LPSD",
+	"XF86VoiceWakeUp",
+	"KEY_NAME_MAX",
+};
+
+static struct {
+	Ecore_X_Window win;
+	Ecore_Event_Handler *key_up;
+	Ecore_Event_Handler *key_down;
+	Ecore_Event_Handler *two_fingers_hold_hd;
+	Ecore_Timer *power_long_press_timer;
+	Ecore_Timer *power_release_timer;
+	Eina_Bool is_lcd_on;
+	Eina_Bool is_long_press;
+	int powerkey_count;
+	Eina_Bool is_cancel;
+} key_info = {
+	.win = 0x0,
+	.key_up = NULL,
+	.key_down = NULL,
+	.two_fingers_hold_hd = NULL,
+	.power_long_press_timer = NULL,
+	.power_release_timer = NULL,
+	.is_lcd_on = EINA_FALSE,
+	.is_long_press = EINA_FALSE,
+	.powerkey_count = 0,
+	.is_cancel = EINA_FALSE,
+};
+
+
+
+static Eina_Bool _long_press_timer_cb(void* data)
+{
+	key_info.power_long_press_timer = NULL;
+	key_info.is_long_press = EINA_TRUE;
+	key_info.powerkey_count = 0;
+
+	if (0 < status_passive_get()->remote_lock_islocked){
+		_W("remote lock is on top (%d), -> just turn off LCD", status_passive_get()->remote_lock_islocked);
+		return ECORE_CALLBACK_CANCEL;
+	}
+
+	if (key_info.power_release_timer) {
+		ecore_timer_del(key_info.power_release_timer);
+		key_info.power_release_timer = NULL;
+		_D("delete power_release_timer");
+	}
+
+#if USE_DBUS_POWEROFF
+	dbus_util_send_poweroff_signal();
+#else
+	_D("launch power off syspopup");
+	process_mgr_syspopup_launch("poweroff-syspopup", NULL, NULL, NULL, NULL);
+#endif
+
+	feedback_initialize();
+	feedback_play_type(FEEDBACK_TYPE_VIBRATION, FEEDBACK_PATTERN_HOLD);
+	feedback_deinitialize();
+
+	return ECORE_CALLBACK_CANCEL;
+}
+
+
+
+static Eina_Bool _powerkey_timer_cb(void *data)
+{
+	_W("%s, powerkey count[%d]", __func__, key_info.powerkey_count);
+
+	key_info.power_release_timer = NULL;
+
+	if (VCONFKEY_PM_KEY_LOCK == status_passive_get()->pm_key_ignore) {
+		_E("Critical Low Batt Clock Mode");
+		key_info.powerkey_count = 0;
+		if(key_info.is_lcd_on) {
+			_W("just turn off LCD");
+			display_change_state(LCD_OFF);
+		} else {
+			_W("just turn on LCD by powerkey.. starter ignore powerkey operation");
+		}
+		return ECORE_CALLBACK_CANCEL;
+	}
+
+	if (key_info.powerkey_count % 2 == 0) {
+		/* double press */
+		_W("powerkey double press");
+		key_info.powerkey_count = 0;
+		return ECORE_CALLBACK_CANCEL;
+	}
+	key_info.powerkey_count = 0;
+
+	if (key_info.is_lcd_on) {
+		if(VCONFKEY_PM_STATE_LCDOFF <= status_active_get()->pm_state) {
+			_E("Already lcd state was changed while powerkey op. starter ignore powerkey operation");
+			return ECORE_CALLBACK_CANCEL;
+		}
+	} else {
+		_W("just turn on LCD by powerkey.. starter ignore powerkey operation");
+		return ECORE_CALLBACK_CANCEL;
+	}
+
+	if (VCONFKEY_CALL_VOICE_ACTIVE == status_passive_get()->call_state) {
+		_W("call state is [%d] -> just turn off LCD");
+		display_change_state(LCD_OFF);
+		return ECORE_CALLBACK_CANCEL;
+	}
+
+	if (VCONFKEY_IDLE_LOCK == status_passive_get()->idle_lock_state) {
+		_W("lock state is [%d] -> just turn off LCD");
+		display_change_state(LCD_OFF);
+		return ECORE_CALLBACK_CANCEL;
+	}
+
+	if (0 < status_passive_get()->remote_lock_islocked) {
+		_W("remote lock is on top (%d), -> just turn off LCD", status_passive_get()->remote_lock_islocked);
+		display_change_state(LCD_OFF);
+		return ECORE_CALLBACK_CANCEL;
+	}
+
+	home_mgr_launch_home_by_power();
+
+	return ECORE_CALLBACK_CANCEL;
+}
+
+
+
+static Eina_Bool _key_release_cb(void *data, int type, void *event)
+{
+	Evas_Event_Key_Up *ev = event;
+
+	retv_if(!ev, ECORE_CALLBACK_RENEW);
+	retv_if(!ev->keyname, ECORE_CALLBACK_RENEW);
+
+	_D("_key_release_cb : %s Released", ev->keyname);
+
+	if (!strcmp(ev->keyname, key_name[KEY_POWER])) {
+		_W("POWER Key is released");
+
+		if(key_info.power_long_press_timer) {
+			ecore_timer_del(key_info.power_long_press_timer);
+			key_info.power_long_press_timer = NULL;
+			_D("delete long press timer");
+		}
+
+		// Check powerkey timer
+		if(key_info.power_release_timer) {
+			ecore_timer_del(key_info.power_release_timer);
+			key_info.power_release_timer = NULL;
+			_D("delete powerkey timer");
+		}
+
+		// Cancel key operation
+		if (EINA_TRUE == key_info.is_cancel) {
+			_D("Cancel key is activated");
+			key_info.is_cancel = EINA_FALSE;
+			key_info.powerkey_count = 0; //initialize powerkey count
+			return ECORE_CALLBACK_RENEW;
+		}
+
+		// Check long press operation
+		if(key_info.is_long_press) {
+			_D("ignore power key release by long poress");
+			key_info.is_long_press = EINA_FALSE;
+			return ECORE_CALLBACK_RENEW;
+		}
+
+		if(key_info.is_lcd_on) {
+			key_info.power_release_timer = ecore_timer_add(POWERKEY_TIMER_SEC, _powerkey_timer_cb, NULL);
+		} else {
+			_D("lcd off --> [%f]sec timer", POWERKEY_LCDOFF_TIMER_SEC);
+			key_info.power_release_timer = ecore_timer_add(POWERKEY_LCDOFF_TIMER_SEC, _powerkey_timer_cb, NULL);
+		}
+		if (!key_info.power_release_timer) {
+			_E("Critical, cannot add a timer for powerkey");
+		}
+	} else if (!strcmp(ev->keyname, key_name[KEY_CANCEL])) {
+		_D("CANCEL Key is released");
+		key_info.is_cancel = EINA_FALSE;
+	}
+
+	return ECORE_CALLBACK_RENEW;
+}
+
+
+
+static Eina_Bool _key_press_cb(void *data, int type, void *event)
+{
+	Evas_Event_Key_Down *ev = event;
+
+	retv_if(!ev, ECORE_CALLBACK_RENEW);
+	retv_if(!ev->keyname, ECORE_CALLBACK_RENEW);
+
+	_D("_key_press_cb : %s Pressed", ev->keyname);
+
+	if (!strcmp(ev->keyname, key_name[KEY_POWER])) {
+		_W("POWER Key is pressed");
+
+		/**
+		 * lcd status
+		 * 1 : lcd normal
+		 * 2 : lcd dim
+		 * 3 : lcd off
+		 * 4 : suspend
+		 */
+		if (VCONFKEY_PM_STATE_LCDDIM >= status_active_get()->pm_state) {
+			key_info.is_lcd_on = EINA_TRUE;
+		} else if (VCONFKEY_PM_STATE_LCDOFF <= status_active_get()->pm_state) {
+			key_info.is_lcd_on = EINA_FALSE;
+		}
+
+		key_info.powerkey_count++;
+		_W("powerkey count : %d", key_info.powerkey_count);
+
+		if(key_info.power_release_timer) {
+			ecore_timer_del(key_info.power_release_timer);
+			key_info.power_release_timer = NULL;
+		}
+
+		if (key_info.power_long_press_timer) {
+			ecore_timer_del(key_info.power_long_press_timer);
+			key_info.power_long_press_timer = NULL;
+		}
+
+		key_info.is_long_press = EINA_FALSE;
+		key_info.power_long_press_timer = ecore_timer_add(LONG_PRESS_TIMER_SEC, _long_press_timer_cb, NULL);
+		if(!key_info.power_long_press_timer) {
+			_E("Failed to add power_long_press_timer");
+		}
+	} else if (!strcmp(ev->keyname, key_name[KEY_CANCEL])) {
+		_D("CANCEL key is pressed");
+		key_info.is_cancel = EINA_TRUE;
+	}
+
+	return ECORE_CALLBACK_RENEW;
+}
+
+
+
+void hw_key_create_window(void)
+{
+	int i = 0;
+	int ret = 0;
+
+	_W("hw_key_create_window");
+
+	for (i = 0; i < KEY_NAME_MAX; i++) {
+		ret = ecore_wl_window_keygrab_set(NULL, key_name[i], 0, 0, 0, ECORE_WL_WINDOW_KEYGRAB_SHARED);
+		_D("key grab : %s / ret : %d", key_name[i], ret);
+	}
+
+
+	key_info.key_up = ecore_event_handler_add(ECORE_EVENT_KEY_UP, _key_release_cb, NULL);
+	if (!key_info.key_up) {
+		_E("Failed to register a key up event handler");
+	}
+
+	key_info.key_down = ecore_event_handler_add(ECORE_EVENT_KEY_DOWN, _key_press_cb, NULL);
+	if (!key_info.key_down) {
+		_E("Failed to register a key down event handler");
+	}
+}
+
+
+
+void hw_key_destroy_window(void)
+{
+	int status;
+
+	if (key_info.key_up) {
+		ecore_event_handler_del(key_info.key_up);
+		key_info.key_up = NULL;
+	}
+
+	if (key_info.key_down) {
+		ecore_event_handler_del(key_info.key_down);
+		key_info.key_down = NULL;
+	}
+}
+
+#endif
 
 
 
