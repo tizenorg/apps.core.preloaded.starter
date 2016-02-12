@@ -177,9 +177,23 @@ static void _fini(void)
 
 int main(int argc, char *argv[])
 {
+	int ret = 0;
+
 	_D("starter is launched..!!");
 
-	elm_init(argc, argv);
+	ret = elm_init(argc, argv);
+	if (ret != 1) {
+		_E("elm_init() failed : %d", ret);
+		return -1;
+	}
+
+	ret = ecore_wl_init();
+	if (ret == 0) {
+		_E("ecore_wl_init() failed : %d", ret);
+		elm_shutdown();
+		return -1;
+	}
+
 	_init();
 
 	elm_run();
