@@ -26,7 +26,13 @@ BuildRequires:  pkgconfig(capi-system-media-key)
 BuildRequires:  pkgconfig(capi-network-bluetooth)
 BuildRequires:  pkgconfig(capi-system-system-settings)
 
-%if "%{profile}" == "mobile"
+%if "%{profile}" == "common"
+BuildRequires:  tts
+BuildRequires:  tts-devel
+BuildRequires:  pkgconfig(capi-message-port)
+BuildRequires:  pkgconfig(security-manager)
+BuildRequires:  pkgconfig(efl-extension)
+%else if "%{profile}" == "mobile"
 BuildRequires:  tts
 BuildRequires:  tts-devel
 BuildRequires:  pkgconfig(capi-message-port)
@@ -59,7 +65,6 @@ BuildRequires:  edje-bin
 BuildRequires:  gettext
 BuildRequires:  gettext-tools
 Requires(post): /usr/bin/vconftool
-#Requires: sys-assert
 
 %if !%{with wayland}
 BuildRequires:  pkgconfig(utilX)
@@ -79,14 +84,18 @@ export CXXFLAGS="$CXXFLAGS -DTIZEN_DEBUG_ENABLE"
 export FFLAGS="$FFLAGS -DTIZEN_DEBUG_ENABLE"
 %endif
 
-%if "%{profile}" == "wearable"
-%define TIZEN_PROFILE_NAME "WEARABLE"
-export CFLAGS="$CFLAGS -DTIZEN_PROFILE_WEARABLE"
-export CXXFLAGS="$CXXFLAGS -DTIZEN_PROFILE_WEARABLE"
-%else
+%if "%{profile}" == "common"
+%define TIZEN_PROFILE_NAME "COMMON"
+export CFLAGS="$CFLAGS -DTIZEN_PROFILE_COMMON"
+export CXXFLAGS="$CXXFLAGS -DTIZEN_PROFILE_COMMON"
+%else if "%{profile}" == "mobile"
 %define TIZEN_PROFILE_NAME "MOBILE"
 export CFLAGS="$CFLAGS -DTIZEN_PROFILE_MOBILE"
 export CXXFLAGS="$CXXFLAGS -DTIZEN_PROFILE_MOBILE"
+%else if "%{profile}" == "wearable"
+%define TIZEN_PROFILE_NAME "WEARABLE"
+export CFLAGS="$CFLAGS -DTIZEN_PROFILE_WEARABLE"
+export CXXFLAGS="$CXXFLAGS -DTIZEN_PROFILE_WEARABLE"
 %endif
 
 %ifarch %{arm}
