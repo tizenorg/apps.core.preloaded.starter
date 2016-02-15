@@ -9,7 +9,51 @@ SET(DATADIR "${PREFIX}/share")
 SET(RESDIR "${PREFIX}/res")
 SET(LOCALEDIR "${PREFIX}/share/locale")
 
-IF("${TIZEN_PROFILE_NAME}" STREQUAL "MOBILE")
+IF("${TIZEN_PROFILE_NAME}" STREQUAL "COMMON")
+
+INCLUDE_DIRECTORIES(
+	${CMAKE_SOURCE_DIR}/include
+	${CMAKE_SOURCE_DIR}/include/common
+)
+INCLUDE(FindPkgConfig)
+pkg_check_modules(pkgs REQUIRED
+	aul
+	capi-system-media-key
+	db-util
+	dlog
+	ecore
+	ecore-wayland
+	ecore-evas
+	ecore-input
+	edbus
+	eina
+	elementary
+	evas
+	syspopup-caller
+	vconf
+	appcore-efl
+	glib-2.0
+	ui-gadget-1
+	bundle
+	capi-appfw-application
+	capi-appfw-app-manager
+	capi-network-bluetooth
+	capi-system-system-settings
+	feedback
+	alarm-service
+	pkgmgr-info
+	deviced
+	edbus
+	dbus-1
+	dbus-glib-1
+	tts
+	capi-message-port
+	security-manager
+	efl-extension
+)
+
+ELSEIF("${TIZEN_PROFILE_NAME}" STREQUAL "MOBILE")
+
 INCLUDE_DIRECTORIES(
 	${CMAKE_SOURCE_DIR}/include
 	${CMAKE_SOURCE_DIR}/include/mobile
@@ -51,14 +95,8 @@ pkg_check_modules(pkgs REQUIRED
 	efl-extension
 )
 
-IF(X11_SUPPORT)
-pkg_check_modules(pkgs REQUIRED
-	ecore-x
-	utilX
-	)
-ENDIF(X11_SUPPORT)
+ELSEIF("${TIZEN_PROFILE_NAME}" STREQUAL "WEARABLE")
 
-ELSE()
 INCLUDE_DIRECTORIES(
 	${CMAKE_SOURCE_DIR}/include
 	${CMAKE_SOURCE_DIR}/include/wearable
@@ -95,15 +133,14 @@ pkg_check_modules(pkgs REQUIRED
 	dbus-glib-1
 )
 
+ENDIF("${TIZEN_PROFILE_NAME}" STREQUAL "COMMON")
+
 IF(X11_SUPPORT)
 pkg_check_modules(pkgs REQUIRED
 	ecore-x
 	utilX
 	)
 ENDIF(X11_SUPPORT)
-
-ENDIF()
-
 
 FOREACH(flag ${pkgs_CFLAGS})
 	SET(EXTRA_CFLAGS "${EXTRA_CFLAGS} ${flag}")
@@ -142,7 +179,24 @@ IF(WAYLAND_SUPPORT)
 	ADD_DEFINITIONS("-DHAVE_WAYLAND")
 ENDIF(WAYLAND_SUPPORT)
 
-IF("${TIZEN_PROFILE_NAME}" STREQUAL "MOBILE")
+IF("${TIZEN_PROFILE_NAME}" STREQUAL "COMMON")
+
+SET(BUILD_SOURCE
+	src/dbus_util.c
+	src/package_mgr.c
+	src/process_mgr.c
+	src/status.c
+
+	src/common/home_mgr.c
+	src/common/lock_mgr.c
+	src/common/starter.c
+	src/common/window_mgr.c
+	src/common/popup.c
+	src/common/hw_key.c
+)
+
+ELSEIF("${TIZEN_PROFILE_NAME}" STREQUAL "MOBILE")
+
 SET(BUILD_SOURCE
 	src/dbus_util.c
 	src/package_mgr.c
@@ -162,7 +216,8 @@ SET(BUILD_SOURCE
 	src/mobile/hw_key.c
 )
 
-ELSE("${TIZEN_PROFILE_NAME}" STREQUAL "WEARABLE")
+ELSEIF("${TIZEN_PROFILE_NAME}" STREQUAL "WEARABLE")
+
 SET(BUILD_SOURCE
 	src/dbus_util.c
 	src/package_mgr.c
@@ -175,13 +230,8 @@ SET(BUILD_SOURCE
 	src/wearable/hw_key.c
 	src/wearable/starter.c
 )
-IF(X11_SUPPORT)
-SET(BUILD_SOURCE
-	${BUILD_SOURCE}
-	src/wearable/hw_key.c
-)
-ENDIF(X11_SUPPORT)
-ENDIF("${TIZEN_PROFILE_NAME}" STREQUAL "MOBILE")
+
+ENDIF("${TIZEN_PROFILE_NAME}" STREQUAL "COMMON")
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${BUILD_SOURCE})
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${pkgs_LDFLAGS})
