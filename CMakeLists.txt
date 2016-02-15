@@ -142,7 +142,21 @@ IF(WAYLAND_SUPPORT)
 	ADD_DEFINITIONS("-DHAVE_WAYLAND")
 ENDIF(WAYLAND_SUPPORT)
 
-IF("${TIZEN_PROFILE_NAME}" STREQUAL "MOBILE")
+IF("${TIZEN_PROFILE_NAME}" STREQUAL "COMMON")
+SET(BUILD_SOURCE
+	src/dbus_util.c
+	src/package_mgr.c
+	src/process_mgr.c
+	src/status.c
+
+	src/common/home_mgr.c
+	src/common/starter.c
+	src/common/window_mgr.c
+	src/common/popup.c
+	src/common/hw_key.c
+)
+
+ELSE("${TIZEN_PROFILE_NAME}" STREQUAL "MOBILE")
 SET(BUILD_SOURCE
 	src/dbus_util.c
 	src/package_mgr.c
@@ -181,7 +195,8 @@ SET(BUILD_SOURCE
 	src/wearable/hw_key.c
 )
 ENDIF(X11_SUPPORT)
-ENDIF("${TIZEN_PROFILE_NAME}" STREQUAL "MOBILE")
+
+ENDIF("${TIZEN_PROFILE_NAME}" STREQUAL "COMMON")
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${BUILD_SOURCE})
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${pkgs_LDFLAGS})

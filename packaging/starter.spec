@@ -59,7 +59,6 @@ BuildRequires:  edje-bin
 BuildRequires:  gettext
 BuildRequires:  gettext-tools
 Requires(post): /usr/bin/vconftool
-#Requires: sys-assert
 
 %if !%{with wayland}
 BuildRequires:  pkgconfig(utilX)
@@ -79,11 +78,15 @@ export CXXFLAGS="$CXXFLAGS -DTIZEN_DEBUG_ENABLE"
 export FFLAGS="$FFLAGS -DTIZEN_DEBUG_ENABLE"
 %endif
 
-%if "%{profile}" == "wearable"
+%if "%{profile}" == "common"
+%define TIZEN_PROFILE_NAME "COMMON"
+export CFLAGS="$CFLAGS -DTIZEN_PROFILE_COMMON"
+export CXXFLAGS="$CXXFLAGS -DTIZEN_PROFILE_COMMON"
+%else if "%{profile}" == "wearable"
 %define TIZEN_PROFILE_NAME "WEARABLE"
 export CFLAGS="$CFLAGS -DTIZEN_PROFILE_WEARABLE"
 export CXXFLAGS="$CXXFLAGS -DTIZEN_PROFILE_WEARABLE"
-%else
+%else if "%{profile}" == "mobile"
 %define TIZEN_PROFILE_NAME "MOBILE"
 export CFLAGS="$CFLAGS -DTIZEN_PROFILE_MOBILE"
 export CXXFLAGS="$CXXFLAGS -DTIZEN_PROFILE_MOBILE"
