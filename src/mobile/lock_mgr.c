@@ -144,6 +144,7 @@ static void _alarm_lockscreen_launch(alarm_id_t alarm_id, void *data)
 
 
 
+#if 0
 static Eina_Bool _alarm_set(int sec)
 {
 	time_t current_time;
@@ -197,6 +198,7 @@ static Eina_Bool _alarm_set(int sec)
 
 	return EINA_TRUE;
 }
+#endif
 
 
 
@@ -262,6 +264,11 @@ void lock_mgr_idle_lock_state_set(int lock_state)
 	if (ret < 0) {
 		_E("Failed to set vconfkey : VCONFKEY_IDLE_LOCK_STATE");
 	}
+
+	ret = vconf_set_int(VCONFKEY_IDLE_LOCK_STATE_READ_ONLY, lock_state);
+	if (ret < 0) {
+		_E("Failed to set vconfkey : VCONFKEY_IDLE_LOCK_STATE_READ_ONLY");
+	}
 }
 
 
@@ -308,9 +315,9 @@ static void _other_lockscreen_unlock(void)
 
 
 
+#ifdef HAVE_X11
 static Eina_Bool _lock_create_cb(void *data, int type, void *event)
 {
-#ifdef HAVE_X11
 	_D("lockw(%p), lock_pid(%d)", s_lock_mgr.lockw, s_lock_mgr.lock_pid);
 
 	if (window_mgr_set_effect(s_lock_mgr.lockw, s_lock_mgr.lock_pid, event) == EINA_TRUE) {
@@ -319,15 +326,15 @@ static Eina_Bool _lock_create_cb(void *data, int type, void *event)
 			_E("window is not matched..!!");
 		}
 	}
-#endif
 	return ECORE_CALLBACK_PASS_ON;
 }
+#endif
 
 
 
+#ifdef HAVE_X11
 static Eina_Bool _lock_show_cb(void *data, int type, void *event)
 {
-#ifdef HAVE_X11
 	_D("lockw(%p), lock_pid(%d)", s_lock_mgr.lockw, s_lock_mgr.lock_pid);
 
 	if (window_mgr_set_prop(s_lock_mgr.lockw, s_lock_mgr.lock_pid, event)) {
@@ -336,10 +343,10 @@ static Eina_Bool _lock_show_cb(void *data, int type, void *event)
 
 		window_mgr_set_scroll_prop(s_lock_mgr.lockw, lock_type);
 	}
-#endif
 
 	return ECORE_CALLBACK_CANCEL;
 }
+#endif
 
 
 
@@ -366,6 +373,7 @@ void lock_mgr_unlock(void)
 
 
 
+#if 0
 #define LCD_OFF_ALARM_LOCK_TIME 5
 static void _lcd_off_by_timeout(void)
 {
@@ -393,6 +401,7 @@ static void _lcd_off_by_timeout(void)
 		_alarm_lockscreen_launch(-1, NULL);
 	}
 }
+#endif
 
 
 

@@ -69,6 +69,7 @@ static void _show_home(void)
 
 
 
+#if 0
 static Eina_Bool _finish_boot_animation(void *data)
 {
 	if (vconf_set_int(VCONFKEY_BOOT_ANIMATION_FINISHED, 1) != 0) {
@@ -94,6 +95,7 @@ static void _after_launch_pwlock(int pid)
 	process_mgr_set_pwlock_priority(pid);
 	ecore_timer_add(0.5, _finish_boot_animation, NULL);
 }
+#endif
 
 
 
