@@ -293,6 +293,13 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
+	ret = ecore_wl_init();
+	if (ret == 0) {
+		_E("ecore_wl_init() failed : %d", ret);
+		elm_shutdown();
+		return -1;
+	}
+
 	_init(&ad);
 
 	elm_run();
