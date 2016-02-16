@@ -187,7 +187,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-	ret = ecore_wl_init();
+	ret = ecore_wl_init(NULL);
 	if (ret == 0) {
 		_E("ecore_wl_init() failed : %d", ret);
 		elm_shutdown();

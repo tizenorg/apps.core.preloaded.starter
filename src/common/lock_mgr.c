@@ -141,62 +141,6 @@ static void _alarm_lockscreen_launch(alarm_id_t alarm_id, void *data)
 
 
 
-static Eina_Bool _alarm_set(int sec)
-{
-	time_t current_time;
-	struct tm current_tm;
-	alarm_entry_t *alarm_info;
-	alarm_id_t alarm_id;
-	alarm_date_t alarm_time;
-	int ret = ALARMMGR_RESULT_SUCCESS;
-
-	/* delete before registering alarm ids */
-	if (s_lock_mgr.alarm_id != -1){
-		_E("ad->alarm_id(%d) deleted", s_lock_mgr.alarm_id);
-		ret = alarmmgr_remove_alarm(s_lock_mgr.alarm_id);
-		if (ret != ALARMMGR_RESULT_SUCCESS) {
-			_E("Failed to remove alarm(%d) : %d", ret, s_lock_mgr.alarm_id);
-			_alarm_unset();
-		}
-		s_lock_mgr.alarm_id = -1;
-	}
-
-	/* set alarm after sec */
-	time(&current_time);
-
-	_D("after %d SEC.s alarm set", sec);
-	localtime_r(&current_time, &current_tm);
-
-	alarm_info = alarmmgr_create_alarm();
-	retv_if(!alarm_info, EINA_FALSE);
-
-	alarm_time.year = 0;
-	alarm_time.month = 0;
-	alarm_time.day = 0;
-	alarm_time.hour = current_tm.tm_hour;
-	alarm_time.min = current_tm.tm_min;
-	alarm_time.sec = current_tm.tm_sec + sec;
-
-	alarmmgr_set_repeat_mode(alarm_info, ALARM_REPEAT_MODE_ONCE, 0);
-	alarmmgr_set_time(alarm_info, alarm_time);
-	alarmmgr_set_type(alarm_info, ALARM_TYPE_VOLATILE);
-
-	ret = alarmmgr_add_alarm_with_localtime(alarm_info, NULL, &alarm_id);
-	if (ret != ALARMMGR_RESULT_SUCCESS) {
-		_E("Failed to add alarm with localtime(%d)", ret);
-		alarmmgr_free_alarm(alarm_info) ;
-		return EINA_FALSE;
-	}
-
-	_D("alarm id(%d) is set", alarm_id);
-	s_lock_mgr.alarm_id = alarm_id;
-	alarmmgr_free_alarm(alarm_info) ;
-
-	return EINA_TRUE;
-}
-
-
-
 static Eina_Bool _alarm_init(void)
 {
 	int ret = 0;
@@ -305,9 +249,9 @@ static void _other_lockscreen_unlock(void)
 
 
 
+#ifdef HAVE_X11
 static Eina_Bool _lock_create_cb(void *data, int type, void *event)
 {
-#ifdef HAVE_X11
 	_D("lockw(%p), lock_pid(%d)", s_lock_mgr.lockw, s_lock_mgr.lock_pid);
 
 	if (window_mgr_set_effect(s_lock_mgr.lockw, s_lock_mgr.lock_pid, event) == EINA_TRUE) {
@@ -316,15 +260,15 @@ static Eina_Bool _lock_create_cb(void *data, int type, void *event)
 			_E("window is not matched..!!");
 		}
 	}
-#endif
 	return ECORE_CALLBACK_PASS_ON;
 }
+#endif
 
 
 
+#ifdef HAVE_X11
 static Eina_Bool _lock_show_cb(void *data, int type, void *event)
 {
-#ifdef HAVE_X11
 	_D("lockw(%p), lock_pid(%d)", s_lock_mgr.lockw, s_lock_mgr.lock_pid);
 
 	if (window_mgr_set_prop(s_lock_mgr.lockw, s_lock_mgr.lock_pid, event)) {
@@ -333,10 +277,10 @@ static Eina_Bool _lock_show_cb(void *data, int type, void *event)
 
 		window_mgr_set_scroll_prop(s_lock_mgr.lockw, lock_type);
 	}
-#endif
 
 	return ECORE_CALLBACK_CANCEL;
 }
+#endif
 
 
 
@@ -356,36 +300,6 @@ void lock_mgr_unlock(void)
 #ifdef HAVE_X11
 	window_mgr_unregister_event(s_lock_mgr.lockw);
 #endif
-}
-
-
-
-#define LCD_OFF_ALARM_LOCK_TIME 5
-static void _lcd_off_by_timeout(void)
-{
-	int idle_lock_state = 0;
-
-	idle_lock_state = status_passive_get()->idle_lock_state;
-	if (idle_lock_state == VCONFKEY_IDLE_LOCK) {
-		_D("VCONFKEY is set(not need to set alarm), lock_pid : %d", s_lock_mgr.lock_pid);
-		return;
-	}
-
-	if (s_lock_mgr.alarm_id != -1) {
-		_E("Alarm is set yet (alarm_id = %d) : do nothing", s_lock_mgr.alarm_id);
-		return;
-	}
-
-	if (s_lock_mgr.is_alarm) {
-		_D("set alarm %d sec", LCD_OFF_ALARM_LOCK_TIME);
-		if (_alarm_set(LCD_OFF_ALARM_LOCK_TIME) != EINA_TRUE) {
-			_E("Failed to set alarm");
-			_alarm_lockscreen_launch(-1, NULL);
-		}
-	} else {
-		_E("is_alarm is EINA_FALSE");
-		_alarm_lockscreen_launch(-1, NULL);
-	}
 }
 
 

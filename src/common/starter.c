@@ -22,6 +22,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
+#include <Ecore_Wayland.h>
 
 #include <aul.h>
 #include <vconf.h>
@@ -67,6 +68,7 @@ static void _show_home(void)
 
 
 
+#if 0
 static Eina_Bool _finish_boot_animation(void *data)
 {
 	if (vconf_set_int(VCONFKEY_BOOT_ANIMATION_FINISHED, 1) != 0) {
@@ -92,6 +94,7 @@ static void _after_launch_pwlock(int pid)
 	process_mgr_set_pwlock_priority(pid);
 	ecore_timer_add(0.5, _finish_boot_animation, NULL);
 }
+#endif
 
 
 
@@ -293,7 +296,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-	ret = ecore_wl_init();
+	ret = ecore_wl_init(NULL);
 	if (ret == 0) {
 		_E("ecore_wl_init() failed : %d", ret);
 		elm_shutdown();
