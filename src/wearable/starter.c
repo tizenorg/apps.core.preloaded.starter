@@ -37,10 +37,7 @@
 #include "home_mgr.h"
 #include "process_mgr.h"
 
-#define PWLOCK_PKGNAME				"org.tizen.b2-pwlock"
-
 int errno;
-
 
 
 
@@ -149,7 +146,6 @@ static void _init(void)
 	status_active_register_cb(STATUS_ACTIVE_KEY_LANGSET, _change_language_cb, NULL);
 
 	home_mgr_launch_home();
-	process_mgr_must_launch(PWLOCK_PKGNAME, NULL, NULL, NULL, NULL);
 
 	dbus_util_receive_lcd_status(_on_lcd_changed_receive, NULL);
 
