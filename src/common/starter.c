@@ -37,6 +37,8 @@
 #include "status.h"
 #include "hw_key.h"
 
+#define LOCKSCREEN_ENABLE 0
+
 #define PWLOCK_LITE_PKG_NAME "org.tizen.pwlock-lite"
 
 #define DATA_UNENCRYPTED "unencrypted"
@@ -128,7 +130,9 @@ static int _boot_animation_finished_cb(status_active_key_e key, void *data)
 	_D("boot animation finished : %d", val);
 
 	if (val == 1) {
+#if LOCKSCREEN_ENABLE
 		lock_mgr_daemon_start();
+#endif
 		_show_home();
 	}
 
@@ -193,8 +197,10 @@ static int _set_i18n(const char *domain, const char *dir)
 static int _check_dead_signal(int pid, void *data)
 {
 	int home_pid = 0;
+#if LOCKSCREEN_ENABLE
 	int volume_pid = 0;
 	int lock_pid = 0;
+#endif
 
 	_D("Process %d is termianted", pid);
 
@@ -204,18 +210,22 @@ static int _check_dead_signal(int pid, void *data)
 	}
 
 	home_pid = home_mgr_get_home_pid();
+#if LOCKSCREEN_ENABLE
 	volume_pid = home_mgr_get_volume_pid();
 	lock_pid = lock_mgr_get_lock_pid();
+#endif
 
 	if (pid == home_pid) {
 		_D("Homescreen is dead");
 		home_mgr_relaunch_homescreen();
+#if LOCKSCREEN_ENABLE
 	} else if (pid == volume_pid) {
 		_D("volume is dead");
 		home_mgr_relaunch_volume();
 	} else if (pid == lock_pid) {
 		_D("lockscreen is dead");
 		lock_mgr_unlock();
+#endif
 	} else {
 		_D("Unknown process, ignore it");
 	}
@@ -270,7 +280,9 @@ static void _fini(struct appdata *ad)
 {
 	home_mgr_fini();
 	hw_key_destroy_window();
+#if LOCKSCREEN_ENABLE
 	lock_mgr_daemon_end();
+#endif
 
 	status_active_unregister_cb(STATUS_ACTIVE_KEY_SYSMAN_POWER_OFF_STATUS, _power_off_cb);
 	status_active_unregister_cb(STATUS_ACTIVE_KEY_BOOT_ANIMATION_FINISHED, _boot_animation_finished_cb);

@@ -34,6 +34,8 @@
 #include "process_mgr.h"
 #include "popup.h"
 
+#define VOLUME_ENABLE 0
+
 #define HOME_TERMINATED "home_terminated"
 #define ISTRUE "TRUE"
 #define SYSPOPUPID_VOLUME "volume"
@@ -229,6 +231,7 @@ static int _change_selected_package_name(status_active_key_e key, void *data)
 
 
 
+#if VOLUME_ENABLE
 static void _after_launch_volume(int pid)
 {
 	if (dbus_util_send_oomadj(pid, OOM_ADJ_VALUE_DEFAULT) < 0){
@@ -236,6 +239,7 @@ static void _after_launch_volume(int pid)
 	}
 	s_home_mgr.volume_pid = pid;
 }
+#endif
 
 
 
@@ -366,7 +370,9 @@ void home_mgr_relaunch_homescreen(void)
 
 void home_mgr_relaunch_volume(void)
 {
+#if VOLUME_ENABLE
 	process_mgr_must_syspopup_launch(SYSPOPUPID_VOLUME, NULL, NULL, NULL, _after_launch_volume);
+#endif
 }
 
 
@@ -388,11 +394,13 @@ static int _power_off_cb(status_active_key_e key, void *data)
 
 
 
+#if VOLUME_ENABLE
 static Eina_Bool _launch_volume_idler_cb(void *data)
 {
 	process_mgr_must_syspopup_launch(SYSPOPUPID_VOLUME, NULL, NULL, NULL, _after_launch_volume);
 	return ECORE_CALLBACK_CANCEL;
 }
+#endif
 
 
 
@@ -405,17 +413,21 @@ void home_mgr_init(void *data)
 	status_active_register_cb(STATUS_ACTIVE_KEY_SETAPPL_SELECTED_PACKAGE_NAME, _change_selected_package_name, NULL);
 	_change_selected_package_name(STATUS_ACTIVE_KEY_SETAPPL_SELECTED_PACKAGE_NAME, NULL);
 
+#if VOLUME_ENABLE
 	ecore_idler_add(_launch_volume_idler_cb, NULL);
+#endif
 }
 
 
 
 void home_mgr_fini(void)
 {
+#if VOLUME_ENABLE
 	if (s_home_mgr.volume_pid > 0) {
 		process_mgr_terminate_app(s_home_mgr.volume_pid, 1);
 		s_home_mgr.volume_pid = -1;
 	}
+#endif
 
 	status_active_unregister_cb(STATUS_ACTIVE_KEY_STARTER_SEQUENCE, _show_home_cb);
 	status_active_unregister_cb(STATUS_ACTIVE_KEY_SYSMAN_POWER_OFF_STATUS, _power_off_cb);
