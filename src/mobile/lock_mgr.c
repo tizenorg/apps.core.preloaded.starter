@@ -45,8 +45,8 @@
 
 static struct {
 	int checkfd;
-	alarm_id_t alarm_id;	/* -1 : None, others : set alarm */
-	Eina_Bool is_alarm;	/* EINA_TRUE : can use alarm EINA_FALSE : cannot use */
+	//alarm_id_t alarm_id;	/* -1 : None, others : set alarm */
+	//Eina_Bool is_alarm;	/* EINA_TRUE : can use alarm EINA_FALSE : cannot use */
 
 	int old_lock_type;
 	int lock_pid;
@@ -57,8 +57,8 @@ static struct {
 #endif
 } s_lock_mgr = {
 	.checkfd = 0,
-	.alarm_id = -1,
-	.is_alarm = EINA_FALSE,
+	//.alarm_id = -1,
+	//.is_alarm = EINA_FALSE,
 
 	.old_lock_type = 0,
 	.lock_pid = -1,
@@ -85,6 +85,7 @@ int lock_mgr_get_lock_pid(void)
 
 
 
+#if 0
 static int _alarm_del(alarm_id_t id, void * user_param)
 {
 	int ret = ALARMMGR_RESULT_SUCCESS;
@@ -144,7 +145,6 @@ static void _alarm_lockscreen_launch(alarm_id_t alarm_id, void *data)
 
 
 
-#if 0
 static Eina_Bool _alarm_set(int sec)
 {
 	time_t current_time;
@@ -198,7 +198,6 @@ static Eina_Bool _alarm_set(int sec)
 
 	return EINA_TRUE;
 }
-#endif
 
 
 
@@ -225,7 +224,7 @@ static Eina_Bool _alarm_init(void)
 
 	return EINA_TRUE;
 }
-
+#endif
 
 
 
@@ -419,10 +418,12 @@ static void _on_lcd_changed_receive(void *data, DBusMessage *msg)
 		_W("LCD on");
 		s_lock_mgr.lcd_state = LCD_STATE_ON;
 
+#if 0
 		/* delete all alarm registering */
 		_D("delete alarm : id(%d)", s_lock_mgr.alarm_id);
 		_alarm_unset();
 		s_lock_mgr.alarm_id = -1;
+#endif
 
 		if (lock_pwd_util_win_visible_get()) {
 			_D("Password lock is ON");
@@ -578,8 +579,10 @@ static void _lock_daemon_init(void)
 {
 	_SECURE_D("default lock screen pkg name is %s", status_passive_get()->setappl_3rd_lock_pkg_name_str);
 
+#if 0
 	/* init alarm manager */
 	s_lock_mgr.is_alarm = _alarm_init();
+#endif
 
 	/* register lcd changed cb */
 	dbus_util_receive_lcd_status(_on_lcd_changed_receive, NULL);
