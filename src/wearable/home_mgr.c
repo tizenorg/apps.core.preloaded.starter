@@ -23,8 +23,6 @@
 #include "status.h"
 
 #define W_HOME_PKGNAME "org.tizen.w-home"
-#define W_CLOCK_VIEWER_PKGNAME "org.tizen.w-clock-viewer"
-
 
 static struct {
 	char *home_appid;
@@ -83,29 +81,9 @@ static int _dead_cb(int pid, void *data)
 
 
 
-static void _on_lcd_changed_receive(void *data, DBusMessage *msg)
-{
-	int lcd_off = dbus_message_is_signal(msg, DEVICED_INTERFACE_DISPLAY, MEMBER_LCD_OFF);
-
-	if (lcd_off) {
-		_D("LCD off");
-
-		int ambient_mode = status_passive_get()->setappl_ambient_mode_bool;
-		_D("ambient mode : %d", ambient_mode);
-		if (ambient_mode) {
-			process_mgr_must_launch(W_CLOCK_VIEWER_PKGNAME, NULL, NULL, NULL, NULL);
-		}
-	}
-}
-
-
-
 void home_mgr_init(void)
 {
 	aul_listen_app_dead_signal(_dead_cb, NULL);
-
-	/* register lcd changed cb */
-	dbus_util_receive_lcd_status(_on_lcd_changed_receive, NULL);
 }
 
 
