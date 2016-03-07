@@ -38,6 +38,11 @@ BuildRequires:  tts-devel
 BuildRequires:  pkgconfig(capi-message-port)
 BuildRequires:  pkgconfig(security-manager)
 BuildRequires:  pkgconfig(efl-extension)
+%else if "%{profile}" == "ivi"
+BuildRequires:  tts
+BuildRequires:  tts-devel
+BuildRequires:  pkgconfig(capi-message-port)
+BuildRequires:  pkgconfig(security-manager)
 %endif
 
 BuildRequires:  pkgconfig(feedback)
@@ -101,6 +106,13 @@ export CXXFLAGS="$CXXFLAGS -DTIZEN_PROFILE_MOBILE"
 export CFLAGS="$CFLAGS -DTIZEN_PROFILE_WEARABLE"
 export CXXFLAGS="$CXXFLAGS -DTIZEN_PROFILE_WEARABLE"
 %endif
+
+%if "%{profile}" == "ivi"
+%define TIZEN_PROFILE_NAME "IVI"
+export CFLAGS="$CFLAGS -DTIZEN_PROFILE_IVI"
+export CXXFLAGS="$CXXFLAGS -DTIZEN_PROFILE_IVI"
+%endif
+
 
 %ifarch %{arm}
 export CFLAGS="$CFLAGS -DTIZEN_BUILD_TARGET"
