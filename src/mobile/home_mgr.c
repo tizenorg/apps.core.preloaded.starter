@@ -37,6 +37,8 @@
 #define HOME_TERMINATED "home_terminated"
 #define ISTRUE "TRUE"
 #define SYSPOPUPID_VOLUME "volume"
+#define APPID_INDICATOR "org.tizen.indicator"
+#define APPID_QUICKPANEL "org.tizen.quickpanel"
 
 #define DEAD_TIMER_SEC 10.0
 #define DEAD_TIMER_COUNT_MAX 2
@@ -47,6 +49,8 @@ int errno;
 static struct {
 	pid_t home_pid;
 	pid_t volume_pid;
+	pid_t indicator_pid;
+	pid_t quickpanel_pid;
 	int power_off;
 
 	Ecore_Timer *dead_timer;
@@ -56,6 +60,8 @@ static struct {
 } s_home_mgr = {
 	.home_pid = (pid_t)-1,
 	.volume_pid = (pid_t)-1,
+	.indicator_pid = (pid_t)-1,
+	.quickpanel_pid = (pid_t)-1,
 	.power_off = 0,
 
 	.dead_timer = NULL,
@@ -239,6 +245,20 @@ static void _after_launch_volume(int pid)
 
 
 
+static void _after_launch_indicator(int pid)
+{
+	s_home_mgr.indicator_pid = pid;
+}
+
+
+
+static void _after_launch_quickpanel(int pid)
+{
+	s_home_mgr.quickpanel_pid = pid;
+}
+
+
+
 static void _launch_after_home(int pid)
 {
 	if (pid > 0) {
@@ -371,6 +391,20 @@ void home_mgr_relaunch_volume(void)
 
 
 
+void home_mgr_relaunch_indicator(void)
+{
+	process_mgr_must_syspopup_launch(APPID_INDICATOR, NULL, NULL, NULL, _after_launch_indicator);
+}
+
+
+
+void home_mgr_relaunch_quickpanel(void)
+{
+	process_mgr_must_syspopup_launch(APPID_QUICKPANEL, NULL, NULL, NULL, _after_launch_quickpanel);
+}
+
+
+
 static int _power_off_cb(status_active_key_e key, void *data)
 {
 	int val = status_active_get()->sysman_power_off_status;
@@ -388,9 +422,12 @@ static int _power_off_cb(status_active_key_e key, void *data)
 
 
 
-static Eina_Bool _launch_volume_idler_cb(void *data)
+static Eina_Bool _launch_apps_idler_cb(void *data)
 {
 	process_mgr_must_syspopup_launch(SYSPOPUPID_VOLUME, NULL, NULL, NULL, _after_launch_volume);
+	process_mgr_must_syspopup_launch(APPID_INDICATOR, NULL, NULL, NULL, _after_launch_indicator);
+	process_mgr_must_syspopup_launch(APPID_QUICKPANEL, NULL, NULL, NULL, _after_launch_quickpanel);
+
 	return ECORE_CALLBACK_CANCEL;
 }
 
@@ -405,7 +442,7 @@ void home_mgr_init(void *data)
 	status_active_register_cb(STATUS_ACTIVE_KEY_SETAPPL_SELECTED_PACKAGE_NAME, _change_selected_package_name, NULL);
 	_change_selected_package_name(STATUS_ACTIVE_KEY_SETAPPL_SELECTED_PACKAGE_NAME, NULL);
 
-	ecore_idler_add(_launch_volume_idler_cb, NULL);
+	ecore_idler_add(_launch_apps_idler_cb, NULL);
 }
 
 
