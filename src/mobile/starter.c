@@ -198,6 +198,8 @@ static int _check_dead_signal(int pid, void *data)
 {
 	int home_pid = 0;
 	int volume_pid = 0;
+	int indicator_pid = 0;
+	int quickpanel_pid = 0;
 	int lock_pid = 0;
 
 	_D("Process %d is termianted", pid);
@@ -209,6 +211,8 @@ static int _check_dead_signal(int pid, void *data)
 
 	home_pid = home_mgr_get_home_pid();
 	volume_pid = home_mgr_get_volume_pid();
+	indicator_pid = home_mgr_get_indicator_pid();
+	quickpanel_pid = home_mgr_get_quickpanel_pid();
 	lock_pid = lock_mgr_get_lock_pid();
 
 	if (pid == home_pid) {
@@ -217,6 +221,12 @@ static int _check_dead_signal(int pid, void *data)
 	} else if (pid == volume_pid) {
 		_D("volume is dead");
 		home_mgr_relaunch_volume();
+	} else if (pid == indicator_pid) {
+		_D("indicator is dead");
+		home_mgr_relaunch_indicator();
+	} else if (pid == quickpanel_pid) {
+		_D("quickpanel is dead");
+		home_mgr_relaunch_quickpanel();
 	} else if (pid == lock_pid) {
 		_D("lockscreen is dead");
 		lock_mgr_unlock();
