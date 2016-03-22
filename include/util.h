@@ -27,7 +27,13 @@
 #define CLUSTER_HOME_PKG_NAME "org.tizen.cluster-home"
 #define EASY_HOME_PKG_NAME "org.tizen.easy-home"
 #define EASY_APPS_PKG_NAME "org.tizen.easy-apps"
+
+#ifdef TIZEN_PROFILE_COMMON
+#define HOMESCREEN_PKG_NAME MENU_SCREEN_PKG_NAME
+#else
 #define HOMESCREEN_PKG_NAME "org.tizen.homescreen-efl"
+#endif
+
 #define TASKMGR_PKG_NAME "org.tizen.task-mgr"
 #define DEFAULT_TASKMGR_PKG_NAME "org.tizen.taskmgr"
 #define CONF_PATH_NUMBER 1024
