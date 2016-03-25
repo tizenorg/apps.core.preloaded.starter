@@ -238,6 +238,7 @@ static int _check_dead_signal(int pid, void *data)
 static void _init(struct appdata *ad)
 {
 	struct sigaction act;
+	char err_buf[128] = {0,};
 
 	memset(&act,0x00,sizeof(struct sigaction));
 	act.sa_sigaction = _signal_handler;
@@ -245,15 +246,18 @@ static void _init(struct appdata *ad)
 
 	int ret = sigemptyset(&act.sa_mask);
 	if (ret < 0) {
-		_E("Failed to sigemptyset[%s]", strerror(errno));
+		strerror_r(errno, err_buf, sizeof(err_buf));
+		_E("Failed to sigemptyset[%d / %s]", errno, err_buf);
 	}
 	ret = sigaddset(&act.sa_mask, SIGTERM);
 	if (ret < 0) {
-		_E("Failed to sigaddset[%s]", strerror(errno));
+		strerror_r(errno, err_buf, sizeof(err_buf));
+		_E("Failed to sigaddset[%d / %s]", errno, err_buf);
 	}
 	ret = sigaction(SIGTERM, &act, NULL);
 	if (ret < 0) {
-		_E("Failed to sigaction[%s]", strerror(errno));
+		strerror_r(errno, err_buf, sizeof(err_buf));
+		_E("Failed to sigaction[%d / %s]", errno, err_buf);
 	}
 
 	_set_i18n(PACKAGE, LOCALEDIR);
