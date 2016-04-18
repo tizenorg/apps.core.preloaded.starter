@@ -528,7 +528,7 @@ void hw_key_destroy_window(void)
 #define CANCEL_KEY_TIMER_SEC 0.3
 
 
-const char *key_name[38] = {
+const char *key_name[KEY_NAME_MAX] = {
 	"XF86AudioRaiseVolume",
 	"XF86AudioLowerVolume",
 	"XF86PowerOff",
@@ -566,7 +566,6 @@ const char *key_name[38] = {
 	"XF86Game",
 	"XF86VoiceWakeUp_LPSD",
 	"XF86VoiceWakeUp",
-	"KEY_NAME_MAX",
 };
 
 

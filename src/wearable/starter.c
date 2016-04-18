@@ -131,18 +131,21 @@ static void _init(void)
 
 	int ret = sigemptyset(&act.sa_mask);
 	if (ret < 0) {
-		strerror_r(errno, err_buf, sizeof(err_buf));
-		_E("Failed to sigemptyset[%d / %s]", errno, err_buf);
+		if (strerror_r(errno, err_buf, sizeof(err_buf)) == 0) {
+			_E("Failed to sigemptyset[%d / %s]", errno, err_buf);
+		}
 	}
 	ret = sigaddset(&act.sa_mask, SIGTERM);
 	if (ret < 0) {
-		strerror_r(errno, err_buf, sizeof(err_buf));
-		_E("Failed to sigaddset[%d / %s]", errno, err_buf);
+		if (strerror_r(errno, err_buf, sizeof(err_buf)) == 0) {
+			_E("Failed to sigaddset[%d / %s]", errno, err_buf);
+		}
 	}
 	ret = sigaction(SIGTERM, &act, NULL);
 	if (ret < 0) {
-		strerror_r(errno, err_buf, sizeof(err_buf));
-		_E("Failed to sigaction[%d / %s]", errno, err_buf);
+		if (strerror_r(errno, err_buf, sizeof(err_buf)) == 0) {
+			_E("Failed to sigaction[%d / %s]", errno, err_buf);
+		}
 	}
 
 	status_register();

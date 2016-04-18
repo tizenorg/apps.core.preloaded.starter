@@ -439,7 +439,6 @@ const char *key_name[KEY_NAME_MAX] = {
 	"XF86Game",
 	"XF86VoiceWakeUp_LPSD",
 	"XF86VoiceWakeUp",
-	"KEY_NAME_MAX",
 };
 
 static struct {

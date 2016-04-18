@@ -20,6 +20,8 @@
 
 extern int home_mgr_get_home_pid(void);
 extern int home_mgr_get_volume_pid(void);
+extern int home_mgr_get_indicator_pid(void);
+extern int home_mgr_get_quickpanel_pid(void);
 
 extern void home_mgr_init(void *data);
 extern void home_mgr_fini(void);
