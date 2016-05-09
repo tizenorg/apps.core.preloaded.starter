@@ -98,7 +98,7 @@ static int _append_variant(DBusMessageIter *iter, const char *sig, char *param[]
 			dbus_message_iter_append_basic(iter, DBUS_TYPE_UINT32, &int_type);
 			break;
 		case 't':
-			int64_type = atoi(param[i]);
+			int64_type = (uint64_t) atoi(param[i]);
 			dbus_message_iter_append_basic(iter, DBUS_TYPE_UINT64, &int64_type);
 			break;
 		case 's':
