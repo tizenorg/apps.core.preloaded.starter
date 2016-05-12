@@ -22,6 +22,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
+#include <malloc.h>
 
 #include <aul.h>
 #include <vconf.h>
@@ -313,6 +314,7 @@ int main(int argc, char *argv[])
 	elm_init(argc, argv);
 	_init(&ad);
 
+	malloc_trim(0);
 	elm_run();
 
 	_fini(&ad);
