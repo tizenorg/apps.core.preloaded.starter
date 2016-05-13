@@ -61,11 +61,7 @@ static void _hide_home(void)
 
 static void _show_home(void)
 {
-	int show_menu = 0;
-
-	if (status_active_get()->starter_sequence || !show_menu) {
-		vconf_set_int(VCONFKEY_STARTER_SEQUENCE, 1);
-	}
+	vconf_set_int(VCONFKEY_STARTER_SEQUENCE, 1);
 }
 
 
@@ -272,13 +268,23 @@ static void _init(struct appdata *ad)
 
 	status_register();
 	status_active_register_cb(STATUS_ACTIVE_KEY_SYSMAN_POWER_OFF_STATUS, _power_off_cb, NULL);
-	status_active_register_cb(STATUS_ACTIVE_KEY_BOOT_ANIMATION_FINISHED, _boot_animation_finished_cb, NULL);
 
-	/* Ordering : _hide_home -> process_mgr_must_launch(pwlock) -> _show_home */
-	_hide_home();
+	/*
+	 * If 'VCONFKEY_BOOT_ANIMATION_FINISHED' is already 1,
+	 * it is not necessary to register vconfkey callback function.
+	 */
+	if (status_active_get()->boot_animation_finished == 1) {
+		lock_mgr_daemon_start();
+		_show_home();
+	} else {
+		/* Ordering : _hide_home -> process_mgr_must_launch(pwlock) -> _show_home */
+		_hide_home();
 #if 0
-	process_mgr_must_launch(PWLOCK_LITE_PKG_NAME, NULL, NULL, _fail_to_launch_pwlock, _after_launch_pwlock);
+		process_mgr_must_launch(PWLOCK_LITE_PKG_NAME, NULL, NULL, _fail_to_launch_pwlock, _after_launch_pwlock);
 #endif
+
+		status_active_register_cb(STATUS_ACTIVE_KEY_BOOT_ANIMATION_FINISHED, _boot_animation_finished_cb, NULL);
+	}
 
 	hw_key_create_window();
 	home_mgr_init(NULL);
