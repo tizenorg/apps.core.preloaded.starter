@@ -27,6 +27,7 @@
 #include <signal.h>
 #include <dd-deviced.h>
 #include <Ecore_Wayland.h>
+#include <malloc.h>
 
 #include "hw_key.h"
 #include "util.h"
@@ -199,6 +200,11 @@ int main(int argc, char *argv[])
 	}
 
 	_init();
+
+	/*
+	 * Release free memory from top of the heap
+	 */
+	malloc_trim(0);
 
 	elm_run();
 
