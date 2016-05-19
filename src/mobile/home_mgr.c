@@ -132,12 +132,21 @@ void home_mgr_open_home(const char *appid)
 {
 	char *home_appid = NULL;
 
+#ifndef TIZEN_BUILD_TARGET_64
 	if (!appid) {
 		home_appid = status_active_get()->setappl_selected_package_name;
 	} else {
 		home_appid = (char *) appid;
 	}
 	ret_if(!home_appid);
+#else
+	/*
+	 * If the architecture is 64bit,
+	 * starter will launch menu-screen only.
+	 */
+	_D("64bit binary : menu-screen will be launched.");
+	home_appid = MENU_SCREEN_PKG_NAME;
+#endif
 
 	process_mgr_must_launch(home_appid, SERVICE_OPERATION_MAIN_KEY, SERVICE_OPERATION_MAIN_VALUE, _change_home_cb, _after_launch_home);
 }
@@ -438,9 +447,11 @@ static int _power_off_cb(status_active_key_e key, void *data)
 
 static Eina_Bool _launch_apps_idler_cb(void *data)
 {
+#ifndef TIZEN_BUILD_TARGET_64
 	process_mgr_must_syspopup_launch(SYSPOPUPID_VOLUME, NULL, NULL, NULL, _after_launch_volume);
 	process_mgr_must_launch(APPID_INDICATOR, NULL, NULL, NULL, _after_launch_indicator);
 	process_mgr_must_launch(APPID_QUICKPANEL, NULL, NULL, NULL, _after_launch_quickpanel);
+#endif
 
 	return ECORE_CALLBACK_CANCEL;
 }
