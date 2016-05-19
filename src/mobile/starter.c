@@ -193,6 +193,7 @@ static int _set_i18n(const char *domain, const char *dir)
 
 static int _check_dead_signal(int pid, void *data)
 {
+#ifndef TIZEN_BUILD_TARGET_64
 	int home_pid = 0;
 	int volume_pid = 0;
 	int indicator_pid = 0;
@@ -206,6 +207,10 @@ static int _check_dead_signal(int pid, void *data)
 		return 0;
 	}
 
+	/*
+	 * If the architecture is not 64bit,
+	 * starter try to re-launch these apps when the app is dead.
+	 */
 	home_pid = home_mgr_get_home_pid();
 	volume_pid = home_mgr_get_volume_pid();
 	indicator_pid = home_mgr_get_indicator_pid();
@@ -230,6 +235,14 @@ static int _check_dead_signal(int pid, void *data)
 	} else {
 		_D("Unknown process, ignore it");
 	}
+#else
+	_D("Process %d is termianted", pid);
+
+	if (pid < 0) {
+		_E("pid : %d", pid);
+		return 0;
+	}
+#endif
 
 	return 0;
 }
@@ -269,6 +282,7 @@ static void _init(struct appdata *ad)
 	status_register();
 	status_active_register_cb(STATUS_ACTIVE_KEY_SYSMAN_POWER_OFF_STATUS, _power_off_cb, NULL);
 
+#ifndef TIZEN_BUILD_TARGET_64
 	/*
 	 * If 'VCONFKEY_BOOT_ANIMATION_FINISHED' is already 1,
 	 * it is not necessary to register vconfkey callback function.
@@ -285,6 +299,7 @@ static void _init(struct appdata *ad)
 
 		status_active_register_cb(STATUS_ACTIVE_KEY_BOOT_ANIMATION_FINISHED, _boot_animation_finished_cb, NULL);
 	}
+#endif
 
 	hw_key_create_window();
 	home_mgr_init(NULL);
