@@ -49,6 +49,7 @@
 
 
 
+#ifndef TIZEN_BUILD_TARGET_64
 static void _hide_home(void)
 {
 	int seq = status_active_get()->starter_sequence;
@@ -63,6 +64,7 @@ static void _show_home(void)
 {
 	vconf_set_int(VCONFKEY_STARTER_SEQUENCE, 1);
 }
+#endif
 
 
 
