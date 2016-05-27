@@ -49,6 +49,7 @@
 
 
 
+#ifndef TIZEN_BUILD_TARGET_64
 static void _hide_home(void)
 {
 	int seq = status_active_get()->starter_sequence;
@@ -63,6 +64,7 @@ static void _show_home(void)
 {
 	vconf_set_int(VCONFKEY_STARTER_SEQUENCE, 1);
 }
+#endif
 
 
 
@@ -238,9 +240,17 @@ static int _check_dead_signal(int pid, void *data)
 #else
 	_D("Process %d is termianted", pid);
 
+	int home_pid = 0;
+
 	if (pid < 0) {
 		_E("pid : %d", pid);
 		return 0;
+	}
+
+	home_pid = home_mgr_get_home_pid();
+	if (pid == home_pid) {
+		_D("Homescreen is dead");
+		home_mgr_relaunch_homescreen();
 	}
 #endif
 
