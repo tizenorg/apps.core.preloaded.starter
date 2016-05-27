@@ -49,6 +49,7 @@
 
 
 
+#ifndef TIZEN_BUILD_TARGET_64
 static void _hide_home(void)
 {
 	int seq = status_active_get()->starter_sequence;
@@ -63,6 +64,7 @@ static void _show_home(void)
 {
 	vconf_set_int(VCONFKEY_STARTER_SEQUENCE, 1);
 }
+#endif
 
 
 
@@ -120,6 +122,7 @@ static int _power_off_cb(status_active_key_e key, void *data)
 
 
 
+#ifndef TIZEN_BUILD_TARGET_64
 static int _boot_animation_finished_cb(status_active_key_e key, void *data)
 {
 	int val = status_active_get()->boot_animation_finished;
@@ -132,6 +135,7 @@ static int _boot_animation_finished_cb(status_active_key_e key, void *data)
 
 	return 1;
 }
+#endif
 
 
 
@@ -316,7 +320,9 @@ static void _fini(struct appdata *ad)
 	lock_mgr_daemon_end();
 
 	status_active_unregister_cb(STATUS_ACTIVE_KEY_SYSMAN_POWER_OFF_STATUS, _power_off_cb);
+#ifndef TIZEN_BUILD_TARGET_64
 	status_active_unregister_cb(STATUS_ACTIVE_KEY_BOOT_ANIMATION_FINISHED, _boot_animation_finished_cb);
+#endif
 	status_unregister();
 
 	if (vconf_ignore_key_changed(VCONFKEY_LANGSET, _language_changed_cb) < 0) {

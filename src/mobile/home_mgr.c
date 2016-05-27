@@ -215,12 +215,14 @@ static int _show_home_cb(status_active_key_e key, void *data)
 static int _change_selected_package_name(status_active_key_e key, void *data)
 {
 	char *appid = NULL;
+#ifndef TIZEN_BUILD_TARGET_64
 	int seq = status_active_get()->starter_sequence;
 
 	if (seq < 1) {
 		_E("Sequence is not ready yet, do nothing");
 		return 1;
 	}
+#endif
 
 	_D("_change_selected_package_name is invoked");
 
