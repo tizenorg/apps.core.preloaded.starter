@@ -282,7 +282,6 @@ static void _init(struct appdata *ad)
 	status_register();
 	status_active_register_cb(STATUS_ACTIVE_KEY_SYSMAN_POWER_OFF_STATUS, _power_off_cb, NULL);
 
-#ifndef TIZEN_BUILD_TARGET_64
 	/*
 	 * If 'VCONFKEY_BOOT_ANIMATION_FINISHED' is already 1,
 	 * it is not necessary to register vconfkey callback function.
@@ -299,7 +298,6 @@ static void _init(struct appdata *ad)
 
 		status_active_register_cb(STATUS_ACTIVE_KEY_BOOT_ANIMATION_FINISHED, _boot_animation_finished_cb, NULL);
 	}
-#endif
 
 	hw_key_create_window();
 	home_mgr_init(NULL);

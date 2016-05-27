@@ -144,7 +144,7 @@ void home_mgr_open_home(const char *appid)
 	 * If the architecture is 64bit,
 	 * starter will launch menu-screen only.
 	 */
-	_D("64bit binary : menu-screen will be launched.");
+	_D("[64bit] menu-screen will be launched.");
 	home_appid = MENU_SCREEN_PKG_NAME;
 #endif
 
