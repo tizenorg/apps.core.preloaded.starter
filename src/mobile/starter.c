@@ -336,6 +336,7 @@ int main(int argc, char *argv[])
 
 	_D("starter is launched..!!");
 
+	setenv("ELM_THEME", NULL, 1);
 	elm_init(argc, argv);
 	_init(&ad);
 
