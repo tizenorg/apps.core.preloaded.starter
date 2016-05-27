@@ -236,7 +236,7 @@ static int _check_dead_signal(int pid, void *data)
 		_D("Unknown process, ignore it");
 	}
 #else
-	_D("Process %d is termianted", pid);
+	_D("[64bit] Process %d is termianted", pid);
 
 	if (pid < 0) {
 		_E("pid : %d", pid);
@@ -303,6 +303,10 @@ static void _init(struct appdata *ad)
 
 	hw_key_create_window();
 	home_mgr_init(NULL);
+
+#if TIZEN_BUILD_TARGET_64
+	_show_home();
+#endif
 
 	aul_listen_app_dead_signal(_check_dead_signal, NULL);
 }
