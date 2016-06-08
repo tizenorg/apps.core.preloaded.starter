@@ -1,57 +1,8 @@
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "Залишилась 1 спроба."
-
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "%d спроби залишилось."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Хибний пароль."
-
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "Неможливо запустити %s."
 
 msgid "IDS_COM_BUTTON_OK_ABB"
 msgstr "ОК"
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "Хибний PIN."
-
-msgid "IDS_COM_BODY_ENTER_PIN"
-msgstr "Введіть PIN."
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Введіть пароль."
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "Кількість невдалих спроб розблокування пристрою: %1$d. Залишилася %2$d спроб, перш ніж установки пристрою буде скинуто до стандартних заводських значень, а всі дані видалено."
-
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "Повт.спробу через %d сек."
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
-msgstr "Введіть PIN-код, щоб переглянути повідомлення"
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
-msgstr "Введіть PIN-код, щоб переглянути журнал викликів"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "Кількість невдалих спроб розблокування пристрою: %d. Установки буде скинуто до заводських та усі дані буде стерто"
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "Потрібно ввести від %1$d до %2$d цифр або літер."
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Екстрений виклик"
-
 msgid "IDS_COM_POP_WARNING"
 msgstr "Попередження"
-
-msgid "IDS_COM_BUTTON_CANCEL"
-msgstr "Скасувати"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
-msgstr "Здійснено %1$d невдалих спроб розблокування пристрою. Спробуйте ще раз через %2$d сек."
-
-msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
-msgstr "Неможливо розблокувати екран"
-

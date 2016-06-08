@@ -1,57 +1,8 @@
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "1 cəhd qalmışdır."
-
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "%d cəhd qalıb."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Yanlış şifrə."
-
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "%s-ə başlamaq mümkün deyildir."
 
 msgid "IDS_COM_BUTTON_OK_ABB"
 msgstr "OK"
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "Yanlış PIN."
-
-msgid "IDS_COM_BODY_ENTER_PIN"
-msgstr "PIN daxil et."
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Kodu daxil et."
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "Siz %1$d dəfə cihazın kilidini səhv açmağa cəhd etmisiniz. Sizin cihazın defolt parametrlərinə bərpa edilməsi və bütün məlumatların silinməsi üçün %2$d cəhdiniz qalır."
-
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "%d saniyə yenidən cəhd et."
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
-msgstr "Mesaja baxmaq üçün PIN daxil et"
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
-msgstr "Zəng jurnalına baxmaq üçün PIN daxil et"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "Siz %d dəfə cihazın kilidini səhv açmağa cəhd etmisiniz. Bu, zavod parametrlərinə bərpa edəcək və bütün məlumatlar silinəcək"
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "%1$d - %2$d rəqəm və ya hərf tələb olunur."
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Təcili zəng"
-
 msgid "IDS_COM_POP_WARNING"
 msgstr "Xəbərdarlıq"
-
-msgid "IDS_COM_BUTTON_CANCEL"
-msgstr "Ləğv et"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
-msgstr "Siz cihazı kiliddən açmaq üçün %1$d dəfə uğursuz cəhd etmisiniz. %2$d saniyə ərzində yenidən cəhd edin."
-
-msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
-msgstr "Ekr kilid açmaq müm olm"
-

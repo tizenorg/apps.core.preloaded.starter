@@ -48,7 +48,6 @@ pkg_check_modules(pkgs REQUIRED
 	dbus-glib-1
 	tts
 	capi-message-port
-	security-manager
 	efl-extension
 )
 
@@ -91,7 +90,6 @@ pkg_check_modules(pkgs REQUIRED
 	dbus-glib-1
 	tts
 	capi-message-port
-	security-manager
 	efl-extension
 )
 
@@ -172,7 +170,6 @@ pkg_check_modules(pkgs REQUIRED
 	dbus-glib-1
 	tts
 	capi-message-port
-	security-manager
 	efl-extension
 )
 
@@ -247,13 +244,8 @@ SET(BUILD_SOURCE
 	src/status.c
 
 	src/mobile/home_mgr.c
-	src/mobile/starter.c
 	src/mobile/lock_mgr.c
-	src/mobile/lock_pwd_util.c
-	src/mobile/lock_pwd_simple.c
-	src/mobile/lock_pwd_complex.c
-	src/mobile/lock_pwd_control_panel.c
-	src/mobile/lock_pwd_verification.c
+	src/mobile/starter.c
 	src/mobile/window_mgr.c
 	src/mobile/popup.c
 	src/mobile/hw_key.c
@@ -305,5 +297,4 @@ INSTALL(FILES ${CMAKE_SOURCE_DIR}/rd3starter DESTINATION /etc/init.d
 		GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 #INSTALL to /etc/init.d
 
-ADD_SUBDIRECTORY(res)
 ADD_SUBDIRECTORY(po)

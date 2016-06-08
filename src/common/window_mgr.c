@@ -144,51 +144,6 @@ int window_mgr_get_focus_window_pid(void)
 
 
 
-static void _pwd_transient_set(Ecore_X_Window win, Ecore_X_Window for_win)
-{
-	_W("%p is transient for %p", win, for_win);
-
-	ecore_x_icccm_transient_for_set(win, for_win);
-}
-
-
-
-static void _pwd_transient_unset(Ecore_X_Window xwin)
-{
-	ret_if(!xwin);
-
-	_W("%p is not transient", xwin);
-	ecore_x_icccm_transient_for_unset(xwin);
-}
-
-
-
-Eina_Bool window_mgr_pwd_transient_set(void *data)
-{
-	Evas_Object *pwd_win = NULL;
-	Ecore_X_Window pwd_x_win;
-	lockw_data *lockw = (lockw_data *) data;
-	retv_if(!lockw, EINA_FALSE);
-
-	pwd_win = lock_pwd_util_win_get();
-	retv_if(!pwd_win, EINA_FALSE);
-
-	pwd_x_win = elm_win_xwindow_get(pwd_win);
-	retv_if(!pwd_x_win, EINA_FALSE);
-
-	retv_if(!lockw->lock_x_window, EINA_FALSE);
-
-	/* unset transient */
-	_pwd_transient_unset(lockw->lock_x_window);
-
-	/* set transient */
-	_pwd_transient_set(lockw->lock_x_window, pwd_x_win);
-
-	return EINA_TRUE;
-}
-
-
-
 Eina_Bool window_mgr_set_prop(lockw_data * data, int lock_app_pid, void *event)
 {
 	Ecore_X_Event_Window_Create *e = event;
@@ -214,12 +169,6 @@ Eina_Bool window_mgr_set_prop(lockw_data * data, int lock_app_pid, void *event)
 			ecore_x_netwm_window_type_set(user_window, ECORE_X_WINDOW_TYPE_NOTIFICATION);
 			utilx_set_system_notification_level(ecore_x_display_get(), user_window, UTILX_NOTIFICATION_LEVEL_NORMAL);
 			utilx_set_window_opaque_state(ecore_x_display_get(), user_window, UTILX_OPAQUE_STATE_ON);
-
-			/* set transient */
-			if (!window_mgr_pwd_transient_set(lockw)) {
-				_E("Failed to set transient");
-			}
-
 			return EINA_TRUE;
 		}
 	}
@@ -310,9 +259,6 @@ void window_mgr_register_event(void *data, lockw_data * lockw,
 static inline void _unregister_event(lockw_data *lockw)
 {
 	Ecore_X_Window root_window;
-
-	/* unset transient */
-	_pwd_transient_unset(lockw->lock_x_window);
 
 	/* delete getting window x event */
 	root_window = ecore_x_window_root_first_get();

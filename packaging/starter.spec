@@ -30,19 +30,16 @@ BuildRequires:  pkgconfig(capi-system-system-settings)
 BuildRequires:  tts
 BuildRequires:  tts-devel
 BuildRequires:  pkgconfig(capi-message-port)
-BuildRequires:  pkgconfig(security-manager)
 BuildRequires:  pkgconfig(efl-extension)
 %else if "%{profile}" == "mobile"
 BuildRequires:  tts
 BuildRequires:  tts-devel
 BuildRequires:  pkgconfig(capi-message-port)
-BuildRequires:  pkgconfig(security-manager)
 BuildRequires:  pkgconfig(efl-extension)
 %else if "%{profile}" == "ivi"
 BuildRequires:  tts
 BuildRequires:  tts-devel
 BuildRequires:  pkgconfig(capi-message-port)
-BuildRequires:  pkgconfig(security-manager)
 BuildRequires:  pkgconfig(efl-extension)
 %endif
 
@@ -195,7 +192,3 @@ sync
 /usr/share/license/%{name}
 /opt/data/home-daemon
 /usr/share/locale/*/LC_MESSAGES/*
-
-%if "%{profile}" == "mobile"
-/usr/share/starter/res/edje/*
-%endif

@@ -60,6 +60,10 @@
 #define _D(fmt, arg...) LOGD("[%s:%d] "fmt"\n", __func__, __LINE__, ##arg)
 #endif
 
+#if !defined(_I)
+#define _I(fmt, arg...) LOGI("[%s:%d] "fmt"\n", __func__, __LINE__, ##arg)
+#endif
+
 #if !defined(_E)
 #define _E(fmt, arg...) LOGE("[%s:%d] "fmt"\n", __func__, __LINE__, ##arg)
 #endif
@@ -70,6 +74,10 @@
 
 #if !defined(_SECURE_D)
 #define _SECURE_D(fmt, arg...) SECURE_LOGD("[%s:%d] "fmt"\n", __func__, __LINE__, ##arg)
+#endif
+
+#if !defined(_SECURE_I)
+#define _SECURE_I(fmt, arg...) SECURE_LOGI("[%s:%d] "fmt"\n", __func__, __LINE__, ##arg)
 #endif
 
 #if !defined(_SECURE_E)

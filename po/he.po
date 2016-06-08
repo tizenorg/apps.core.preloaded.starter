@@ -1,57 +1,8 @@
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "נותר 1 ניסיון."
-
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "נותרו %d ניסיונות."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "סיסמה שגויה."
-
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "לא ניתן להפעיל את %s."
 
 msgid "IDS_COM_BUTTON_OK_ABB"
 msgstr "אישור"
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "קוד PIN שגוי."
-
-msgid "IDS_COM_BODY_ENTER_PIN"
-msgstr "הזן PIN."
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "הזן סיסמה."
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "ביצעת %1$d ניסיונות שגויים לבטל את נעילת המכשיר. לרשותך עוד %2$d ניסיונות לפני איפוס המכשיר לערכי ברירת המחדל של היצרן ומחיקת כל הנתונים."
-
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "נסה שוב בעוד %d שניות."
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
-msgstr "הזן קוד PIN כדי להציג הודעה"
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
-msgstr "הזן קוד PIN כדי להציג יומן שיחות"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "ניסית לבטל את נעילת המכשיר באופן שגוי %d פעמים. הוא יאופס כעת לברירות המחדל של היצרן וכל הנתונים יימחקו."
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "יש צורך ב-%1$d עד %2$d ספרות או אותיות."
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "שיחת חירום"
-
 msgid "IDS_COM_POP_WARNING"
 msgstr "אזהרה"
-
-msgid "IDS_COM_BUTTON_CANCEL"
-msgstr "ביטול"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
-msgstr "ביצעת %1$d ניסיונות כושלים לביטול נעילת המכשיר שלך. נסה שוב בעוד %2$d שניות."
-
-msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
-msgstr "לא ניתן לבטל נעילת מסך"
-

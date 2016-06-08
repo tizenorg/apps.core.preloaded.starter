@@ -1,57 +1,8 @@
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "1 tilraun eftir."
-
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "%d tilraunir eftir."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Rangt aðgangsorð."
-
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "Mistókst að opna %s."
 
 msgid "IDS_COM_BUTTON_OK_ABB"
 msgstr "Í lagi"
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "Rangt PIN-númer."
-
-msgid "IDS_COM_BODY_ENTER_PIN"
-msgstr "Sláðu inn PIN-númeri."
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Rita aðgangsorð."
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "Þú hefur reynt að opna tækið á rangan hátt %1$d sinnum. Þú átt %2$d tilraunir eftir áður en tækið verður núllstillt og öllum gögnum þess eytt."
-
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "Reyndu aftur eftir %d sek."
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
-msgstr "Sláðu inn PIN-númer til að skoða skilaboð"
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
-msgstr "Sláðu inn PIN-númer til að skoða símtalaskrá"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "Þú hefur reynt að opna tækið á rangan hátt %d sinnum. Það verður nú endurstillt á grunnstillingar framleiðanda og öllum gögnum verður eytt."
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "Slá þarf inn %1$d til %2$d stafi."
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Neyðarhringing"
-
 msgid "IDS_COM_POP_WARNING"
 msgstr "Viðvörun"
-
-msgid "IDS_COM_BUTTON_CANCEL"
-msgstr "Hætta v."
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
-msgstr "Þú hefur gert %1$d misheppnaðar tilraunir til að opna tækið. Reyndu aftur eftir %2$d sekúndur."
-
-msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
-msgstr "Ekki er hægt að opna skjá"
-

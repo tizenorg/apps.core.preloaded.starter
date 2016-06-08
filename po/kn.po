@@ -1,57 +1,8 @@
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "1 ಪ್ರಯತ್ನ ಉಳಿದಿದೆ."
-
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "%d ಪ್ರಯತ್ನಗಳು ಉಳಿದಿವೆ."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "ತಪ್ಪಾದ ಪಾಸ್‌ವರ್ಡ್."
-
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "%s ಪ್ರಾರಂಭಿಸಲಾಗಲಿಲ್ಲ."
 
 msgid "IDS_COM_BUTTON_OK_ABB"
 msgstr "ಓಕೆ"
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "PIN ತಪ್ಪಾಗಿದೆ."
-
-msgid "IDS_COM_BODY_ENTER_PIN"
-msgstr "PIN ನಮೂದಿಸಿ."
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ."
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "ನೀವು ಸಾಧನವನ್ನು ತಪ್ಪಾಗಿ %1$d ಸಲ ಅನ್‌ಲಾಕ್ ಮಾಡಲು ಯತ್ನಿಸಿದ್ದೀರಿ. ಸಾಧನವನ್ನು ಫ್ಯಾಕ್ಟರಿ ಡೀಫಾಲ್ಟ್‌ಗಳಿಗೆ ಮರುನಿಗದಿಗೊಳಿಸುವುದು ಮತ್ತು ಎಲ್ಲ ಡೇಟಾವು ಅಳಿಸಿಹೋಗುವ ಮೊದಲು ನಿಮಗೆ %2$d ಪ್ರಯತ್ನಗಳು ಉಳಿದಿವೆ."
-
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "%d ಸೆಕೆಂಡುಗಳಲ್ಲಿ ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ."
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
-msgstr "ಸಂದೇಶವನ್ನು ವೀಕ್ಷಿಸಲು PIN ನಮೂದಿಸಿ"
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
-msgstr "ಕರೆ ಲಾಗ್ ವೀಕ್ಷಿಸಲು PIN ನಮೂದಿಸಿ"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "ನೀವು %d ಸಲ ಸಾಧನವನ್ನು ತಪ್ಪಾಗಿ ಅನ್‌ಲಾಕ್ ಮಾಡುವುದಕ್ಕೆ ಪ್ರಯತ್ನಿಸಿರುತ್ತೀರಿ. ಇದನ್ನು ಈಗ ಫ್ಯಾಕ್ಟರಿ ಡೀಫಾಲ್ಟ್‌ಗಳಿಗೆ ಮರುನಿಗದಿಗೊಳಿಸಲಾಗುವುದು ಮತ್ತು ಎಲ್ಲ ಡೇಟಾವನ್ನು ಅಳಿಸಲಾಗುವುದು"
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "%1$d ರಿಂದ %2$d ಅಂಕಿಗಳು ಅಥವಾ ಅಕ್ಷರಗಳು ಅಗತ್ಯವಿರುತ್ತವೆ."
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "ತುರ್ತು ಕರೆ"
-
 msgid "IDS_COM_POP_WARNING"
 msgstr "ಎಚ್ಚರಿಕೆ"
-
-msgid "IDS_COM_BUTTON_CANCEL"
-msgstr "ರದ್ದು"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
-msgstr "ನಿಮ್ಮ ಸಾಧನವನ್ನು ಅನ್‌ಲಾಕ್ ಮಾಡಲು ನೀವು %1$d ಯಶಸ್ವಿಯಾಗದ ಪ್ರಯತ್ನಗಳನ್ನು ಮಾಡಿದ್ದೀರಿ. %2$d ಸೆಕೆಂಡುಗಳಲ್ಲಿ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
-
-msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
-msgstr "ಸ್ಕ್ರೀನ್ ಅನ್‌ಲಾಕ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ"
-

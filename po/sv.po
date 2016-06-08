@@ -1,57 +1,8 @@
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "1 försök kvar."
-
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "%d försök kvar."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Fel lösenord."
-
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "Kan inte starta %s."
 
 msgid "IDS_COM_BUTTON_OK_ABB"
 msgstr "OK"
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "Fel PIN-kod."
-
-msgid "IDS_COM_BODY_ENTER_PIN"
-msgstr "Ange PIN."
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Ange lösenord."
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "Du har försökt låsa upp enheten på fel sätt %1$d gånger. Du har %2$d försök kvar innan enheten återställs till fabriksinställningar och alla data raderas."
-
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "Försök igen om %d sek."
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
-msgstr "Ange PIN-koden för att visa meddelandet"
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
-msgstr "Ange PIN-koden för att visa samtalsloggen"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "Du har försökt att låsa upp enheten felaktigt %d gånger. Enheten kommer nu att återställas till fabriksinställningarna och alla data kommer att raderas."
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "%1$d till %2$d siffror eller bokstäver krävs."
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Nödsamtal"
-
 msgid "IDS_COM_POP_WARNING"
 msgstr "Varning"
-
-msgid "IDS_COM_BUTTON_CANCEL"
-msgstr "Avbryt"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
-msgstr "Du har gjort %1$d misslyckade försök att låsa upp enheten. Försök igen om %2$d sekunder."
-
-msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
-msgstr "Kan inte låsa upp skärmen"
-

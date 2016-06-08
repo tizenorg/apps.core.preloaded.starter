@@ -1,57 +1,8 @@
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "Απομένει 1 προσπάθεια."
-
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "%d προσπάθειες απομένουν."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Λάθος κωδικός."
-
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "Αδύνατη η εκκίνηση του %s."
 
 msgid "IDS_COM_BUTTON_OK_ABB"
 msgstr "OK"
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "Λανθασμένο PIN κλειδώματος"
-
-msgid "IDS_COM_BODY_ENTER_PIN"
-msgstr "Εισαγωγή PIN κλειδώματος."
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Εισαγωγή κωδικού."
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "Έχετε επιχειρήσει να ξεκλειδώσετε τη συσκευή %1$d φορές εσφαλμένα. Έχουν απομείνει %2$d προσπάθειες μέχρι την επαναφορά των εργοστασιακών ρυθμίσεων και τη διαγραφή όλων των δεδομένων της συσκευής"
-
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "Δοκιμ. ξανά σε %d δευτ."
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
-msgstr "Καταχώριση PIN για προβολή του μηνύματος"
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
-msgstr "Καταχώριση PIN για προβολή του αρχείου κλήσεων"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "Έχετε επιχειρήσει να ξεκλειδώσετε τη συσκευή %d φορές εσφαλμένα. Θα γίνει επαναφορά των εργοστασιακών ρυθμίσεων όλα τα δεδομένα θα διαγραφούν."
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "Απαιτούνται από %1$d έως %2$d ψηφία ή γράμματα."
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Κλήση έκτακτης ανάγκης"
-
 msgid "IDS_COM_POP_WARNING"
 msgstr "Προειδοποίηση"
-
-msgid "IDS_COM_BUTTON_CANCEL"
-msgstr "Ακύρωση"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
-msgstr "Προσπαθήσατε %1$d φορές να ξεκλειδώσετε τη συσκευή σας χωρίς επιτυχία. Δοκιμάστε ξανά σε %2$d δευτερόλεπτα."
-
-msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
-msgstr "Ξεκλείδωμα οθόνης μη δυνατό"
-

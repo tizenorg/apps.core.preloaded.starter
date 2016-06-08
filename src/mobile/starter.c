@@ -30,8 +30,6 @@
 
 #include "starter.h"
 #include "lock_mgr.h"
-#include "lock_pwd_util.h"
-#include "lock_pwd_control_panel.h"
 #include "home_mgr.h"
 #include "hw_key.h"
 #include "process_mgr.h"
@@ -147,9 +145,6 @@ static void _language_changed_cb(keynode_t *node, void *data)
 	_D("language is changed : %s", lang);
 
 	elm_language_set(lang);
-
-	lock_pwd_util_view_init();
-	lock_pwd_control_panel_emg_btn_text_update();
 }
 
 
