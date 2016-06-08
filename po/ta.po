@@ -1,57 +1,8 @@
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "1 முயற்சி மீதம்."
-
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "மேலும் %d முயற்சிகள் உள்ளன."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "கடவுச்சொல் தவறு."
-
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "%s ஐ தொடங்க முடியவில்லை."
 
 msgid "IDS_COM_BUTTON_OK_ABB"
 msgstr "சரி"
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "தவறான PIN."
-
-msgid "IDS_COM_BODY_ENTER_PIN"
-msgstr "PIN பதி."
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "கடவுச்சொல் பதிக."
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "நீங்கள் சாதனத்தை பூட்டுநீக்குவதற்கு %1$d முறை தவறாக முயற்சித்துள்ளீர்கள். சாதனம் தயாரிப்பக டீஃபாலட் நிலைகளுக்கு ரீசெட் செய்யப்பட்டு அனைத்து தரவுகளும் அழிக்கப்படுவதற்கு முன் உங்களுக்கு %2$d முயற்சிகள் மீதமுள்ளன."
-
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "%d விநாடி. கழித்து மீ. முயலுக."
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
-msgstr "தகவலைக் காண, PIN உள்ளிடவும்"
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
-msgstr "அழைப்புப் பதிவைக் காண, PIN உள்ளிடவும்"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "சாதனத்தை பூட்டுநீக்க %d முறை தவறாக முயற்சித்துள்ளீர்கள். இது இப்போது தயாரிப்பு நிலைக்கு ரீசெட் செய்யப்பட்டு அனைத்து தரவுகளும் அழிக்கப்படும்"
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "%1$d முதல் %2$d வரையான இலக்கங்கள் அல்லது எழுத்துக்கள் தேவை."
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "அவசர அழைப்பு"
-
 msgid "IDS_COM_POP_WARNING"
 msgstr "எச்சரிக்கை"
-
-msgid "IDS_COM_BUTTON_CANCEL"
-msgstr "ரத்து"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
-msgstr "உங்கள் சாதனத்தைத் திறப்பதற்கு, %1$d வெற்றிபெறாத முயற்சிகளை நீங்கள் செய்துள்ளீர்கள். %2$d வினாடிகளில் மீண்டும் முயற்சிக்கவும்."
-
-msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
-msgstr "திரையைத் திறக்க முடியவில்லை"
-

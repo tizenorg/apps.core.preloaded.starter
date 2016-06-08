@@ -1,57 +1,8 @@
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "剩下一次機會。"
-
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "剩餘 %d 次嘗試機會。"
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "密碼不正確"
-
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "無法啟動 %s。"
 
 msgid "IDS_COM_BUTTON_OK_ABB"
 msgstr "確定"
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "PIN 不正確。"
-
-msgid "IDS_COM_BODY_ENTER_PIN"
-msgstr "輸入PIN"
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "輸入密碼。"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "您已嘗試錯誤解鎖裝置 %1$d 次。僅剩 %2$d 次機會嘗試，否則裝置將重設至原廠預設值且所有資料將被刪除。"
-
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "%d 秒後再試一次。"
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
-msgstr "輸入 PIN 碼以檢視訊息"
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
-msgstr "輸入 PIN 碼以檢視通話記錄"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "您已嘗試錯誤解鎖裝置 %d 次。裝置將設回原廠預設值且所有資料將被清除。"
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "需輸入 %1$d 至 %2$d 位數或字母。"
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "緊急電話"
-
 msgid "IDS_COM_POP_WARNING"
 msgstr "警告"
-
-msgid "IDS_COM_BUTTON_CANCEL"
-msgstr "取消"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
-msgstr "您已嘗試 %1$d 次錯誤的裝置解鎖。請在 %2$d 秒後重試。"
-
-msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
-msgstr "無法解除螢幕鎖定"
-

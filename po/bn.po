@@ -1,57 +1,8 @@
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "1টি চেষ্টা বাকী।"
-
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "%dটি প্রয়াস বাকি।"
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "ভুল পাসওয়ার্ড।"
-
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "%s লঞ্চ করা যায়নি।"
 
 msgid "IDS_COM_BUTTON_OK_ABB"
 msgstr "ওকে"
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "ভুল PIN।"
-
-msgid "IDS_COM_BODY_ENTER_PIN"
-msgstr "PIN লিখুন।"
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "পাসওয়ার্ড লিখুন।"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "আপনি ডিভাইসটি %1$d বার ভুলভাবে আনলক করার প্রয়াস করেছেন। ডিভাইসটি ফ্যাক্টরি ডিফল্টে পুনরায় সেট করার এবং সমস্ত তথ্য মুছে যাওয়ার আগে আপনার আর %2$dটি প্রয়াস অবশিষ্ট রয়েছে।"
-
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "%d সেকেন্ড পরে আবার চেষ্টা করুন।"
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
-msgstr "বার্তা দেখতে PIN লিখুন"
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
-msgstr "কল লগ দেখতে PIN লিখুন"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "আপনি ডিভাইসটি ত্রুটিপূর্ণ উপায়ে %d বার আনলক করার প্রয়াস করেছেন। এটি এখন ফ্যাক্টরি ডিফল্টে পুনরায় সেট হবে এবং সমস্ত তথ্য মুছে যাবে"
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "%1$d থেকে %2$dটি সংখ্যা বা অক্ষর প্রয়োজনীয়।"
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "আপৎকালীন কল"
-
 msgid "IDS_COM_POP_WARNING"
 msgstr "সাবধানতা"
-
-msgid "IDS_COM_BUTTON_CANCEL"
-msgstr "বাতিল"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
-msgstr "আপনার ডিভাইসটি আনলক করতে আপনি %1$dটি অসফল প্রয়াস করেছেন। %2$d সেকেন্ডে পুনরায় চেষ্টা করুন।"
-
-msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
-msgstr "স্ক্রিন আনলক করতে অক্ষম"
-

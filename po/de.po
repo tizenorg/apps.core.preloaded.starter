@@ -1,57 +1,8 @@
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "Noch 1 Versuch"
-
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "%d Versuche übrig"
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Falsches Passwort"
-
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "%s kann nicht gestartet werden"
 
 msgid "IDS_COM_BUTTON_OK_ABB"
 msgstr "OK"
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "Falsche PIN"
-
-msgid "IDS_COM_BODY_ENTER_PIN"
-msgstr "PIN eingeben"
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Passwort eingeben"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "Sie haben %1$d Mal fehlerhaft versucht, das Gerät zu entsperren. Sie haben noch %2$d Versuche. Danach wird das Gerät auf die Werkseinstellungen zurückgesetzt, und alle Daten werden gelöscht."
-
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "In %d s erneut versuchen."
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
-msgstr "Geben Sie die PIN ein, um die Nachricht anzuzeigen."
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
-msgstr "Geben Sie die PIN ein, um das Anrufprotokoll anzuzeigen."
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "Sie haben %d Mal vergeblich versucht, das Gerät zu entsperren. Das Gerät wird jetzt auf die Werkseinstellungen zurückgesetzt und alle Daten gelöscht."
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "Es sind %1$d bis %2$d Ziffern oder Buchstaben erforderlich."
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Notruf"
-
 msgid "IDS_COM_POP_WARNING"
 msgstr "Warnung"
-
-msgid "IDS_COM_BUTTON_CANCEL"
-msgstr "Abbruch"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
-msgstr "Sie haben %1$d Mal vergeblich versucht, das Gerät zu entsperren. Versuchen Sie es in %2$d Sekunden erneut."
-
-msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
-msgstr "Entsperren nicht moglich"
-

@@ -34,6 +34,4 @@ lockw_data *window_mgr_init(void);
 void window_mgr_fini(lockw_data *lockw);
 #endif //HAVE_X11
 
-Evas_Object *window_mgr_pwd_lock_win_create(void);
-
 #endif				/* __WINDOW_MGR_H__ */

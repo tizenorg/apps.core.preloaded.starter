@@ -1,57 +1,8 @@
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "1 attempt left."
-
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "%d urinish qoldi."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Noto‘g‘ri parol."
-
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "%sni ishga tushirib bo‘lmaydi."
 
 msgid "IDS_COM_BUTTON_OK_ABB"
 msgstr "OK"
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "Noto‘g‘ri PIN."
-
-msgid "IDS_COM_BODY_ENTER_PIN"
-msgstr "PIN-kod kiriting."
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Parol kiriting."
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "Siz %1$d marta qurilmani blokdan chiqarishga noto‘g‘ri urindingiz. Yana %2$dta noto‘g‘ri urinishdan so‘ng qurilma ishlab chiqaruvchi parametrlariga qaytariladi va barcha ma’lumotlar o‘chirib tashlanadi."
-
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "%d soniyada qayta urining."
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
-msgstr "Xabarni ko‘rib chiqish uchun PIN-kodni kiriting"
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
-msgstr "Qo‘ng‘iroqlar jurnalini ko‘rish uchun PIN-kodni kiriting"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "Siz %d marta qurilmani blokdan chiqarishga noto‘g‘ri urindingiz. U hozir ishlab chiqaruvchi parametrlariga qaytariladi va barcha ma’lumotlar o‘chirib tashlanadi"
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "%1$d-%2$d raqam yoki harflar talab qilinadi."
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Favqulodda qo‘ng‘iroqlar"
-
 msgid "IDS_COM_POP_WARNING"
 msgstr "Ogohlantirish"
-
-msgid "IDS_COM_BUTTON_CANCEL"
-msgstr "Bekor qilish"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
-msgstr "Qurilmangizni blokdan chiqarish uchun %1$dta noto‘g‘ri urinishni amalga oshirdingiz. %2$d soniyada qayta urinib ko‘ring."
-
-msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
-msgstr "Ekr. blkdan chiqar. bo‘lmaydi"
-

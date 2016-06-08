@@ -1,57 +1,8 @@
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "تتبقى محاولة واحدة."
-
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "محاولات متبقية %d"
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "كلمة مرور غير صحيحة."
-
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "يتعذر بدء %s."
 
 msgid "IDS_COM_BUTTON_OK_ABB"
 msgstr "موافق"
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "خطأ  PIN."
-
-msgid "IDS_COM_BODY_ENTER_PIN"
-msgstr "أدخل PIN."
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "أدخل كلمة المرور."
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "لقد حاولت إلغاء قفل الجهاز %1$d من المرات بطريقة غير صحيحة. تبقّت لك %2$d من المحاولات قبل إعادة تعيين الجهاز إلى ضبط المصنع الافتراضي ومسح جميع البيانات."
-
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "أعد المحاولة خلال %d ثوان."
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
-msgstr "إدخال رقم PIN لعرض الرسالة"
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
-msgstr "إدخال رقم PIN لعرض سجل المكالمات"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "لقد حاولت إلغاء قفل الجهاز %d مرات بطريقة غير صحيحة. سوف تتم الآن إعادة تعيين الجهاز إلى إعدادات المصنع الافتراضية وسيتم مسح جميع البيانات."
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "يلزم إدخال %1$d إلى %2$d أرقام أو حروف."
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "مكالمة طوارئ"
-
 msgid "IDS_COM_POP_WARNING"
 msgstr "تحذير"
-
-msgid "IDS_COM_BUTTON_CANCEL"
-msgstr "إلغاء"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
-msgstr "لقد أجريت %1$d من المحاولات غير الناجحة لإلغاء قفل جهازك. حاول مرة أخرى خلال %2$d من الثواني."
-
-msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
-msgstr "يتعذر إلغاء قفل الشاشة"
-

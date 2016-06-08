@@ -37,7 +37,6 @@
 #include "lock_mgr.h"
 #include "status.h"
 #include "process_mgr.h"
-#include "lock_pwd_util.h"
 
 #define APPID_CAMERA "org.tizen.camera-app"
 #define APPID_CALLLOG "org.tizen.calllog"
@@ -232,7 +231,6 @@ static Eina_Bool _key_release_cb(void *data, int type, void *event)
 		&& (status_active_get()->setappl_screen_lock_type_int > SETTING_SCREEN_LOCK_TYPE_NONE)) {
 		if (!strcmp(ev->keyname, KEY_BACK)) {
 			_D("Back key is released");
-			lock_pwd_util_back_key_relased();
 		} else {
 			_D("phone lock state, ignore home key.");
 		}
@@ -511,7 +509,6 @@ void hw_key_destroy_window(void)
 #include "lock_mgr.h"
 #include "status.h"
 #include "process_mgr.h"
-#include "lock_pwd_util.h"
 
 #define APPID_CAMERA "org.tizen.camera-app"
 #define APPID_CALLLOG "org.tizen.calllog"
@@ -746,7 +743,6 @@ static Eina_Bool _key_release_cb(void *data, int type, void *event)
 		&& (status_active_get()->setappl_screen_lock_type_int > SETTING_SCREEN_LOCK_TYPE_NONE)) {
 		if (!strcmp(ev->keyname, key_name[KEY_BACK])) {
 			_D("Back key is released");
-			lock_pwd_util_back_key_relased();
 		} else {
 			_D("phone lock state, ignore home key.");
 		}

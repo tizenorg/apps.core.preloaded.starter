@@ -1,57 +1,8 @@
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "1 forsøg tilbage."
-
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "%d forsøg tilbage."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Forkert adgangskode."
-
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "Kunne ikke starte %s."
 
 msgid "IDS_COM_BUTTON_OK_ABB"
 msgstr "OK"
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "Forkert PIN-kode."
-
-msgid "IDS_COM_BODY_ENTER_PIN"
-msgstr "Angiv PIN-kode."
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Angiv adgangskode."
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "Du har brugt %1$d forkerte forsøg på at oplåse enheden. Du har %2$d forsøg tilbage, før enheden nulstilles til fabriksstandarderne, og alle data slettes."
-
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "Prøv igen om %d sekunder."
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
-msgstr "Angiv PIN-kode for at se besked"
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
-msgstr "Angiv PIN-kode for at se opkaldslog"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "Du har forgæves forsøgt at låse enheden op %d gange. Den nulstilles nu til fabriksstandarderne, og alle data slettes."
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "%1$d til %2$d cifre eller bogstaver krævet."
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Nødopkald"
-
 msgid "IDS_COM_POP_WARNING"
 msgstr "Advarsel"
-
-msgid "IDS_COM_BUTTON_CANCEL"
-msgstr "Annullér"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
-msgstr "Du har foretaget %1$d mislykkede forsøg på at låse din enhed op. Prøv igen om %2$d sekunder."
-
-msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
-msgstr "Kan ikke låse skærmen op"
-

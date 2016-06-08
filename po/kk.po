@@ -1,57 +1,8 @@
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "1 әрекет қалды."
-
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "%d әрекеттену аяқталды."
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "Қате кілтсөз."
-
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "%s іске қосу мүмкін емес."
 
 msgid "IDS_COM_BUTTON_OK_ABB"
 msgstr "OK"
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "Қате PIN."
-
-msgid "IDS_COM_BODY_ENTER_PIN"
-msgstr "PIN енгізу."
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "Кілтсөз енгізіңіз."
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "Құрылғының құлпын ашуда %1$d рет қателестіңіз. Құрылғының зауыттық параметрлері қалпына келтіріліп, барлық деректердің өшірілуінен бұрын %2$d талпынысыңыз қалды."
-
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "%d сек кейін қайталаңыз."
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
-msgstr "Хабарды көру үшін, PIN кодын енгізу"
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
-msgstr "Қоңыраулар журналын көру үшін, PIN кодын енгізу"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "%d рет дұрыс емес құрылғының құлпын ашу әрекетін жасадыңыз. Зауыттық әдепкі параметрлер қалпына келтіріліп, бүкіл деректер өшіріледі"
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "%1$d-%2$d сан немесе әріп талап етіледі."
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "Шұғыл қоңырау шалу"
-
 msgid "IDS_COM_POP_WARNING"
 msgstr "Ескерту"
-
-msgid "IDS_COM_BUTTON_CANCEL"
-msgstr "Тоқтату"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
-msgstr "Құрылғы құлпын ашу үшін, %1$d рет сәтсіз әрекет жасалды. Әрекетті %2$d секундтан кейін қайталаңыз."
-
-msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
-msgstr "Экран құлпын ашу мүмкін емес"
-

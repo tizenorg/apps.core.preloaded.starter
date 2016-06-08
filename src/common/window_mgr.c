@@ -163,32 +163,6 @@ static void _pwd_transient_unset(Ecore_X_Window xwin)
 
 
 
-Eina_Bool window_mgr_pwd_transient_set(void *data)
-{
-	Evas_Object *pwd_win = NULL;
-	Ecore_X_Window pwd_x_win;
-	lockw_data *lockw = (lockw_data *) data;
-	retv_if(!lockw, EINA_FALSE);
-
-	pwd_win = lock_pwd_util_win_get();
-	retv_if(!pwd_win, EINA_FALSE);
-
-	pwd_x_win = elm_win_xwindow_get(pwd_win);
-	retv_if(!pwd_x_win, EINA_FALSE);
-
-	retv_if(!lockw->lock_x_window, EINA_FALSE);
-
-	/* unset transient */
-	_pwd_transient_unset(lockw->lock_x_window);
-
-	/* set transient */
-	_pwd_transient_set(lockw->lock_x_window, pwd_x_win);
-
-	return EINA_TRUE;
-}
-
-
-
 Eina_Bool window_mgr_set_prop(lockw_data * data, int lock_app_pid, void *event)
 {
 	Ecore_X_Event_Window_Create *e = event;

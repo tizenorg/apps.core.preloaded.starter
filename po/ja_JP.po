@@ -1,57 +1,8 @@
-msgid "IDS_IDLE_BODY_1_ATTEMPT_LEFT"
-msgstr "残りの試行回数は1回です。"
-
-msgid "IDS_IDLE_BODY_PD_ATTEMPTS_LEFT"
-msgstr "残り入力回数：%d回"
-
-msgid "IDS_IDLE_BODY_INCORRECT_PASSWORD"
-msgstr "パスワードが正しくありません。"
-
 msgid "IDS_IDLE_POP_UNABLE_TO_LAUNCH_PS"
 msgstr "%sを起動できません。"
 
 msgid "IDS_COM_BUTTON_OK_ABB"
 msgstr "OK"
 
-msgid "IDS_COM_BODY_INCORRECT_PIN"
-msgstr "PINが正しくありません。"
-
-msgid "IDS_COM_BODY_ENTER_PIN"
-msgstr "PINを入力してください。"
-
-msgid "IDS_COM_BODY_ENTER_PASSWORD"
-msgstr "パスワードを入力"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_P1SD_TIMES_YOU_HAVE_P2SD_ATTEMPTS_LEFT_BEFORE_THE_DEVICE_IS_RESET_TO_FACTORY_MSG"
-msgstr "正しくないロック解除を%1$d回実行しました。あと%2$d回失敗すると、端末が工場出荷時の状態にリセットされ、全てのデータが削除されます。"
-
-msgid "IDS_LCKSCN_POP_TRY_AGAIN_IN_PD_SECONDS"
-msgstr "%d秒後にやり直してください。"
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_MESSAGE_ABB"
-msgstr "メッセージを表示するにはPINを入力します"
-
-msgid "IDS_LCKSCN_NPBODY_ENTER_PIN_TO_VIEW_CALL_LOG_ABB"
-msgstr "通話履歴を表示するにはPINを入力します"
-
-msgid "IDS_LCKSCN_BODY_YOU_HAVE_ATTEMPTED_TO_UNLOCK_THE_DEVICE_INCORRECTLY_PD_TIMES_IT_WILL_NOW_BE_RESET_TO_FACTORY_DEFAULTS_AND_ALL_DATA_WILL_BE_ERASED"
-msgstr "正しくないロック解除を%d回実行しました。端末が工場出荷時の状態にリセットされ、全てのデータが削除されます。"
-
-msgid "IDS_LCKSCN_BODY_P1SD_TO_P2SD_DIGITS_OR_LETTERS_REQUIRED"
-msgstr "%1$d～%2$d文字の英数字で入力してください。"
-
-msgid "IDS_LCKSCN_BODY_EMERGENCY_CALL"
-msgstr "緊急通報"
-
 msgid "IDS_COM_POP_WARNING"
 msgstr "警告"
-
-msgid "IDS_COM_BUTTON_CANCEL"
-msgstr "キャンセル"
-
-msgid "IDS_LCKSCN_POP_YOU_HAVE_MADE_P1SD_UNSUCCESSFUL_ATTEMPTS_TO_UNLOCK_YOUR_DEVICE_TRY_AGAIN_IN_P2SD_SECONDS"
-msgstr "端末のロック解除に%1$d回失敗しました。%2$d秒後に再度実行してください。"
-
-msgid "IDS_LCKSCN_HEADER_UNABLE_TO_UNLOCK_SCREEN_ABB"
-msgstr "画面のロック解除不可"
-

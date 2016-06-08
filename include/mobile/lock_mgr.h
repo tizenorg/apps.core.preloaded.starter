@@ -55,7 +55,6 @@ void lock_mgr_idle_lock_state_set(int lock_state);
 Eina_Bool lock_mgr_lockscreen_launch(void);
 void lock_mgr_unlock(void);
 
-
 int lock_mgr_daemon_start(void);
 void lock_mgr_daemon_end(void);
 
