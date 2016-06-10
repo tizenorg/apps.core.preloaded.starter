@@ -465,7 +465,6 @@ void home_mgr_init(void *data)
 	status_active_register_cb(STATUS_ACTIVE_KEY_STARTER_SEQUENCE, _show_home_cb, NULL);
 	status_active_register_cb(STATUS_ACTIVE_KEY_SYSMAN_POWER_OFF_STATUS, _power_off_cb, NULL);
 	status_active_register_cb(STATUS_ACTIVE_KEY_SETAPPL_SELECTED_PACKAGE_NAME, _change_selected_package_name, NULL);
-	_change_selected_package_name(STATUS_ACTIVE_KEY_SETAPPL_SELECTED_PACKAGE_NAME, NULL);
 
 	ecore_idler_add(_launch_apps_idler_cb, NULL);
 }

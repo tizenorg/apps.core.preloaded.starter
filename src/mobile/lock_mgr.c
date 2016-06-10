@@ -329,7 +329,6 @@ Eina_Bool lock_mgr_lockscreen_launch(void)
 		_E("set default lockscreen");
 		lock_appid = STATUS_DEFAULT_LOCK_PKG_NAME;
 	}
-
 	_I("lockscreen appid : %s", lock_appid);
 
 	switch (lock_type) {
@@ -360,16 +359,6 @@ ERROR:
 
 
 
-static void _lock_daemon_init(void)
-{
-	_SECURE_I("lockscreen : %s", status_passive_get()->setappl_3rd_lock_pkg_name_str);
-
-	/* register lcd changed cb */
-	dbus_util_receive_lcd_status(_on_lcd_changed_receive, NULL);
-}
-
-
-
 static int _lock_type_changed_cb(status_active_key_e key, void *data)
 {
 	int lock_type = status_active_get()->setappl_screen_lock_type_int;
@@ -384,30 +373,41 @@ static int _lock_type_changed_cb(status_active_key_e key, void *data)
 
 
 
-int lock_mgr_daemon_start(void)
+int lock_mgr_init(void)
 {
 	int lock_type = 0;
 	int ret = 0;
 
-	_lock_daemon_init();
+	_D("[LOCK_DAEMON]lock_mgr_init is invoked : lockscreen(%s)", status_passive_get()->setappl_3rd_lock_pkg_name_str);
+
+	/* Register lcd changed cb */
+	dbus_util_receive_lcd_status(_on_lcd_changed_receive, NULL);
 
 	lock_type = status_active_get()->setappl_screen_lock_type_int;
 	_D("lock type : %d", lock_type);
 
+	/* Register lock type changed cb */
 	status_active_register_cb(STATUS_ACTIVE_KEY_SETAPPL_SCREEN_LOCK_TYPE_INT, _lock_type_changed_cb, NULL);
 
+	/* Check that telephony is supported */
 	s_lock_mgr.is_support_telephony = _check_support_telephony();
 	if (s_lock_mgr.is_support_telephony == true) {
+		/*
+		 * If telephony is supported,
+		 * initilize telephony module.
+		 */
 		_init_telephony();
 	}
 
+	/* Initialize feedback */
+	if (feedback_initialize() != FEEDBACK_ERROR_NONE) {
+		_E("Failed to initialize feedback");
+	}
+
+	/* Launch lockscreen */
 	ret = lock_mgr_lockscreen_launch();
 	if (ret != EINA_TRUE) {
 		_E("Failed to launch lockscreen");
-	}
-
-	if (feedback_initialize() != FEEDBACK_ERROR_NONE) {
-		_E("Failed to initialize feedback");
 	}
 
 	return ret;
@@ -415,7 +415,7 @@ int lock_mgr_daemon_start(void)
 
 
 
-void lock_mgr_daemon_end(void)
+void lock_mgr_fini(void)
 {
 	status_active_unregister_cb(STATUS_ACTIVE_KEY_SETAPPL_SCREEN_LOCK_TYPE_INT, _lock_type_changed_cb);
 
