@@ -229,11 +229,7 @@ static Eina_Bool _key_release_cb(void *data, int type, void *event)
 	/* Priority 3 : Check the lock status */
 	if ((status_passive_get()->idle_lock_state  == VCONFKEY_IDLE_LOCK)
 		&& (status_active_get()->setappl_screen_lock_type_int > SETTING_SCREEN_LOCK_TYPE_NONE)) {
-		if (!strcmp(ev->keyname, KEY_BACK)) {
-			_D("Back key is released");
-		} else {
-			_D("phone lock state, ignore home key.");
-		}
+		_D("phone lock state, ignore home key.");
 		return ECORE_CALLBACK_RENEW;
 	}
 
@@ -304,7 +300,7 @@ static Eina_Bool _key_press_cb(void *data, int type, void *event)
 	_D("_key_press_cb : %s Pressed", ev->keyname);
 
 	/* Priority 1 : Cancel */
-	/*              every reserved events have to be canceld when cancel key is pressed */
+	/* every reserved events have to be canceld when cancel key is pressed */
 	if (!strcmp(ev->keyname, KEY_CANCEL)) {
 		_D("Cancel button is pressed");
 		key_info.cancel = EINA_TRUE;
@@ -741,11 +737,7 @@ static Eina_Bool _key_release_cb(void *data, int type, void *event)
 	/* Priority 3 : Check the lock status */
 	if ((status_passive_get()->idle_lock_state  == VCONFKEY_IDLE_LOCK)
 		&& (status_active_get()->setappl_screen_lock_type_int > SETTING_SCREEN_LOCK_TYPE_NONE)) {
-		if (!strcmp(ev->keyname, key_name[KEY_BACK])) {
-			_D("Back key is released");
-		} else {
 			_D("phone lock state, ignore home key.");
-		}
 		return ECORE_CALLBACK_RENEW;
 	}
 

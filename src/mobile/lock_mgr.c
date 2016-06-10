@@ -29,6 +29,8 @@
 #include <dd-display.h>
 #include <aul.h>
 #include <system_settings.h>
+#include <system_info.h>
+#include <telephony.h>
 
 #include "lock_mgr.h"
 #include "package_mgr.h"
@@ -38,6 +40,8 @@
 #include "util.h"
 #include "status.h"
 
+#define SYSTEM_INFO_KEY_NETWORK_TELEPHONY "http://tizen.org/feature/network.telephony"
+
 
 
 static struct {
@@ -45,12 +49,18 @@ static struct {
 	int old_lock_type;
 	int lock_pid;
 	int lcd_state;
+	Eina_Bool is_support_telephony;
+	int call_status;
 } s_lock_mgr = {
 	.checkfd = 0,
 	.old_lock_type = 0,
 	.lock_pid = -1,
 	.lcd_state = -1,
+	.is_support_telephony = EINA_FALSE,
+	.call_status = TELEPHONY_CALL_STATUS_IDLE,
 };
+
+static telephony_handle_list_s tel_handle_list;
 
 
 
@@ -64,6 +74,88 @@ int lock_mgr_lcd_state_get(void)
 int lock_mgr_get_lock_pid(void)
 {
 	return s_lock_mgr.lock_pid;
+}
+
+
+
+static bool _check_support_telephony(void)
+{
+	int ret = 0;
+	bool is_support= EINA_FALSE;
+
+	ret = system_info_get_platform_bool(SYSTEM_INFO_KEY_NETWORK_TELEPHONY, &is_support);
+	if (ret != SYSTEM_INFO_ERROR_NONE) {
+		_E("Failed to get system information : %s", SYSTEM_INFO_KEY_NETWORK_TELEPHONY);
+		return false;
+	}
+
+	return is_support;
+}
+
+
+
+static void _init_telephony(void)
+{
+	int ret = 0;
+
+	ret = telephony_init(&tel_handle_list);
+	if (ret != TELEPHONY_ERROR_NONE) {
+		_E("Failed to initialize telephony");
+	}
+}
+
+
+
+static void _deinit_telephony(void)
+{
+	int ret = 0;
+
+	ret = telephony_deinit(&tel_handle_list);
+	if (ret != TELEPHONY_ERROR_NONE) {
+		_E("Failed to deinitialize telephony");
+	}
+}
+
+
+
+static Eina_Bool _check_call_status(void)
+{
+	telephony_call_h *call_list = NULL;
+	unsigned int call_count = 0;
+	int ret = 0;
+	int i = 0, j = 0;
+
+	for (i = 0; i < tel_handle_list.count; i++) {
+		ret = telephony_call_get_call_list(tel_handle_list.handle[i], &call_count, &call_list);
+		if (ret != TELEPHONY_ERROR_NONE) {
+			_E("Failed to get telephony call list");
+			continue;
+		}
+
+		if (call_count == 0) {
+			_E("[%d] No calls available", i);
+		} else {
+			for (j = 0; j < call_count; j++) {
+				telephony_call_status_e status;
+
+				ret = telephony_call_get_status(call_list[i], &status);
+				if (ret != TELEPHONY_ERROR_NONE) {
+					_E("Failed to get call status(%d)", ret);
+					continue;
+				}
+
+				if (status != TELEPHONY_CALL_STATUS_IDLE) {
+					_D("[%d] call status : %d", i, status);
+					telephony_call_release_call_list(call_count, &call_list);
+					return EINA_TRUE;
+				}
+			}
+		}
+
+		telephony_call_release_call_list(call_count, &call_list);
+	}
+
+	return EINA_FALSE;
 }
 
 
@@ -179,11 +271,36 @@ static void _on_lcd_changed_receive(void *data, DBusMessage *msg)
 		s_lock_mgr.lcd_state = LCD_STATE_ON;
 	} else if (lcd_off) {
 		int idle_lock_state = 0;
+		Eina_Bool is_call = EINA_FALSE;
 		Eina_Bool ret = EINA_FALSE;
 		s_lock_mgr.lcd_state = LCD_STATE_OFF;
-
 		idle_lock_state = status_passive_get()->idle_lock_state;
 		_D("idle_lock_state(%d)", idle_lock_state);
+
+		is_call = _check_call_status();
+		if (is_call == EINA_TRUE) {
+			char *lcd_off_source = NULL;
+
+			/*
+			 * lcd off source
+			 * string : 'powerkey' or 'timeout' or 'event' or 'unknown'
+			 */
+			lcd_off_source = dbus_util_msg_arg_get_str(msg);
+			_I("lcd off source : %s", lcd_off_source);
+
+			if (lcd_off_source) {
+				/* If LCD turn off by means other than 'powerkey' when call is running,
+				 * do not launch lockscreen.
+				 */
+				if (strncmp(lcd_off_source, "powerkey", strlen(lcd_off_source))) {
+					_E("Do not launch lockscreen");
+					free(lcd_off_source);
+					return;
+				}
+
+				free(lcd_off_source);
+			}
+		}
 
 		if (idle_lock_state == VCONFKEY_IDLE_UNLOCK) {
 			ret = lock_mgr_lockscreen_launch();
@@ -268,6 +385,7 @@ static int _lock_type_changed_cb(status_active_key_e key, void *data)
 }
 
 
+
 int lock_mgr_daemon_start(void)
 {
 	int lock_type = 0;
@@ -279,6 +397,11 @@ int lock_mgr_daemon_start(void)
 	_D("lock type : %d", lock_type);
 
 	status_active_register_cb(STATUS_ACTIVE_KEY_SETAPPL_SCREEN_LOCK_TYPE_INT, _lock_type_changed_cb, NULL);
+
+	s_lock_mgr.is_support_telephony = _check_support_telephony();
+	if (s_lock_mgr.is_support_telephony == true) {
+		_init_telephony();
+	}
 
 	ret = lock_mgr_lockscreen_launch();
 	if (ret != EINA_TRUE) {
@@ -297,6 +420,10 @@ int lock_mgr_daemon_start(void)
 void lock_mgr_daemon_end(void)
 {
 	status_active_unregister_cb(STATUS_ACTIVE_KEY_SETAPPL_SCREEN_LOCK_TYPE_INT, _lock_type_changed_cb);
+
+	if (s_lock_mgr.is_support_telephony == EINA_TRUE) {
+		_deinit_telephony();
+	}
 
 	feedback_deinitialize();
 }
