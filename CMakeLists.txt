@@ -81,6 +81,8 @@ pkg_check_modules(pkgs REQUIRED
 	capi-appfw-app-manager
 	capi-network-bluetooth
 	capi-system-system-settings
+	capi-system-info
+	capi-telephony
 	feedback
 	alarm-service
 	pkgmgr-info
