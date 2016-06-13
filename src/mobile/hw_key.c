@@ -117,18 +117,15 @@ static void _release_multimedia_key(const char *value)
 
 
 
+#define HOME_OP_KEY "__HOME_OP__"
+#define HOME_OP_VAL_LAUNCH_BY_HOME_KEY "__LAUNCH_BY_HOME_KEY__"
 static Eina_Bool _launch_by_home_key(void *data)
 {
-	int ret = 0;
-
 	if (status_passive_get()->idle_lock_state > VCONFKEY_IDLE_UNLOCK) {
 		return ECORE_CALLBACK_CANCEL;
 	}
 
-	ret = home_mgr_open_home(NULL);
-	if(ret > 0) {
-		dbus_util_send_home_raise_signal();
-	}
+	home_mgr_open_home(NULL, HOME_OP_KEY, HOME_OP_VAL_LAUNCH_BY_HOME_KEY);
 
 	return ECORE_CALLBACK_CANCEL;
 }
@@ -141,7 +138,7 @@ static Eina_Bool _home_multi_press_timer_cb(void *data)
 
 	key_info.home_multi_press_timer = NULL;
 
-	if(0 == key_info.homekey_count % 2) {
+	if (0 == key_info.homekey_count % 2) {
 		key_info.homekey_count = 0;
 		return ECORE_CALLBACK_CANCEL;
 	} else if(key_info.homekey_count >= 3) {
@@ -656,18 +653,15 @@ static Eina_Bool _launch_taskmgr_cb(void* data)
 
 
 
+#define HOME_OP_KEY "__HOME_OP__"
+#define HOME_OP_VAL_LAUNCH_BY_HOME_KEY "__LAUNCH_BY_HOME_KEY__"
 static Eina_Bool _launch_by_home_key(void *data)
 {
-	int ret = 0;
-
 	if (status_passive_get()->idle_lock_state > VCONFKEY_IDLE_UNLOCK) {
 		return ECORE_CALLBACK_CANCEL;
 	}
 
-	ret = home_mgr_open_home(NULL);
-	if(ret > 0) {
-		dbus_util_send_home_raise_signal();
-	}
+	home_mgr_open_home(NULL, HOME_OP_KEY, HOME_OP_VAL_LAUNCH_BY_HOME_KEY);
 
 	return ECORE_CALLBACK_CANCEL;
 }
@@ -680,7 +674,7 @@ static Eina_Bool _home_multi_press_timer_cb(void *data)
 
 	key_info.home_multi_press_timer = NULL;
 
-	if(0 == key_info.homekey_count % 2) {
+	if (0 == key_info.homekey_count % 2) {
 		key_info.homekey_count = 0;
 		return ECORE_CALLBACK_CANCEL;
 	} else if(key_info.homekey_count >= 3) {

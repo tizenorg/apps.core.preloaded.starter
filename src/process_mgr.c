@@ -21,6 +21,8 @@
 #include <sys/time.h>
 #include <sys/resource.h>
 #include <bundle_internal.h>
+#include <app_manager.h>
+#include <app_control.h>
 
 #include "process_mgr.h"
 #include "util.h"
@@ -47,25 +49,69 @@ typedef struct _launch_info_s {
 static int _try_to_launch(const char *appid, const char *key, const char *value, after_func afn)
 {
 	int pid = -1;
-	bundle *b = NULL;
 
 	retv_if(!appid, -1);
 
-	if (key) {
-		b = bundle_create();
-		if (!b) {
-			_E("Failed to create a bundle");
-			return -1;
-		}
-		bundle_add(b, key, value);
+	int ret = 0;
+	app_control_h app_control_handle = NULL;
+	app_context_h app_context_handle = NULL;
+
+	ret = app_control_create(&app_control_handle);
+	if (ret != APP_CONTROL_ERROR_NONE) {
+		_E("Failed to create appcontrol");
+		return -1;
 	}
 
-	pid = aul_launch_app(appid, b);
-	if (b) bundle_free(b);
-	if (pid > 0) {
-		_D("Succeed to launch %s", appid);
-		if (afn) afn(pid);
+	ret = app_control_set_operation(app_control_handle, APP_CONTROL_OPERATION_DEFAULT);
+	if (ret != APP_CONTROL_ERROR_NONE) {
+		_E("Failed to set operation to appcontrol");
+		app_control_destroy(app_control_handle);
+		return -1;
 	}
+
+	if (key && value) {
+		_D("key(%s), value(%s)", key, value);
+		ret = app_control_add_extra_data(app_control_handle, key, value);
+		if (ret != APP_CONTROL_ERROR_NONE) {
+			_E("Failed to add extra data to appcontrol");
+			app_control_destroy(app_control_handle);
+			return -1;
+		}
+	}
+
+	ret = app_control_set_app_id(app_control_handle, appid);
+	if (ret != APP_CONTROL_ERROR_NONE) {
+		_E("Failed to set app id to appcontrol");
+		app_control_destroy(app_control_handle);
+		return -1;
+	}
+
+	ret = app_control_send_launch_request(app_control_handle, NULL, NULL);
+	if (ret != APP_CONTROL_ERROR_NONE) {
+		_E("Failed to send launch request : %s", appid);
+		app_control_destroy(app_control_handle);
+		return -1;
+	}
+
+	app_control_destroy(app_control_handle);
+
+	ret = app_manager_get_app_context(appid, &app_context_handle);
+	if (ret != APP_MANAGER_ERROR_NONE) {
+		_E("Failed to get app context : %s", appid);
+		return -1;
+	}
+
+	ret = app_context_get_pid(app_context_handle, &pid);
+	if (ret != APP_MANAGER_ERROR_NONE) {
+		_E("Failed to get pid : %s", appid);
+		app_context_destroy(app_context_handle);
+		return -1;
+	}
+
+	app_context_destroy(app_context_handle);
+
+	_D("Succeed to launch : %s(%d)", appid, pid);
+	if (afn) afn(pid);
 
 	return pid;
 }
@@ -115,7 +161,7 @@ void process_mgr_must_launch(const char *appid, const char *key, const char *val
 	launch_info_s *launch_info = NULL;
 	int pid = -1;
 
-	_D("Must launch %s", appid);
+	_D("Must launch : %s", appid);
 
 	pid = _try_to_launch(appid, key, value, afn);
 	if (pid > 0) return;

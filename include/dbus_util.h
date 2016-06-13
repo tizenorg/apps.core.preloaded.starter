@@ -39,7 +39,6 @@
 #define MEMBER_LCD_ON			"LCDOn"
 #define MEMBER_LCD_OFF			"LCDOff"
 
-extern void dbus_util_send_home_raise_signal(void);
 extern int dbus_util_send_oomadj(int pid, int oom_adj_value);
 extern void dbus_util_send_cpu_booster_signal(void);
 extern void dbus_util_send_poweroff_signal(void);

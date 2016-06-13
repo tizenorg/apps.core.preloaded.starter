@@ -202,6 +202,7 @@ static int _invoke_dbus_method_async(const char *dest, const char *path,
 
 
 
+#if 0
 static int _dbus_message_send(const char *path, const char *interface, const char *member)
 {
 	int ret = 0;
@@ -229,19 +230,7 @@ static int _dbus_message_send(const char *path, const char *interface, const cha
 	_D("dbus_connection_send, ret=%d", ret);
 	return 0;
 }
-
-
-
-void dbus_util_send_home_raise_signal(void)
-{
-	int ret = 0;
-
-	ret = _dbus_message_send(
-			DBUS_HOME_RAISE_PATH,
-			DBUS_HOME_RAISE_INTERFACE,
-			DBUS_HOME_RAISE_MEMBER);
-	_E("Sending HOME RAISE signal, result:%d", ret);
-}
+#endif
 
 
 
