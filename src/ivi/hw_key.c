@@ -126,9 +126,6 @@ static Eina_Bool _launch_by_home_key(void *data)
 	}
 
 	ret = home_mgr_open_home(NULL);
-	if(ret > 0) {
-		dbus_util_send_home_raise_signal();
-	}
 
 	return ECORE_CALLBACK_CANCEL;
 }
@@ -670,9 +667,6 @@ static Eina_Bool _launch_by_home_key(void *data)
 	}
 
 	ret = home_mgr_open_home(NULL);
-	if(ret > 0) {
-		dbus_util_send_home_raise_signal();
-	}
 
 	return ECORE_CALLBACK_CANCEL;
 }
