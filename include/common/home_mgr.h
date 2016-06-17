@@ -26,6 +26,5 @@ extern void home_mgr_fini(void);
 
 void home_mgr_relaunch_homescreen(void);
 void home_mgr_relaunch_volume(void);
-extern int home_mgr_open_home(const char *pkgname);
-
+extern void home_mgr_open_home(const char *appid, const char *key, const char *val);
 // End of a file

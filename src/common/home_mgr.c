@@ -108,20 +108,27 @@ static int _change_home_cb(const char *appid, const char *key, const char *value
 
 
 
-#define SERVICE_OPERATION_MAIN_KEY "__APP_SVC_OP_TYPE__"
-#define SERVICE_OPERATION_MAIN_VALUE "http://tizen.org/appcontrol/operation/main"
-void home_mgr_open_home(const char *appid)
+void home_mgr_open_home(const char *appid, const char *key, const char *val)
 {
 	char *home_appid = NULL;
 
+#ifndef TIZEN_BUILD_TARGET_64
 	if (!appid) {
 		home_appid = status_active_get()->setappl_selected_package_name;
 	} else {
 		home_appid = (char *) appid;
 	}
 	ret_if(!home_appid);
+#else
+	/*
+	 * If the architecture is 64bit,
+	 * starter will launch menu-screen only.
+	 */
+	_D("[64bit] menu-screen will be launched.");
+	home_appid = MENU_SCREEN_PKG_NAME;
+#endif
 
-	process_mgr_must_launch(home_appid, SERVICE_OPERATION_MAIN_KEY, SERVICE_OPERATION_MAIN_VALUE, _change_home_cb, _after_launch_home);
+	process_mgr_must_launch(home_appid, key, val, _change_home_cb, _after_launch_home);
 }
 
 
@@ -173,7 +180,7 @@ static int _show_home_cb(status_active_key_e key, void *data)
 			}
 		}
 
-		home_mgr_open_home(NULL);
+		home_mgr_open_home(NULL, NULL, NULL);
 		break;
 	default:
 		_E("False sequence [%d]", seq);
@@ -224,7 +231,7 @@ static int _change_selected_package_name(status_active_key_e key, void *data)
 		}
 	}
 
-	home_mgr_open_home(appid);
+	home_mgr_open_home(appid, NULL, NULL);
 
 	return 1;
 }

@@ -117,18 +117,15 @@ static void _release_multimedia_key(const char *value)
 
 
 
+#define HOME_OP_KEY "__HOME_OP__"
+#define HOME_OP_VAL_LAUNCH_BY_HOME_KEY "__LAUNCH_BY_HOME_KEY__"
 static Eina_Bool _launch_by_home_key(void *data)
 {
-	int ret = 0;
-
 	if (status_passive_get()->idle_lock_state > VCONFKEY_IDLE_UNLOCK) {
 		return ECORE_CALLBACK_CANCEL;
 	}
 
-	ret = home_mgr_open_home(NULL);
-	if(ret > 0) {
-		dbus_util_send_home_raise_signal();
-	}
+	home_mgr_open_home(NULL, HOME_OP_KEY, HOME_OP_VAL_LAUNCH_BY_HOME_KEY);
 
 	return ECORE_CALLBACK_CANCEL;
 }
@@ -141,7 +138,7 @@ static Eina_Bool _home_multi_press_timer_cb(void *data)
 
 	key_info.home_multi_press_timer = NULL;
 
-	if(0 == key_info.homekey_count % 2) {
+	if (0 == key_info.homekey_count % 2) {
 		key_info.homekey_count = 0;
 		return ECORE_CALLBACK_CANCEL;
 	} else if(key_info.homekey_count >= 3) {
@@ -229,11 +226,7 @@ static Eina_Bool _key_release_cb(void *data, int type, void *event)
 	/* Priority 3 : Check the lock status */
 	if ((status_passive_get()->idle_lock_state  == VCONFKEY_IDLE_LOCK)
 		&& (status_active_get()->setappl_screen_lock_type_int > SETTING_SCREEN_LOCK_TYPE_NONE)) {
-		if (!strcmp(ev->keyname, KEY_BACK)) {
-			_D("Back key is released");
-		} else {
-			_D("phone lock state, ignore home key.");
-		}
+		_D("phone lock state, ignore home key.");
 		return ECORE_CALLBACK_RENEW;
 	}
 
@@ -304,7 +297,7 @@ static Eina_Bool _key_press_cb(void *data, int type, void *event)
 	_D("_key_press_cb : %s Pressed", ev->keyname);
 
 	/* Priority 1 : Cancel */
-	/*              every reserved events have to be canceld when cancel key is pressed */
+	/* every reserved events have to be canceld when cancel key is pressed */
 	if (!strcmp(ev->keyname, KEY_CANCEL)) {
 		_D("Cancel button is pressed");
 		key_info.cancel = EINA_TRUE;
@@ -525,7 +518,7 @@ void hw_key_destroy_window(void)
 #define CANCEL_KEY_TIMER_SEC 0.3
 
 
-const char *key_name[38] = {
+const char *key_name[KEY_NAME_MAX] = {
 	"XF86AudioRaiseVolume",
 	"XF86AudioLowerVolume",
 	"XF86PowerOff",
@@ -563,7 +556,6 @@ const char *key_name[38] = {
 	"XF86Game",
 	"XF86VoiceWakeUp_LPSD",
 	"XF86VoiceWakeUp",
-	"KEY_NAME_MAX",
 };
 
 
@@ -661,18 +653,15 @@ static Eina_Bool _launch_taskmgr_cb(void* data)
 
 
 
+#define HOME_OP_KEY "__HOME_OP__"
+#define HOME_OP_VAL_LAUNCH_BY_HOME_KEY "__LAUNCH_BY_HOME_KEY__"
 static Eina_Bool _launch_by_home_key(void *data)
 {
-	int ret = 0;
-
 	if (status_passive_get()->idle_lock_state > VCONFKEY_IDLE_UNLOCK) {
 		return ECORE_CALLBACK_CANCEL;
 	}
 
-	ret = home_mgr_open_home(NULL);
-	if(ret > 0) {
-		dbus_util_send_home_raise_signal();
-	}
+	home_mgr_open_home(NULL, HOME_OP_KEY, HOME_OP_VAL_LAUNCH_BY_HOME_KEY);
 
 	return ECORE_CALLBACK_CANCEL;
 }
@@ -685,7 +674,7 @@ static Eina_Bool _home_multi_press_timer_cb(void *data)
 
 	key_info.home_multi_press_timer = NULL;
 
-	if(0 == key_info.homekey_count % 2) {
+	if (0 == key_info.homekey_count % 2) {
 		key_info.homekey_count = 0;
 		return ECORE_CALLBACK_CANCEL;
 	} else if(key_info.homekey_count >= 3) {
@@ -742,11 +731,7 @@ static Eina_Bool _key_release_cb(void *data, int type, void *event)
 	/* Priority 3 : Check the lock status */
 	if ((status_passive_get()->idle_lock_state  == VCONFKEY_IDLE_LOCK)
 		&& (status_active_get()->setappl_screen_lock_type_int > SETTING_SCREEN_LOCK_TYPE_NONE)) {
-		if (!strcmp(ev->keyname, key_name[KEY_BACK])) {
-			_D("Back key is released");
-		} else {
 			_D("phone lock state, ignore home key.");
-		}
 		return ECORE_CALLBACK_RENEW;
 	}
 
