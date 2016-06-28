@@ -138,6 +138,7 @@ cmake . -DTIZEN_PROFILE_NAME=%{TIZEN_PROFILE_NAME} -DCMAKE_INSTALL_PREFIX=%{_pre
 
 make
 make -j1
+
 %install
 rm -rf %{buildroot}
 %make_install
@@ -159,29 +160,13 @@ ln -s ../starter-pre.path %{buildroot}%{__usrdir}/default.target.wants/starter-p
 
 mkdir -p %{buildroot}/usr/share/license
 cp -f LICENSE %{buildroot}/usr/share/license/%{name}
-mkdir -p %{buildroot}/opt/data/home-daemon
 
 %post
-change_file_executable()
-{
-    chmod +x $@ 2>/dev/null
-    if [ $? -ne 0 ]; then
-        echo "Failed to change the perms of $@"
-    fi
-}
-
-mkdir -p %{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/
-
-#ln -sf /etc/init.d/rd4starter /etc/rc.d/rc4.d/S81starter
-#ln -sf /etc/init.d/rd4starter /etc/rc.d/rc3.d/S81starter
-
 sync
 
 %files
 %manifest starter.manifest
 %defattr(-,root,root,-)
-%{_sysconfdir}/init.d/rd4starter
-%{_sysconfdir}/init.d/rd3starter
 %{_bindir}/starter
 %{__usrdir}/starter.service
 %{__usrdir}/starter.path
@@ -192,5 +177,4 @@ sync
 %{__usrdir}/default.target.wants/starter-pre.service
 %{__usrdir}/default.target.wants/starter-pre.path
 /usr/share/license/%{name}
-/opt/data/home-daemon
 /usr/share/locale/*/LC_MESSAGES/*
