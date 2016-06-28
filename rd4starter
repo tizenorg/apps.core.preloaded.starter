@@ -1,4 +1,0 @@
-#!/bin/sh
-
-echo -e "<2>[${_G}menu-daemon start${C_}]" > /dev/kmsg
-/usr/bin/starter &
