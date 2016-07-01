@@ -25,7 +25,7 @@
 
 #define _EDJ(x) elm_layout_edje_get(x)
 
-#ifdef TIZEN_BUILD_EMULATOR
+#ifdef TIZEN_ARCH_EMULATOR
 #define LOCK_MGR_DEFAULT_BG_PATH "/opt/share/settings/Wallpapers/Default.jpg"
 #else
 #define LOCK_MGR_DEFAULT_BG_PATH "/opt/share/settings/Wallpapers/Lock_default.png"

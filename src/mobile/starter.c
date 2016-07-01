@@ -145,7 +145,7 @@ static int _set_i18n(const char *domain, const char *dir)
 
 static int _check_dead_signal(int pid, void *data)
 {
-#ifndef TIZEN_BUILD_TARGET_64
+#ifndef TIZEN_ARCH_ARM64
 	int home_pid = 0;
 	int volume_pid = 0;
 	int indicator_pid = 0;
