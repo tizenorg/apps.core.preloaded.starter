@@ -4,4 +4,4 @@ Description=Pre actions for "starter"
 [Service]
 EnvironmentFile=/run/tizen-system-env
 Type=oneshot
-ExecStart=echo "starter-pre"
+ExecStart=/bin/sh -c "echo starter-pre.service"
