@@ -10,8 +10,6 @@ License:    Apache-2.0
 Source0:    starter-%{version}.tar.gz
 Source1:    starter.service
 Source2:    starter.path
-Source3:    starter-pre.service
-Source4:    starter-pre.path
 
 %if "%{profile}" == "tv"
 ExcludeArch: %{arm} %ix86 x86_64
@@ -152,12 +150,6 @@ ln -s ../starter.service %{buildroot}%{__usrdir}/default.target.wants/starter.se
 install -m 0644 %SOURCE2 %{buildroot}%{__usrdir}/starter.path
 ln -s ../starter.path %{buildroot}%{__usrdir}/default.target.wants/starter.path
 
-install -m 0644 %SOURCE3 %{buildroot}%{__usrdir}/starter-pre.service
-ln -s ../starter-pre.service %{buildroot}%{__usrdir}/default.target.wants/starter-pre.service
-
-install -m 0644 %SOURCE4 %{buildroot}%{__usrdir}/starter-pre.path
-ln -s ../starter-pre.path %{buildroot}%{__usrdir}/default.target.wants/starter-pre.path
-
 mkdir -p %{buildroot}/usr/share/license
 cp -f LICENSE %{buildroot}/usr/share/license/%{name}
 
@@ -170,11 +162,7 @@ sync
 %{_bindir}/starter
 %{__usrdir}/starter.service
 %{__usrdir}/starter.path
-%{__usrdir}/starter-pre.service
-%{__usrdir}/starter-pre.path
 %{__usrdir}/default.target.wants/starter.service
 %{__usrdir}/default.target.wants/starter.path
-%{__usrdir}/default.target.wants/starter-pre.service
-%{__usrdir}/default.target.wants/starter-pre.path
 /usr/share/license/%{name}
 /usr/share/locale/*/LC_MESSAGES/*

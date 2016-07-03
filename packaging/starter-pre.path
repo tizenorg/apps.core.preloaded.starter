@@ -1,5 +1,0 @@
-[Unit]
-Description=Start the "starter" program
-
-[Path]
-PathExists=/run/.wm_ready
