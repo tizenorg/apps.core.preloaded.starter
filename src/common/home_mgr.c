@@ -112,7 +112,7 @@ void home_mgr_open_home(const char *appid, const char *key, const char *val)
 {
 	char *home_appid = NULL;
 
-#ifndef TIZEN_BUILD_TARGET_64
+#ifndef TIZEN_ARCH_ARM64
 	if (!appid) {
 		home_appid = status_active_get()->setappl_selected_package_name;
 	} else {

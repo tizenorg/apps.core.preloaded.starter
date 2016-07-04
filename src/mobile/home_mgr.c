@@ -130,7 +130,7 @@ void home_mgr_open_home(const char *appid, const char *key, const char *val)
 {
 	char *home_appid = NULL;
 
-#ifndef TIZEN_BUILD_TARGET_64
+#ifndef TIZEN_ARCH_ARM64
 	if (!appid) {
 		home_appid = status_active_get()->setappl_selected_package_name;
 	} else {
@@ -445,7 +445,7 @@ static int _power_off_cb(status_active_key_e key, void *data)
 
 static Eina_Bool _launch_apps_idler_cb(void *data)
 {
-#ifndef TIZEN_BUILD_TARGET_64
+#ifndef TIZEN_ARCH_ARM64
 	process_mgr_must_syspopup_launch(SYSPOPUPID_VOLUME, NULL, NULL, NULL, _after_launch_volume);
 	process_mgr_must_launch(APPID_INDICATOR, NULL, NULL, NULL, _after_launch_indicator);
 	process_mgr_must_launch(APPID_QUICKPANEL, NULL, NULL, NULL, _after_launch_quickpanel);
