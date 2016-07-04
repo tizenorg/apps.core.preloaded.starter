@@ -145,7 +145,6 @@ mkdir -p %{buildroot}%{__usrdir}/default.target.wants
 mkdir -p %{buildroot}%{_sysconfdir}/systemd/default-extra-dependencies/ignore-units.d/
 
 install -m 0644 %SOURCE1 %{buildroot}%{__usrdir}/starter.service
-ln -s ../starter.service %{buildroot}%{__usrdir}/default.target.wants/starter.service
 
 install -m 0644 %SOURCE2 %{buildroot}%{__usrdir}/starter.path
 ln -s ../starter.path %{buildroot}%{__usrdir}/default.target.wants/starter.path
@@ -162,7 +161,6 @@ sync
 %{_bindir}/starter
 %{__usrdir}/starter.service
 %{__usrdir}/starter.path
-%{__usrdir}/default.target.wants/starter.service
 %{__usrdir}/default.target.wants/starter.path
 /usr/share/license/%{name}
 /usr/share/locale/*/LC_MESSAGES/*

@@ -1,6 +1,6 @@
 [Unit]
 Description=Start the "starter" program
-After=ac.service deviced.service launchpad-preload.service
+After=ac.service
 
 [Service]
 EnvironmentFile=/run/tizen-system-env
