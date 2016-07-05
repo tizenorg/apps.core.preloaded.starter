@@ -15,6 +15,10 @@ Source2:    starter.path
 ExcludeArch: %{arm} %ix86 x86_64
 %endif
 
+%if "%{profile}" == "ivi"
+ExcludeArch: %{arm} %ix86 x86_64
+%endif
+
 BuildRequires:  cmake
 BuildRequires:  pkgconfig(appcore-efl)
 BuildRequires:  pkgconfig(aul)
@@ -98,12 +102,6 @@ export CXXFLAGS="$CXXFLAGS -DTIZEN_PROFILE_MOBILE"
 %define TIZEN_PROFILE_NAME "WEARABLE"
 export CFLAGS="$CFLAGS -DTIZEN_PROFILE_WEARABLE"
 export CXXFLAGS="$CXXFLAGS -DTIZEN_PROFILE_WEARABLE"
-%endif
-
-%if "%{profile}" == "ivi"
-%define TIZEN_PROFILE_NAME "IVI"
-export CFLAGS="$CFLAGS -DTIZEN_PROFILE_IVI"
-export CXXFLAGS="$CXXFLAGS -DTIZEN_PROFILE_IVI"
 %endif
 
 %ifarch %{arm}
