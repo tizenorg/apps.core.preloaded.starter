@@ -133,48 +133,6 @@ pkg_check_modules(pkgs REQUIRED
 	dbus-glib-1
 )
 
-ELSEIF("${TIZEN_PROFILE_NAME}" STREQUAL "IVI")
-
-INCLUDE_DIRECTORIES(
-	${CMAKE_SOURCE_DIR}/include
-	${CMAKE_SOURCE_DIR}/include/ivi
-)
-INCLUDE(FindPkgConfig)
-pkg_check_modules(pkgs REQUIRED
-	aul
-	capi-system-media-key
-	db-util
-	dlog
-	ecore
-	ecore-wayland
-	ecore-evas
-	ecore-input
-	edbus
-	eina
-	elementary
-	evas
-	syspopup-caller
-	vconf
-	appcore-efl
-	glib-2.0
-	ui-gadget-1
-	bundle
-	capi-appfw-application
-	capi-appfw-app-manager
-	capi-network-bluetooth
-	capi-system-system-settings
-	feedback
-	alarm-service
-	pkgmgr-info
-	deviced
-	edbus
-	dbus-1
-	dbus-glib-1
-	tts
-	capi-message-port
-	efl-extension
-)
-
 ENDIF()
 
 IF(X11_SUPPORT)
@@ -264,12 +222,6 @@ SET(BUILD_SOURCE
 	src/wearable/hourly_alert.c
 	src/wearable/hw_key.c
 	src/wearable/starter.c
-)
-
-ELSEIF("${TIZEN_PROFILE_NAME}" STREQUAL "IVI")
-
-SET(BUILD_SOURCE
-	src/ivi/starter.c
 )
 
 ENDIF()
