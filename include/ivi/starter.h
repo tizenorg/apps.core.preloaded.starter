@@ -17,11 +17,4 @@
 #ifndef __STARTER_H__
 #define __STARTER_H__
 
-#include <sys/time.h>
-
-struct appdata {
-	struct timeval tv_start;	/* start time */
-	int lcd_status;
-};
-
 #endif				/* __STARTER_H__ */

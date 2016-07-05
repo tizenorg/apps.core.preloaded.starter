@@ -36,11 +36,6 @@ BuildRequires:  pkgconfig(capi-message-port)
 BuildRequires:  pkgconfig(capi-telephony)
 BuildRequires:  pkgconfig(capi-system-info)
 BuildRequires:  pkgconfig(efl-extension)
-%else if "%{profile}" == "ivi"
-BuildRequires:  tts
-BuildRequires:  tts-devel
-BuildRequires:  pkgconfig(capi-message-port)
-BuildRequires:  pkgconfig(efl-extension)
 %endif
 
 BuildRequires:  pkgconfig(feedback)

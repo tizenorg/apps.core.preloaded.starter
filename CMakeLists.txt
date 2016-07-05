@@ -232,7 +232,6 @@ SET(BUILD_SOURCE
 	src/common/home_mgr.c
 	src/common/lock_mgr.c
 	src/common/starter.c
-	src/common/window_mgr.c
 	src/common/popup.c
 	src/common/hw_key.c
 )
@@ -248,7 +247,6 @@ SET(BUILD_SOURCE
 	src/mobile/home_mgr.c
 	src/mobile/lock_mgr.c
 	src/mobile/starter.c
-	src/mobile/window_mgr.c
 	src/mobile/popup.c
 	src/mobile/hw_key.c
 )
@@ -271,17 +269,7 @@ SET(BUILD_SOURCE
 ELSEIF("${TIZEN_PROFILE_NAME}" STREQUAL "IVI")
 
 SET(BUILD_SOURCE
-	src/dbus_util.c
-	src/package_mgr.c
-	src/process_mgr.c
-	src/status.c
-
-	src/ivi/home_mgr.c
-	src/ivi/lock_mgr.c
 	src/ivi/starter.c
-	src/ivi/window_mgr.c
-	src/ivi/popup.c
-	src/ivi/hw_key.c
 )
 
 ENDIF()
