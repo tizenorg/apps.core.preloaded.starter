@@ -1,15 +1,15 @@
 %bcond_with wayland
 %define __usrdir /usr/lib/systemd/user
 
-Name:       starter
-Summary:    starter
-Version: 0.5.52
-Release:    1
-Group:      TO_BE/FILLED_IN
-License:    Apache-2.0
-Source0:    starter-%{version}.tar.gz
-Source1:    starter.service
-Source2:    starter.path
+Name:		starter
+Summary:	This is a core application
+Version:	0.5.52
+Release:	1
+Group:		Applications/Core Applications
+License:	Apache-2.0
+Source0:	%{name}-%{version}.tar.gz
+Source1:	%{name}.service
+Source2:	%{name}.path
 
 %if "%{profile}" == "tv" || "%{profile}" == "ivi"
 ExcludeArch: %{arm} %ix86 x86_64
@@ -69,8 +69,7 @@ BuildRequires:  pkgconfig(utilX)
 %endif
 
 %description
-Description: Starter
-
+This is for managing life-cycle of core applications.
 
 %prep
 %setup -q
@@ -141,10 +140,13 @@ ln -s ../starter.path %{buildroot}%{__usrdir}/default.target.wants/starter.path
 mkdir -p %{buildroot}/usr/share/license
 cp -f LICENSE %{buildroot}/usr/share/license/%{name}
 
+%find_lang %{name}
+
 %post
 sync
 
-%files
+
+%files -f %{name}.lang
 %manifest starter.manifest
 %defattr(-,root,root,-)
 %{_bindir}/starter
@@ -152,4 +154,3 @@ sync
 %{__usrdir}/starter.path
 %{__usrdir}/default.target.wants/starter.path
 /usr/share/license/%{name}
-/usr/share/locale/*/LC_MESSAGES/*
