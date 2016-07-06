@@ -152,7 +152,7 @@ static void _status_active_change_cb(keynode_t* node, void *data)
 		if (tmp) {
 			a_tmp = strdup(tmp);
 		} else {
-			a_tmp = strdup(HOMESCREEN_PKG_NAME);
+			a_tmp = strdup(DEFAULT_HOME_PKG_NAME);
 		}
 
 		if (a_tmp) {
@@ -293,7 +293,7 @@ int status_register(void)
 	}
 	if (!(s_status_active.setappl_selected_package_name = vconf_get_str(VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME))) {
 		_E("Failed to get vconfkey[%s]", VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME);
-		s_status_active.setappl_selected_package_name = strdup(HOMESCREEN_PKG_NAME);
+		s_status_active.setappl_selected_package_name = strdup(DEFAULT_HOME_PKG_NAME);
 		if (!s_status_active.setappl_selected_package_name) {
 			_E("Failed to duplicate string");
 		}
