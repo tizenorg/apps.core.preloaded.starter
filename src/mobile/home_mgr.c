@@ -111,11 +111,11 @@ static void _after_launch_home(int pid)
 
 static int _change_home_cb(const char *appid, const char *key, const char *value, void *cfn, void *afn)
 {
-	if (!strcmp(appid, MENU_SCREEN_PKG_NAME)) {
+	if (!strcmp(appid, DEFAULT_HOME_PKG_NAME)) {
 		_E("We cannot do anything anymore.");
 	} else if (!strcmp(appid, status_active_get()->setappl_selected_package_name)) {
-		if (vconf_set_str(VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME, MENU_SCREEN_PKG_NAME) != 0) {
-			_E("cannot set the vconf key as %s", MENU_SCREEN_PKG_NAME);
+		if (vconf_set_str(VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME, DEFAULT_HOME_PKG_NAME) != 0) {
+			_E("cannot set the vconf key as %s", DEFAULT_HOME_PKG_NAME);
 		}
 		/* change_home func will be called by changing the home */
 		return 0;
@@ -140,10 +140,10 @@ void home_mgr_open_home(const char *appid, const char *key, const char *val)
 #else
 	/*
 	 * If the architecture is 64bit,
-	 * starter will launch menu-screen only.
+	 * starter will launch default homescreen only.
 	 */
-	_D("[64bit] menu-screen will be launched.");
-	home_appid = MENU_SCREEN_PKG_NAME;
+	_D("[64bit] default homescreen will be launched.");
+	home_appid = DEFAULT_HOME_PKG_NAME;
 #endif
 
 	process_mgr_must_launch(home_appid, key, val, _change_home_cb, _after_launch_home);
@@ -178,7 +178,7 @@ static int _show_home_cb(status_active_key_e key, void *data)
 				_E("Failed to set vconfkey : %s", VCONFKEY_STARTER_IS_FALLBACK);
 			}
 
-			if (!strcmp(status_active_get()->setappl_selected_package_name, MENU_SCREEN_PKG_NAME)) {
+			if (!strcmp(status_active_get()->setappl_selected_package_name, DEFAULT_HOME_PKG_NAME)) {
 				char *fallback_pkg;
 
 				fallback_pkg = vconf_get_str(VCONFKEY_STARTER_FALLBACK_PKG);
@@ -360,8 +360,8 @@ static Eina_Bool _dead_timer_cb(void *data)
 			}
 		}
 
-		if (vconf_set_str(VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME, MENU_SCREEN_PKG_NAME) != 0) {
-			_E("cannot set the vconf key as %s", MENU_SCREEN_PKG_NAME);
+		if (vconf_set_str(VCONFKEY_SETAPPL_SELECTED_PACKAGE_NAME, DEFAULT_HOME_PKG_NAME) != 0) {
+			_E("cannot set the vconf key as %s", DEFAULT_HOME_PKG_NAME);
 			return ECORE_CALLBACK_RENEW;
 		}
 	}

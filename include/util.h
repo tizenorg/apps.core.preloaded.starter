@@ -21,21 +21,16 @@
 #include <sys/time.h>
 #include <app.h>
 
-#define APP_TRAY_PKG_NAME "org.tizen.app-tray"
-#define MENU_SCREEN_PKG_NAME "org.tizen.menu-screen"
-#define PROVIDER_PKG_NAME "org.tizen.data-provider-master"
-#define CLUSTER_HOME_PKG_NAME "org.tizen.cluster-home"
-#define EASY_HOME_PKG_NAME "org.tizen.easy-home"
-#define EASY_APPS_PKG_NAME "org.tizen.easy-apps"
+#define HOMESCREEN_PKG_NAME "org.tizen.homescreen-efl"
+#define TASKMGR_PKG_NAME "org.tizen.task-mgr"
 
 #ifdef TIZEN_PROFILE_COMMON
-#define HOMESCREEN_PKG_NAME MENU_SCREEN_PKG_NAME
+#define MENU_SCREEN_PKG_NAME "org.tizen.menu-screen"
+#define DEFAULT_HOME_PKG_NAME MENU_SCREEN_PKG_NAME
 #else
-#define HOMESCREEN_PKG_NAME "org.tizen.homescreen-efl"
+#define DEFAULT_HOME_PKG_NAME HOMESCREEN_PKG_NAME
 #endif
 
-#define TASKMGR_PKG_NAME "org.tizen.task-mgr"
-#define DEFAULT_TASKMGR_PKG_NAME "org.tizen.taskmgr"
 #define CONF_PATH_NUMBER 1024
 
 #define BUF_SIZE_16 16
@@ -44,7 +39,6 @@
 #define BUF_SIZE_256 256
 #define BUF_SIZE_512 512
 #define BUF_SIZE_1024 1024
-
 
 #ifdef  LOG_TAG
 #undef  LOG_TAG
