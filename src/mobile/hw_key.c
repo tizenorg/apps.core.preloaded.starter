@@ -562,21 +562,30 @@ const char *key_name[KEY_NAME_MAX] = {
 static struct {
 	Ecore_Event_Handler *key_up;
 	Ecore_Event_Handler *key_down;
+	Ecore_Event_Handler *global_added;
+	Ecore_Event_Handler *keymap_update;
 	Ecore_Timer *home_long_press_timer;
 	Ecore_Timer *home_multi_press_timer;
-	Ecore_Timer *keygrab_timer;
 	Eina_Bool cancel;
+	Eina_Bool keymap_update_flag;
+	Eina_Bool global_added_flag;
 	int homekey_count;
 } key_info = {
 	.key_up = NULL,
 	.key_down = NULL,
+	.global_added = NULL,
+	.keymap_update = NULL,
 	.home_long_press_timer = NULL,
 	.home_multi_press_timer = NULL,
-	.keygrab_timer = NULL,
 	.cancel = EINA_FALSE,
+	.keymap_update_flag = EINA_FALSE,
+	.global_added_flag = EINA_FALSE,
 	.homekey_count = 0,
 };
 
+
+
+static void _destroy_precondition_handlers_for_keygrab(void);
 
 
 
@@ -880,10 +889,17 @@ static Eina_Bool _key_press_cb(void *data, int type, void *event)
 
 
 
-static Eina_Bool __keygrab_timer_cb(void *data)
+static void _set_keygrab(void)
 {
 	int i = 0;
 	int ret = 0;
+
+	if (key_info.keymap_update_flag != EINA_TRUE || key_info.global_added_flag != EINA_TRUE) {
+		_E("keygrab is not ready");
+		return;
+	}
+
+	_destroy_precondition_handlers_for_keygrab();
 
 	for (i = 0; i < KEY_NAME_MAX; i++) {
 		ret = ecore_wl_window_keygrab_set(NULL, key_name[i], 0, 0, 0, ECORE_WL_WINDOW_KEYGRAB_SHARED);
@@ -899,40 +915,114 @@ static Eina_Bool __keygrab_timer_cb(void *data)
 	if (!key_info.key_down) {
 		_E("Failed to register a key down event handler");
 	}
+}
 
-	return ECORE_CALLBACK_CANCEL;
+
+
+static void _unset_keygrab(void)
+{
+	int i = 0;
+
+	if (key_info.keymap_update_flag == EINA_TRUE && key_info.global_added_flag == EINA_TRUE) {
+		for (i = 0; i < KEY_NAME_MAX; i++) {
+			ecore_wl_window_keygrab_unset(NULL, key_name[i], 0, 0);
+		}
+
+		key_info.keymap_update_flag = EINA_FALSE;
+		key_info.global_added_flag = EINA_FALSE;
+	}
+}
+
+
+
+static Eina_Bool _global_added_cb(void *data, int type, void *event)
+{
+	Ecore_Wl_Event_Global *ev = NULL;
+
+	ev = (Ecore_Wl_Event_Global *) event;
+	if (!ev) {
+		_E("Failed to get global added event");
+		return ECORE_CALLBACK_CANCEL;
+	}
+
+	if (ev->interface && !strncmp(ev->interface, "tizen_keyrouter", strlen(ev->interface))) {
+		key_info.global_added_flag = EINA_TRUE;
+		_set_keygrab();
+	}
+
+	return ECORE_CALLBACK_PASS_ON;
+}
+
+
+
+static Eina_Bool _keymap_update_cb(void *data, int type, void *event)
+{
+	Ecore_Wl_Event_Keymap_Update *ev = NULL;
+	Ecore_Wl_Input *input = NULL;
+	struct xkb_keymap *keymap = NULL;
+
+	ev = (Ecore_Wl_Event_Keymap_Update *) event;
+	if (!ev) {
+		_E("Failed to get keymap event");
+		return ECORE_CALLBACK_CANCEL;
+	}
+
+	input = ecore_wl_input_get();
+	if (!input) {
+		_E("Failed to get wl input");
+		return ECORE_CALLBACK_CANCEL;
+	}
+
+	keymap = ecore_wl_input_keymap_get(input);
+	if (ev->keymap && keymap) {
+		key_info.keymap_update_flag = EINA_TRUE;
+		_set_keygrab();
+	}
+
+	return ECORE_CALLBACK_PASS_ON;
+}
+
+
+
+static void _create_precondition_handlers_for_keygrab(void)
+{
+	key_info.global_added = ecore_event_handler_add(ECORE_WL_EVENT_GLOBAL_ADDED, _global_added_cb, NULL);
+	if (!key_info.global_added) {
+		_E("Failed to add handler for global added");
+	}
+
+	key_info.keymap_update = ecore_event_handler_add(ECORE_WL_EVENT_KEYMAP_UPDATE, _keymap_update_cb, NULL);
+	if (!key_info.keymap_update) {
+		_E("Failed to add handler for keymap update");
+	}
+}
+
+
+
+static void _destroy_precondition_handlers_for_keygrab(void)
+{
+	if (key_info.global_added) {
+		ecore_event_handler_del(key_info.global_added);
+		key_info.global_added = NULL;
+	}
+
+	if (key_info.keymap_update) {
+		ecore_event_handler_del(key_info.keymap_update);
+		key_info.keymap_update = NULL;
+	}
 }
 
 
 
 void hw_key_create_window(void)
 {
-	if (key_info.keygrab_timer) {
-		ecore_timer_del(key_info.keygrab_timer);
-		key_info.keygrab_timer = NULL;
-	}
-
-	key_info.keygrab_timer = ecore_timer_add(1.0f, __keygrab_timer_cb, NULL);
-	if (!key_info.keygrab_timer) {
-		_E("Failed to add timer for keygrab");
-	}
+	_create_precondition_handlers_for_keygrab();
 }
 
 
 
 void hw_key_destroy_window(void)
 {
-	int i = 0;
-
-	for (i = 0; i < KEY_NAME_MAX; i++) {
-		ecore_wl_window_keygrab_unset(NULL, key_name[i], 0, 0);
-	}
-
-	if (key_info.keygrab_timer) {
-		ecore_timer_del(key_info.keygrab_timer);
-		key_info.keygrab_timer = NULL;
-	}
-
 	if (key_info.key_up) {
 		ecore_event_handler_del(key_info.key_up);
 		key_info.key_up = NULL;
@@ -942,6 +1032,9 @@ void hw_key_destroy_window(void)
 		ecore_event_handler_del(key_info.key_down);
 		key_info.key_down = NULL;
 	}
+
+	_destroy_precondition_handlers_for_keygrab();
+	_unset_keygrab();
 }
 
 #endif
