@@ -37,14 +37,6 @@
 #include "status.h"
 #include "hw_key.h"
 
-#define PWLOCK_LITE_PKG_NAME "org.tizen.pwlock-lite"
-
-#define DATA_UNENCRYPTED "unencrypted"
-#define DATA_MOUNTED "mounted"
-#define SD_DATA_ENCRYPTED "encrypted"
-#define SD_CRYPT_META_FILE ".MetaEcfsFile"
-#define MMC_MOUNT_POINT	"/opt/storage/sdcard"
-
 
 
 #if 0
