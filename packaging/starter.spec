@@ -36,6 +36,7 @@ BuildRequires:  pkgconfig(capi-message-port)
 BuildRequires:  pkgconfig(capi-telephony)
 BuildRequires:  pkgconfig(capi-system-info)
 BuildRequires:  pkgconfig(efl-extension)
+BuildRequires:  pkgconfig(liblazymount)
 %endif
 
 BuildRequires:  pkgconfig(feedback)

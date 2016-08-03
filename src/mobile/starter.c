@@ -24,6 +24,9 @@
 #include <string.h>
 #include <malloc.h>
 
+#include <E_DBus.h>
+#include <lazymount/lazy_mount.h>
+
 #include <aul.h>
 #include <vconf.h>
 #include <signal.h>
@@ -36,7 +39,9 @@
 #include "util.h"
 #include "status.h"
 #include "hw_key.h"
+#include "dbus_util.h"
 
+#define APPID_SYS_LOCK "org.tizen.sys-lock"
 
 
 #if 0
@@ -193,6 +198,52 @@ static int _check_dead_signal(int pid, void *data)
 
 
 
+static void _sys_lock_status_changed_cb(void *data, DBusMessage *msg)
+{
+	int is_unlock = 0;
+
+	_D("sys-lock signal is received");
+
+	is_unlock = dbus_message_is_signal(msg, SYS_LOCK_INTERFACE_UNLOCK, SYS_LOCK_MEMBER_UNLOCK);
+	if (is_unlock) {
+		int ret = 0;
+
+		/*
+		 * Do mount user data partition
+		 */
+		ret = do_mount_user();
+		if (ret != 0) {
+			_E("Failed to do mount [/opt] area");
+			return;
+		}
+
+		/*
+		 * Wait user data partition mount
+		 */
+		ret = wait_mount_user();
+		if (ret != 0) {
+			_E("Failed to wait mount [/opt] area");
+			return;
+		}
+
+		/*
+		 * After user data partition mount,
+		 * launch lockscreen, homescreen, etc.
+		 */
+		lock_mgr_init();
+		home_mgr_init(NULL);
+
+		_show_home();
+
+		/*
+		 * Send DBus signal to terminate sys lock
+		 */
+		dbus_util_send_sys_lock_teminate_signal();
+	}
+}
+
+
+
 static void _init(struct appdata *ad)
 {
 	struct sigaction act;
@@ -221,6 +272,7 @@ static void _init(struct appdata *ad)
 		}
 	}
 
+
 	_set_i18n(PACKAGE, LOCALEDIR);
 
 	status_register();
@@ -228,10 +280,28 @@ static void _init(struct appdata *ad)
 
 	hw_key_create_window();
 
-	lock_mgr_init();
-	home_mgr_init(NULL);
+	e_dbus_init();
 
-	_show_home();
+	///////////////////////////////////////////////
+	int is_lazy_mount = 0;
+	is_lazy_mount = get_need_ui_for_lazy_mount();
+	if (is_lazy_mount) {
+		/*
+		 * Launch Sys-lock
+		 */
+		process_mgr_must_launch(APPID_SYS_LOCK, NULL, NULL, NULL, NULL);
+
+		/*
+		 * Register sys-lock status changed cb
+		 */
+		dbus_util_receive_lcd_status(_sys_lock_status_changed_cb, NULL);
+	} else {
+		lock_mgr_init();
+		home_mgr_init(NULL);
+
+		_show_home();
+	}
+	///////////////////////////////////////////////
 
 	aul_listen_app_dead_signal(_check_dead_signal, NULL);
 }

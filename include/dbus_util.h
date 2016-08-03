@@ -39,12 +39,21 @@
 #define MEMBER_LCD_ON			"LCDOn"
 #define MEMBER_LCD_OFF			"LCDOff"
 
+#define SYS_LOCK_BUS_NAME "org.tizen.syslock"
+#define SYS_LOCK_OBJECT_PATH "/Org/Tizen/System/Syslock"
+#define SYS_LOCK_INTERFACE_UNLOCK SYS_LOCK_BUS_NAME".unlock"
+#define SYS_LOCK_INTERFACE_TERMINATE SYS_LOCK_BUS_NAME".terminate"
+#define SYS_LOCK_MEMBER_UNLOCK "unlock"
+#define SYS_LOCK_MEMBER_TERMINATE "terminate"
+
 extern int dbus_util_send_oomadj(int pid, int oom_adj_value);
 extern void dbus_util_send_cpu_booster_signal(void);
 extern void dbus_util_send_poweroff_signal(void);
 extern void dbus_util_send_lock_PmQos_signal(void);
+extern void dbus_util_send_sys_lock_teminate_signal(void);
 
 extern int dbus_util_receive_lcd_status(void (*changed_cb)(void *data, DBusMessage *msg), void *data);
+extern int dbus_util_receive_sys_lock_status(void (*changed_cb)(void *data, DBusMessage *msg), void *data);
 extern char *dbus_util_msg_arg_get_str(DBusMessage *msg);
 
 #endif //__DBUS_UTIL_H__
