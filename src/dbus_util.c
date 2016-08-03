@@ -21,11 +21,6 @@
 #include "dbus_util.h"
 #include "util.h"
 
-#define DBUS_HOME_BUS_NAME "org.tizen.coreapps.home"
-#define DBUS_HOME_RAISE_PATH "/Org/Tizen/Coreapps/home/raise"
-#define DBUS_HOME_RAISE_INTERFACE DBUS_HOME_BUS_NAME".raise"
-#define DBUS_HOME_RAISE_MEMBER "homeraise"
-
 #define DBUS_REPLY_TIMEOUT (120 * 1000)
 
 #define POWEROFF_BUS_NAME       "org.tizen.system.popup"
@@ -327,12 +322,22 @@ void dbus_util_send_lock_PmQos_signal(void)
 
 
 
+void dbus_util_send_sys_lock_teminate_signal(void)
+{
+	int ret = 0;
+
+	ret = _invoke_dbus_method_async(SYS_LOCK_BUS_NAME, SYS_LOCK_OBJECT_PATH, SYS_LOCK_INTERFACE_TERMINATE, SYS_LOCK_MEMBER_TERMINATE, NULL, NULL);
+	ret_if(!ret);
+
+	_D("%s-%s", SYS_LOCK_INTERFACE_TERMINATE, SYS_LOCK_MEMBER_TERMINATE);
+}
+
+
+
 int dbus_util_receive_lcd_status(void (*changed_cb)(void *data, DBusMessage *msg), void *data)
 {
 	E_DBus_Connection *conn;
 	E_DBus_Signal_Handler *handler;
-
-	e_dbus_init();
 
 	conn = e_dbus_bus_get(DBUS_BUS_SYSTEM);
 	if (conn == NULL) {
@@ -359,6 +364,30 @@ int dbus_util_receive_lcd_status(void (*changed_cb)(void *data, DBusMessage *msg
 	return 1;
 }
 
+
+
+int dbus_util_receive_sys_lock_status(void (*changed_cb)(void *data, DBusMessage *msg), void *data)
+{
+	E_DBus_Connection *conn;
+	E_DBus_Signal_Handler *handler;
+
+	conn = e_dbus_bus_get(DBUS_BUS_SYSTEM);
+	if (conn == NULL) {
+		_E("e_dbus_bus_get error");
+		return -1;
+	}
+
+	handler = e_dbus_signal_handler_add(conn, NULL, SYS_LOCK_OBJECT_PATH,
+								SYS_LOCK_INTERFACE_UNLOCK, SYS_LOCK_MEMBER_UNLOCK,
+								changed_cb, data);
+	if (handler == NULL) {
+		_E("e_dbus_signal_handler_add error");
+		return -1;
+	}
+
+	return 0;
+}
+
 char *dbus_util_msg_arg_get_str(DBusMessage *msg)
 {
 	int ret = 0;
@@ -379,6 +408,3 @@ ERROR:
 
 	return NULL;
 }
-
-
-

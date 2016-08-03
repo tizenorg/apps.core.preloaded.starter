@@ -93,6 +93,7 @@ pkg_check_modules(pkgs REQUIRED
 	tts
 	capi-message-port
 	efl-extension
+	liblazymount
 )
 
 ELSEIF("${TIZEN_PROFILE_NAME}" STREQUAL "WEARABLE")
